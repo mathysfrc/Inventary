@@ -20,6 +20,8 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addStyleEntry('home', './assets/styles/home.scss')
+    .addStyleEntry('gestion', './assets/styles/gestion.scss')
     .addEntry('app', './assets/app.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
@@ -71,6 +73,8 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
+
+    .enableSassLoader()
 ;
 
 module.exports = Encore.getWebpackConfig();

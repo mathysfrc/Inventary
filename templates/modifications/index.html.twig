@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    {{ parent()}}
+    {{ encore_entry_link_tags('gestion') }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+    <div class="col">
+        <div class="row">
+            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Récéption &nbsp {% include 'icons/reception.svg' %}</a>
+            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Consommation &nbsp {% include 'icons/consommation.svg' %}</a> 
+        </div>
+        <div class="row">
+            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">100% consommé &nbsp {% include 'icons/withdrawal.svg' %}</a>
+            <a href="/" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Retour à la liste &nbsp {% include 'icons/return.svg' %}</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+    {{ parent()}}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+<main class="main">
+  <aside class="sidebar">
+    <nav class="nav">
+      <ul>
+        <li><a href="#">Lecture</a></li>
+        <li><a href="/gestion">Modification du stock</a></li>
+      </ul>
+    </nav>
+  </aside>
+</main>
+{% endblock %}
