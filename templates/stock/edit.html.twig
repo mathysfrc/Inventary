@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification Stock{% endblock %}
+
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+    <h1 class="fw-bold text-primary my-5">Modifier un produit du stock</h1>
+
+    {{ include('stock/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_stock_index') }}">Revenir à la liste</a>
+
+    {{ include('stock/_delete_form.html.twig') }}
+    </section>
+{% endblock %}

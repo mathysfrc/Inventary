@@ -22,6 +22,8 @@ Encore
      */
     .addStyleEntry('home', './assets/styles/home.scss')
     .addStyleEntry('gestion', './assets/styles/gestion.scss')
+    .addStyleEntry('login', './assets/styles/login.scss')
+    .addStyleEntry('stock', './assets/styles/stock.scss')
     .addEntry('app', './assets/app.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

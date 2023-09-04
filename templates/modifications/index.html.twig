@@ -1,22 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
 {% block stylesheets %}
-    {{ parent()}}
-    {{ encore_entry_link_tags('gestion') }}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
 {% endblock %}
 
 {% block body %}
-<section class="container">
-    <div class="col">
-        <div class="row">
-            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Récéption &nbsp {% include 'icons/reception.svg' %}</a>
-            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Consommation &nbsp {% include 'icons/consommation.svg' %}</a> 
-        </div>
-        <div class="row">
-            <a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">100% consommé &nbsp {% include 'icons/withdrawal.svg' %}</a>
-            <a href="/" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">Retour à la liste &nbsp {% include 'icons/return.svg' %}</a>
-        </div>
-    </div>
-</section>
+	<section class="container">
+		<div class="gestion d-flex">
+			<div class="row">
+				<div class="col-12">
+					<a href="/stock/new" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
+						<p>Récéption &nbsp
+							{% include 'icons/reception.svg' %}</p>
+					</a>
+					<a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
+						<p>100% consommé &nbsp
+							{% include 'icons/withdrawal.svg' %}</p>
+					</a>
+
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 justify-content-center">
+					<a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
+						<p>Consommation &nbsp
+							{% include 'icons/consommation.svg' %}</p>
+					</a>
+					<a href="/" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
+						<p>Retour à la liste &nbsp
+							{% include 'icons/return.svg' %}</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}

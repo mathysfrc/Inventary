@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réception{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
+{% block body %}
+<section class="container">
+    <h1 class="fw-bold text-primary my-5">Entrée en stock</h1>
+
+    {{ include('stock/_form.html.twig') }}
+
+    <a href="/gestion" class="mb-4 text-decoration-none">Revenir à la liste</a>
+    </section>
+{% endblock %}

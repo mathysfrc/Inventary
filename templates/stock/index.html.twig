@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock index
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<h1 class="my-5 fw-bold text-primary">Stock</h1>
+
+		<a type="button" href="#" class="btn btn-lg mb-3 btn-outline-success">
+								Importer vers EXCEL &nbsp {% include 'icons/excel.svg' %}
+							</a>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="">SKU</th>
+					<th class="">Description</th>
+					<th class="">Dimension1</th>
+					<th class="">Dimension2</th>
+					<th class="">Unitée dimension1</th>
+					<th class="">Unitée dimension2</th>
+					<th class="">Nom dimension1</th>
+					<th class="">Nom dimension2</th>
+					<th class="">Résultat</th>
+					<th class="">Prix</th>
+					<th class="">Famille produit</th>
+					<th class="">Référence</th>
+					{# <th class="">Free</th>
+																				                <th class="">Comment</th> #}
+					<th class="">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for stock in stocks %}
+					<tr>
+						<td>{{ stock.SKU }}</td>
+						<td>{{ stock.description }}</td>
+						<td>{{ stock.size1 }}</td>
+						<td>{{ stock.size2 }}</td>
+						<td>{{ stock.size1Unit }}</td>
+						<td>{{ stock.size2Unit }}</td>
+						<td>{{ stock.size1Name }}</td>
+						<td>{{ stock.size2Name }}</td>
+						<td>{{ stock.resultUnit }}</td>
+						<td>{{ stock.price }}</td>
+						<td>{{ stock.productFamily }}</td>
+						<td>{{ stock.reference }}</td>
+						{# <td>{{ stock.free }}</td>
+																								                <td>{{ stock.comment }}</td> #}
+						<td>{{ stock.status }}</td>
+
+						<td>
+							<a type="button" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
+								{% include 'icons/edit.svg' %}
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="17">Aucun ligne de stock récuperée</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+
+	<a href="/" type="button" class=" my-5 text-uppercase fw-bold text-primary text-decoration-none">
+		<p>Retour &nbsp
+			{% include 'icons/return.svg' %}</p>
+	</section>
+{% endblock %}

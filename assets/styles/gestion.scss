@@ -1,2 +1,31 @@
 @import "variables";
 
+.btn {
+    width: 30rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    height: 15rem;
+}
+
+.btn:hover {
+    background-color: #ffe261;
+    color: white;
+}
+
+div.col-12 {
+    height: 90vh;
+    margin-left: 2.5rem;
+}
+
+
+#text {
+    margin-top: 10rem;
+}
+
+p {
+    height: 13rem;
+    margin-top: 6rem;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: $font-family-base;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
