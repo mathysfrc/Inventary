@@ -10,6 +10,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+
 
 #[Route('/stock')]
 class StockController extends AbstractController
@@ -71,11 +73,12 @@ class StockController extends AbstractController
     #[Route('/{id}', name: 'app_stock_delete', methods: ['POST'])]
     public function delete(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$stock->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $stock->getId(), $request->request->get('_token'))) {
             $entityManager->remove($stock);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
     }
+    // ...
 }
