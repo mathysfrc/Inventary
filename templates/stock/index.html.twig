@@ -29,7 +29,7 @@
 				</div>
 				<div class="col-3">
 
-					<a type="button" href="#" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1">
+					<a type="button" href="/export/table" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1">
 						{% include 'icons/Download.svg' %}
 						&nbsp Exporter
 					</a>
@@ -46,9 +46,7 @@
 						<th class="border-top-0 border-bottom-0">Résultat</th>
 						<th class="border-top-0 border-bottom-0">Prix</th>
 						<th class="border-top-0 border-bottom-0">Famille produit</th>
-						<th class="border-top-0 border-bottom-0">Référence</th>
-						{# <th class="">Free</th>
-																																																																																		                <th class="">Comment</th> #}
+						<th class="border-top-0 border-bottom-0">Référence</th>																																																																			               
 						<th class="border-top-0 border-bottom-0">Status</th>
 					</tr>
 				</thead>
@@ -67,21 +65,15 @@
 								{{ stock.size2Unit }}
 							</td>
 							<td class="border-top-0">
-							
 							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
 							  {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-
-
 							  {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'L'  %}
 							 {{ (stock.size1 * stock.size2) }} L
-
 							 {% endif %}
 							  </td>
 							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
 							<td class="border-top-0">{{ stock.productFamily }}</td>
-							<td class="border-top-0">{{ stock.reference }}</td>
-							{# <td class="border-top-0">{{ stock.free }}</td>
-																																																																																													                <td class="border-top-0">{{ stock.comment }}</td> #}
+							<td class="border-top-0">{{ stock.reference }}</td>																																																																																					              
 							<td class="border-top-0">
 								{% if stock.status == "Inutilisable" %}
 									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
