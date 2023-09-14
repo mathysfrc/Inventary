@@ -11,24 +11,21 @@
 	<main class="main">
 		<aside class="sidebar">
 			<nav class="nav">
+			<div class="blue-icon">
+				{% include 'icons/blue-logo.svg'%}
+				</div>
 				<ul>
 					{% if app.user %}
 						<li>
-							<a href="/stock">Lecture</a>
+						<a class="stock" href="/stock">
+							{% include 'icons/Stock.svg' %}
+							Stock</a>
 						</li>
 
 						<li>
-							<a href="/gestion">Modification du stock</a>
-						</li>
-					{% endif %}
-					{% if not app.user %}
-						<li>
-							<a href="/login">Connexion</a>
-						</li>
-					{% endif %}
-					{% if app.user %}
-						<li>
-							<a href="/logout">Déconnexion</a>
+						<a class="gestion" href="/gestion">
+						{% include 'icons/Scan.svg' %}
+							Gestion</a>
 						</li>
 					{% endif %}
 				</ul>

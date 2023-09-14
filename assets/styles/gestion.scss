@@ -1,19 +1,41 @@
 @import "variables";
 
-.btn {
+a.btn {
     width: 30rem;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
     height: 15rem;
+    border-radius: 40px;
+    margin-right: 2.5rem;
+    margin-left: 1rem;
+    margin-top: 10rem;
 }
 
 .btn:hover {
-    background-color: #ffe261;
     color: white;
+
 }
+
+
+a.bouton {
+    margin-left: 68%;
+    margin-top: 2.5rem;
+}
+
+a.bout-recep {
+    margin-left: 3rem;
+}
+
+a.bout-cons {
+    margin-right: 5rem;
+}
+
 
 div.col-12 {
     height: 90vh;
     margin-left: 2.5rem;
+}
+
+.all-gestion {
+    padding-left: 120px;
 }
 
 
@@ -22,10 +44,48 @@ div.col-12 {
 }
 
 p {
-    height: 13rem;
-    margin-top: 6rem;
+    margin-top: 1rem;
     font-size: 2rem;
     font-weight: bold;
     font-family: $font-family-base;
-    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+    text-align: start;
+    margin-left: 1rem;
+}
+
+.text {
+    color: #191926;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.reception {
+    position: absolute;
+    left: 19.4rem;
+    top: -0.25rem;
+    z-index: 2;
+    border-radius: 0px 0px 40px 0px;
+}
+
+.arrow-left {
+    position: absolute;
+    left: 1.5rem;
+    top: 11rem;
+}
+
+.all-new-product {
+    padding-left: 120px;
+}
+
+.container {
+    margin-top: 3rem;
+}
+
+button.bt-return {
+    margin-left: 52rem;
+    margin-top: 3rem;
+    width: 50%;
+}
+
+.title-enter-stock {
+    margin-bottom: 5rem;
 }

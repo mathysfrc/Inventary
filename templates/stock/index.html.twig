@@ -3,70 +3,108 @@
 {% block title %}Stock index
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
 {% block body %}
-	<section class="container">
-		<h1 class="my-5 fw-bold text-primary">Stock</h1>
+	{% include 'home/index.html.twig' %}
+	<section class="all-stock">
+		<section class="container">
+			<h1 class="my-5 fw-bold text-primary">Stock</h1>
 
-		<a type="button" href="#" class="btn btn-lg mb-3 btn-outline-success">
-								Importer vers EXCEL &nbsp {% include 'icons/excel.svg' %}
-							</a>
+			<div class="row mb-4">
+				<div class="col-9">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form) }}
+						</div>
+						<div class="col">
+							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/search.svg' %}</button>
+						</div>
+					</div>
+					{{ form_end(form) }}
+				</div>
+				<div class="col-3">
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th class="">SKU</th>
-					<th class="">Description</th>
-					<th class="">Dimension1</th>
-					<th class="">Dimension2</th>
-					<th class="">Unitée dimension1</th>
-					<th class="">Unitée dimension2</th>
-					<th class="">Nom dimension1</th>
-					<th class="">Nom dimension2</th>
-					<th class="">Résultat</th>
-					<th class="">Prix</th>
-					<th class="">Famille produit</th>
-					<th class="">Référence</th>
-					{# <th class="">Free</th>
-																				                <th class="">Comment</th> #}
-					<th class="">Status</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for stock in stocks %}
+					<a type="button" href="#" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1">
+						{% include 'icons/Download.svg' %}
+						&nbsp Exporter
+					</a>
+
+				</div>
+			</div>
+
+			<table class="table">
+				<thead>
 					<tr>
-						<td>{{ stock.SKU }}</td>
-						<td>{{ stock.description }}</td>
-						<td>{{ stock.size1 }}</td>
-						<td>{{ stock.size2 }}</td>
-						<td>{{ stock.size1Unit }}</td>
-						<td>{{ stock.size2Unit }}</td>
-						<td>{{ stock.size1Name }}</td>
-						<td>{{ stock.size2Name }}</td>
-						<td>{{ stock.resultUnit }}</td>
-						<td>{{ stock.price }}</td>
-						<td>{{ stock.productFamily }}</td>
-						<td>{{ stock.reference }}</td>
-						{# <td>{{ stock.free }}</td>
-																								                <td>{{ stock.comment }}</td> #}
-						<td>{{ stock.status }}</td>
-
-						<td>
-							<a type="button" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
-								{% include 'icons/edit.svg' %}
-							</a>
-						</td>
+						<th class="border-top-0 border-bottom-0">SKU</th>
+						<th class="border-top-0 border-bottom-0">Description</th>
+						<th class="border-top-0 border-bottom-0">Dimension</th>
+						<th class="border-top-0 border-bottom-0">Résultat</th>
+						<th class="border-top-0 border-bottom-0">Prix</th>
+						<th class="border-top-0 border-bottom-0">Famille produit</th>
+						<th class="border-top-0 border-bottom-0">Référence</th>
+						{# <th class="">Free</th>
+																																																																																		                <th class="">Comment</th> #}
+						<th class="border-top-0 border-bottom-0">Status</th>
 					</tr>
-				{% else %}
-					<tr>
-						<td colspan="17">Aucun ligne de stock récuperée</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</tbody>
-	</table>
+				</thead>
+				<tbody>
+					{% for stock in stocks %}
+						<tr>
+							<td class="border-top-0">{{ stock.SKU }}</td>
+							<td class="border-top-0">{{ stock.description }}</td>
+							<td class="border-top-0">
+								{{ stock.size1Name }}&nbsp;:
+								{{ stock.size1 }}
+								{{ stock.size1Unit }}
+								x
+								{{ stock.size2Name }}&nbsp;:
+								{{ stock.size2 }}
+								{{ stock.size2Unit }}
+							</td>
+							<td class="border-top-0">
+							
+							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+							  {{ (stock.size1 / 1000)  *  stock.size2 }} m²
 
-	<a href="/" type="button" class=" my-5 text-uppercase fw-bold text-primary text-decoration-none">
-		<p>Retour &nbsp
-			{% include 'icons/return.svg' %}</p>
+
+							  {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'L'  %}
+							 {{ (stock.size1 * stock.size2) }} L
+
+							 {% endif %}
+							  </td>
+							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
+							<td class="border-top-0">{{ stock.productFamily }}</td>
+							<td class="border-top-0">{{ stock.reference }}</td>
+							{# <td class="border-top-0">{{ stock.free }}</td>
+																																																																																													                <td class="border-top-0">{{ stock.comment }}</td> #}
+							<td class="border-top-0">
+								{% if stock.status == "Inutilisable" %}
+									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+								{% else %}
+									<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+								{% endif %}
+							</td>
+
+							<td class="border-top-0">
+								<a type="button" class="text-black" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
+									{% include 'icons/edit.svg' %}
+								</a>
+							</td>
+
+
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="17">Aucun ligne de stock récuperée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
 	</section>
 {% endblock %}

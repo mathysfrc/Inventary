@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Stock;
+use App\Form\SearchSkuType;
 use App\Form\StockType;
 use App\Repository\StockRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,11 +17,29 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 #[Route('/stock')]
 class StockController extends AbstractController
 {
-    #[Route('/', name: 'app_stock_index', methods: ['GET'])]
-    public function index(StockRepository $stockRepository): Response
+    #[Route('/', name: 'app_stock_index')]
+    public function index(Request $request, StockRepository $stockRepository): Response
     {
+
+        $form = $this->createForm(SearchSkuType::class);
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $search = $form->getData()['search'];
+
+            $sku = $stockRepository->findLikeName($search);
+        } else {
+
+            $sku = $stockRepository->findAll();
+        }
+
+
         return $this->render('stock/index.html.twig', [
-            'stocks' => $stockRepository->findAll(),
+            'stocks' => $sku,
+            'form' => $form,
         ]);
     }
 
@@ -80,5 +99,14 @@ class StockController extends AbstractController
 
         return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
     }
-    // ...
+
+    #[Route('/reference', name: 'app_stock_reference', methods: ['POST'])]
+    public function reference(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
+    {
+
+        return $this->render('stock/reference.html.twig', [
+            'stock' => $stock,
+
+        ]);
+    }
 }

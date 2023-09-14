@@ -21,6 +21,23 @@ class StockRepository extends ServiceEntityRepository
         parent::__construct($registry, Stock::class);
     }
 
+    public function findLikeName(string $name)
+
+{
+
+    $queryBuilder = $this->createQueryBuilder('p')
+
+        ->where('p.SKU LIKE :name')
+
+        ->setParameter('name', '%' . $name . '%')
+
+        ->getQuery();
+
+
+    return $queryBuilder->getResult();
+
+}
+
 //    /**
 //     * @return Stock[] Returns an array of Stock objects
 //     */

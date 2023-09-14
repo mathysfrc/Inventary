@@ -16,3 +16,4 @@ class ModificationsController extends AbstractController
         ]);
     }
 }
+

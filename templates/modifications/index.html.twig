@@ -8,33 +8,53 @@
 {% endblock %}
 
 {% block body %}
-	<section class="container">
-		<div class="gestion d-flex">
-			<div class="row">
-				<div class="col-12">
-					<a href="/stock/new" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
-						<p>Récéption &nbsp
-							{% include 'icons/reception.svg' %}</p>
-					</a>
-					<a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
-						<p>100% consommé &nbsp
-							{% include 'icons/withdrawal.svg' %}</p>
-					</a>
-
+	{% include 'home/index.html.twig'%}
+	<section class="all-gestion">
+		<section class="container">
+			<div class="gestion d-flex">
+				<div class="row">
+					<div class="col-10">
+						<a href="/stock/new" type="button" class="bout-recep btn btn-primary btn-lg bg-white border-primary fw-bold text-primary">
+							<div class="col">
+								<p>Récéption</p>
+								<p class="text">
+									Ajouter une référence dans le référentiel.
+								</p>
+								{% include 'icons/arrow_left.svg'%}
+							</div>
+							<div class="col">
+								{% include 'icons/group.svg' %}
+							</div>
+						</a>
+						<a href="" type="button" class="bouton btn btn-primary btn-lg bg-white border-primary  fw-bold text-primary">
+							<div class="col">
+								<p>Consommation totale</p>
+								<p class="text">
+									Lorem Ipsum</p>
+									{% include 'icons/arrow_left.svg'%}
+							</div>
+							<div class="col">
+								{% include 'icons/group.svg' %}
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-10 justify-content-center">
+						<a href="/consommation" type="button" class="bout-cons btn btn-primary btn-lg bg-white border-primary fw-bold text-primary">
+							<div class="col">
+								<p>Consommation partielle</p>
+								<p class="text">
+									Lorem Ipsum</p>
+									{% include 'icons/arrow_left.svg'%}
+							</div>
+							<div class="col">
+								{% include 'icons/group.svg' %}
+							</div>
+						</a>
+					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-12 justify-content-center">
-					<a href="" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
-						<p>Consommation &nbsp
-							{% include 'icons/consommation.svg' %}</p>
-					</a>
-					<a href="/" type="button" class="btn btn-primary btn-lg my-5 text-uppercase fw-bold text-light">
-						<p>Retour à la liste &nbsp
-							{% include 'icons/return.svg' %}</p>
-					</a>
-				</div>
-			</div>
-		</div>
+		</section>
 	</section>
 {% endblock %}

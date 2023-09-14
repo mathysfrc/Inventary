@@ -1,5 +1,23 @@
 @import "variables";
 
-.form-label {
-    font-weight: bold;
+
+.all-stock {
+padding-left: 120px;
+}
+
+.sidebar {
+    margin-bottom: 2.5rem;
+}
+
+.table {
+    --bs-table-bg: none;
+}
+
+
+.search-icon {
+    padding-left: 0;
+}
+
+div.col {
+    padding: 0;
 }

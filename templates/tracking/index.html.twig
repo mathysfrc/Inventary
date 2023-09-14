@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tracking index{% endblock %}
+
+{% block body %}
+    <h1>Tracking index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+          
+                <th>Description</th>
+                <th>Size1</th>
+                <th>Size2</th>
+                <th>Size1Unit</th>
+                <th>Size2Unit</th>
+                <th>Size1Name</th>
+                <th>Size2Name</th>
+                <th>ResultUnit</th>
+                <th>Price</th>
+                <th>ProductFamily</th>
+                <th>Reference</th>
+                <th>Free</th>
+                <th>Comment</th>
+                <th>Timestamp</th>
+                <th>MovementType</th>
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tracking in trackings %}
+            <tr>
+
+                <td>{{ tracking.description }}</td>
+                <td>{{ tracking.size1 }}</td>
+                <td>{{ tracking.size2 }}</td>
+                <td>{{ tracking.size1Unit }}</td>
+                <td>{{ tracking.size2Unit }}</td>
+                <td>{{ tracking.size1Name }}</td>
+                <td>{{ tracking.size2Name }}</td>
+                <td>{{ tracking.resultUnit }}</td>
+                <td>{{ tracking.price }}</td>
+                <td>{{ tracking.productFamily }}</td>
+                <td>{{ tracking.reference }}</td>
+                <td>{{ tracking.free }}</td>
+                <td>{{ tracking.comment }}</td>
+                <td>{{ tracking.timestamp ? tracking.timestamp|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ tracking.movementType }}</td>
+                <td>{{ tracking.status }}</td>
+                <td>
+                    <a href="{{ path('app_tracking_show', {'id': tracking.id}) }}">show</a>
+                    <a href="{{ path('app_tracking_edit', {'id': tracking.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="19">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_tracking_new') }}">Create new</a>
+{% endblock %}

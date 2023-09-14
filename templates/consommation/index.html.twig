@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Consommation
+{% endblock %}
+
+{% block body %}
+
+	<section class="container">
+		<h1 class="my-5 fw-bold text-primary">Consommation</h1>
+
+		<div class="row">
+			<div class="col">
+				{{ form_start(form) }}
+
+				{{ form_widget(form) }}
+			</div>
+			<div class="col mt-4">
+
+				<button class="mb-5 btn btn-lg btn-primary">Rechercher</button>
+
+				{{ form_end(form) }}
+			</div>
+
+			<a href="/gestion" type="button" class="mb-5 text-uppercase fw-bold text-primary text-decoration-none">
+				<p>Retour &nbsp
+					{% include 'icons/return.svg' %}</p>
+			</a>
+		</div>
+
+		<table class="table">
+
+			<tbody>
+				{% for stock in stocks %}
+					<tr>
+						<td>{{ stock.SKU }}</td>
+						<td>{{ stock.description }}</td>
+						<td>{{ stock.size1 }}</td>
+						<td>{{ stock.size2 }}</td>
+						<td>{{ stock.size1Unit }}</td>
+						<td>{{ stock.size2Unit }}</td>
+						<td>{{ stock.size1Name }}</td>
+						<td>{{ stock.size2Name }}</td>
+						<td>{{ stock.resultUnit }}</td>
+						<td>{{ stock.price }}</td>
+						<td>{{ stock.productFamily }}</td>
+						<td>{{ stock.reference }}</td>
+						{# <td>{{ stock.free }}</td>
+																																																																															                <td>{{ stock.comment }}</td> #}
+						<td>{{ stock.status }}</td>
+
+						<td>
+							<a type="button" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
+								{% include 'icons/edit.svg' %}
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="17">Vueillez scanner ou renseigner le numéro SKU de l'élément recherché</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</section>
+{% endblock %}

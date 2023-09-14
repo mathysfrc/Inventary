@@ -38,7 +38,7 @@ class Stock
     #[ORM\Column(length: 255)]
     private ?string $size2Name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $resultUnit = null;
 
     #[ORM\Column]
