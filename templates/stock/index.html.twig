@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stock index
+{% block title %}Liste du stock
 {% endblock %}
 
 {% block stylesheets %}
@@ -67,8 +67,8 @@
 							<td class="border-top-0">
 							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
 							  {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-							  {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'L'  %}
-							 {{ (stock.size1 * stock.size2) }} L
+							  {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+							 {{ (stock.size1 * (stock.size2 / 1000 )) }} L
 							 {% endif %}
 							  </td>
 							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>

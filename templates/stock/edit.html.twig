@@ -1,21 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification Stock{% endblock %}
+{% block title %}Modification{% endblock %}
 
 
 {% block stylesheets %}
 	{{ parent()}}
-	{{ encore_entry_link_tags('stock') }}
+	{{ encore_entry_link_tags('gestion') }}
 {% endblock %}
 
 {% block body %}
+{% include 'home/index.html.twig' %}
+	<section class="all-new-product">
 <section class="container">
     <h1 class="fw-bold text-primary my-5">Modifier un produit du stock</h1>
 
-    {{ include('stock/_form.html.twig', {'button_label': 'Modifier'}) }}
+   		{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.SKU) }}
+					{{ form_row(form.description) }}
 
-    <a href="{{ path('app_stock_index') }}">Revenir à la liste</a>
+					{{ form_row(form.price) }}
 
-    {{ include('stock/_delete_form.html.twig') }}
+					{{ form_row(form.size1) }}
+				</div>
+				<div class="col">
+					{{ form_row(form.productFamily) }}
+					{{ form_row(form.reference) }}
+					{{ form_row(form.status) }}
+					{{ form_row(form.size2) }}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.size1Unit) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size1Name) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size2Unit) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size2Name) }}
+
+				{# <div class="row">
+
+					{{ form_row(form.resultUnit) }}
+				</div> #}
+				</div>
+			</div>
+
+			<div class="col-6">
+				<a href="#"><button type="submit" class="bt-return btn btn-lg bg-primary text-white">Modifier</button></a>
+			</div>
+		
+			{{ form_end(form) }}
+		{{ include('stock/_delete_form.html.twig') }}
+    </section>
     </section>
 {% endblock %}

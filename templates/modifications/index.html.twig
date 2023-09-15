@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil
+{% block title %}Gestion
 {% endblock %}
 {% block stylesheets %}
 	{{ parent()}}
@@ -16,7 +16,7 @@
 					<div class="col-10">
 						<a href="/stock/new" type="button" class="bout-recep btn btn-primary btn-lg bg-white border-primary fw-bold text-primary">
 							<div class="col">
-								<p>Récéption</p>
+								<p>Réception</p>
 								<p class="text">
 									Ajouter une référence dans le référentiel.
 								</p>
@@ -30,7 +30,7 @@
 							<div class="col">
 								<p>Consommation totale</p>
 								<p class="text">
-									Lorem Ipsum</p>
+									Retrouver les produits totalement consommés.</p>
 									{% include 'icons/arrow_left.svg'%}
 							</div>
 							<div class="col">
@@ -45,7 +45,7 @@
 							<div class="col">
 								<p>Consommation partielle</p>
 								<p class="text">
-									Lorem Ipsum</p>
+									Gérer la consommation du produit.</p>
 									{% include 'icons/arrow_left.svg'%}
 							</div>
 							<div class="col">

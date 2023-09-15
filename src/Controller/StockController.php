@@ -7,11 +7,17 @@ use App\Form\SearchSkuType;
 use App\Form\StockType;
 use App\Repository\StockRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Endroid\QrCode\Color\Color;
+use Endroid\QrCode\Encoding\Encoding;
+use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
+use Endroid\QrCode\QrCode;
+use Endroid\QrCode\RoundBlockSizeMode\RoundBlockSizeModeMargin;
+use Endroid\QrCode\Writer\PngWriter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\StreamedResponse;
+
 
 
 #[Route('/stock')]
@@ -50,11 +56,13 @@ class StockController extends AbstractController
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($stock);
             $entityManager->flush();
+            $id = $stock->getId();
 
-            return $this->redirectToRoute('app_stock_new', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stock/new.html.twig', [
@@ -79,8 +87,10 @@ class StockController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
+            $id = $stock->getId();
 
-            return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('stock/edit.html.twig', [
@@ -100,13 +110,72 @@ class StockController extends AbstractController
         return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/reference', name: 'app_stock_reference', methods: ['POST'])]
-    public function reference(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
+
+
+    #[Route('/{id}/reference', name: 'app_stock_reference')]
+    public function reference(Request $request, Stock $stock): Response
     {
+        $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
+        
+        $dataToEncode = implode("\t", $dataArray);
 
-        return $this->render('stock/reference.html.twig', [
+        $writer = new PngWriter();
+
+        // Create QR code
+        $qrCode = QrCode::create($dataToEncode)
+            ->setEncoding(new Encoding('UTF-8'))
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->setSize(300);
+
+        $result = $writer->write($qrCode);
+
+        // Validate the result
+        $writer->validateResult($result, $dataToEncode);
+        // Save it to a file
+        // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-'. 'id' . '.png');
+
+        // Generate a data URI to include image data inline (i.e. inside an <img> tag)
+        $dataUri = $result->getDataUri();
+
+        return $this->render('reference/index.html.twig', [
+            'controller_name' => 'StockController',
             'stock' => $stock,
-
+            'dataUri' => $dataUri,
+        
         ]);
     }
+
+    #[Route('/{id}/reference/create', name: 'app_stock_create')]
+    public function noImpression(Request $request, Stock $stock): Response
+    {
+        $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
+        
+        $dataToEncode = implode("\t", $dataArray);
+
+        $writer = new PngWriter();
+
+        // Create QR code
+        $qrCode = QrCode::create($dataToEncode)
+            ->setEncoding(new Encoding('UTF-8'))
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->setSize(300);
+
+        $result = $writer->write($qrCode);
+
+        // Validate the result
+        $writer->validateResult($result, $dataToEncode);
+        // Save it to a file
+        // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-'. 'id' . '.png');
+        
+        $dataUri = $result->getDataUri();
+
+        return $this->render('no_impression/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+            'dataUri' => $dataUri,
+        ]);
+    }
+
 }

@@ -6,7 +6,7 @@ a.btn {
     border-radius: 40px;
     margin-right: 2.5rem;
     margin-left: 1rem;
-    margin-top: 10rem;
+    margin-top: 8rem;
 }
 
 .btn:hover {
@@ -88,4 +88,62 @@ button.bt-return {
 
 .title-enter-stock {
     margin-bottom: 5rem;
+}
+
+.card-text {
+    font-size: small;
+    font-weight: normal;
+}
+
+.span-text {
+    font-weight: bold;
+}
+
+.card-reference {
+    margin-left: 23%;
+    margin-top: 15%;
+    border-radius: 20px;
+}
+
+.inutilisable,
+.utilisable {
+    position: absolute;
+    bottom: 13rem;
+    left: 27rem;
+}
+
+a.button-impr {
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+}
+
+a.button-no-impr {
+    color: $primary;
+}
+
+button.bouton-suppr {
+    position: absolute;
+    bottom: 9rem;
+}
+
+h1.title-no-impression {
+    margin-left: 20%;
+    position: absolute;
+    top: 20%;
+}
+
+.validation {
+    position: absolute;
+    left: 31%;
+    top: 10%;
+}
+
+a.button-no-impression {
+    margin-top: 3rem;
+    width: 50%;
+    height: auto;
+    border-radius: 5px;
+    margin-left: 23.2%;
+
 }

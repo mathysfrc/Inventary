@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réference
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig' %}
+	<section class='all-new-product'>
+		<section class="container">
+			<a href="/gestion" class="return">
+				< Retour à la gestion du stock
+			</a>
+			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+
+<div class="card-reference border border-primary" style="width: 35rem;">
+    <div class="card-body">
+        <h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
+             <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+         <div class="row">
+            <div class="col">
+                <p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+                <p class="card-text"><span class="span-text">Dimensions </span></br> 
+                 {{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+                 {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+                </p>
+                	{% if stock.status == "Inutilisable" %}
+									<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+								{% else %}
+									<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+								{% endif %}
+            </div>
+            <div class="col">
+                <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+                <p class="card-text"><span class="span-text">Aire calculée </span></br> 
+        			{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+					    {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+					{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+						{{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                    {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+						{{ (stock.size1 * stock.size2) / 1000000 }} m²
+					{% endif %}
+                </p>
+            </div>
+            <div class="col">
+                <p class="card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+            </div>
+                <img class="w-25 h-25" src="{{ dataUri }}" alt="datamatrix">
+         </div>
+    </div>
+</div>
+<div class="row">
+ 
+<div class="col-4">
+<a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
+</div>
+<div class="col-5">
+<a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="button-no-impr btn">Créer sans imprimmer l'étiquette</a>
+</div>
+<div class="col-3">
+<a href="" class="button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
+</div>
+</div>
+</section>
+</section>
+{% endblock %}

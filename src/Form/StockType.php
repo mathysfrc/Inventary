@@ -27,7 +27,15 @@ class StockType extends AbstractType
 
     public const UNIT2 = [
         'm' => 'm',
-        'L' => 'L',
+        'mm' => 'mm',
+        'mL' => 'mL',
+    ];
+
+    public const FAMILY = [
+        'Adhésif découpe' => 'Adhésif découpe',
+        'Support rigide' => 'Support rigide',
+        'Support souple' => 'Support souple',
+        'Liquide' => 'Liquide',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -40,11 +48,11 @@ class StockType extends AbstractType
                     'placeholder' => '(000)0118',
                 ]
             ])
-            ->add('productFamily', TextType::class, [
+            ->add('productFamily', ChoiceType::class, [
                 'label' => 'Famille de produit',
+                'choices' => self::FAMILY,
                 'attr' => [
                     'class' => 'border-tertiary',
-                    'placeholder' => 'Famille de produit',
                 ]
             ])
             ->add('description', TextType::class, [
