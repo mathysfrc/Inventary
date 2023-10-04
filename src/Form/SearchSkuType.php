@@ -17,6 +17,7 @@ class SearchSkuType extends AbstractType
                 'label' => ' ',
                 'attr' => [
                     'class' => 'border-primary',
+                    'placeholder' => 'SKU',
                 ],
 
             ])

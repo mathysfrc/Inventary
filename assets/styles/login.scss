@@ -27,3 +27,37 @@ label {
     margin-left: 7.5rem;
     width: 60%;
 }
+
+@media (min-width: 1201px) {
+    img.image {
+        width: 106.5vh;
+        height: 100vh;
+        background-size: cover;
+    }
+
+    img.logo {
+        margin-top: 30rem;
+        margin-left: 20rem;
+        margin-bottom: 5rem;
+        width: 40rem;
+        height: auto;
+    }
+
+    label {
+        margin-left: 16.5rem;
+    }
+
+    .form-control {
+        width: 60%;
+        margin-left: 16.5rem;
+    }
+
+    .text-black-50 {
+        margin-left: 16.5rem;
+    }
+
+
+    .btn {
+        margin-left: 16.5rem;
+    }
+}

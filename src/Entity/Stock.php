@@ -162,7 +162,7 @@ class Stock
 
     public function getResultUnit(): ?string
     {
-        return $this->resultUnit;
+        return $this->size1 * $this->size2 / 1000;
     }
 
     public function setResultUnit(string $resultUnit): static

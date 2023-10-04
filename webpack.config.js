@@ -24,7 +24,7 @@ Encore
     .addStyleEntry('gestion', './assets/styles/gestion.scss')
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry('stock', './assets/styles/stock.scss')
-
+    .addStyleEntry('print', './assets/styles/print.scss')
 
     .copyFiles({
         from: './assets/images',

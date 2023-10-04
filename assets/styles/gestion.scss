@@ -16,16 +16,17 @@ a.btn {
 
 
 a.bouton {
-    margin-left: 68%;
-    margin-top: 2.5rem;
+    margin-left: 65%;
+    margin-top: 3rem;
 }
 
 a.bout-recep {
-    margin-left: 3rem;
+    margin-left: 1rem;
 }
 
 a.bout-cons {
-    margin-right: 5rem;
+    margin-right:
+        1.3rem;
 }
 
 
@@ -81,7 +82,7 @@ p {
 }
 
 button.bt-return {
-    margin-left: 52rem;
+    margin-left: 49.2rem;
     margin-top: 3rem;
     width: 50%;
 }
@@ -145,5 +146,60 @@ a.button-no-impression {
     height: auto;
     border-radius: 5px;
     margin-left: 23.2%;
+
+}
+
+.card-reference {
+    width: 35rem;
+}
+
+
+
+@media (min-width: 1201px) {
+    a.bouton {
+        margin-left: 75%;
+        margin-top: 3rem;
+    }
+
+    a.bout-recep {
+        margin-top: 21rem;
+        margin-left: 5.5rem;
+    }
+
+    a.bout-cons {
+        margin-top: 21rem;
+        margin-right:
+            1.3rem;
+    }
+
+    .title-enter-stock {
+        margin-top: 18rem;
+    }
+
+    h1.modif-title {
+        margin-top: 22rem !important;
+    }
+
+    button.bouton-suppr {
+        position: absolute !important;
+        bottom: 24rem !important;
+    }
+
+    h1.title-no-impression {
+        margin-left: 14% !important;
+        position: absolute !important;
+        top: 12.5% !important;
+    }
+
+    a.return {
+        position: absolute !important;
+        top: 15rem;
+    }
+
+    .validation {
+        position: absolute !important;
+        left: 41% !important;
+        top: 12% !important;
+    }
 
 }

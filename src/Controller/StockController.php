@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Stock;
+use App\Entity\Tracking;
 use App\Form\SearchSkuType;
 use App\Form\StockType;
 use App\Repository\StockRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Mapping\Entity;
 use Endroid\QrCode\Color\Color;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelLow;
@@ -41,7 +44,6 @@ class StockController extends AbstractController
 
             $sku = $stockRepository->findAll();
         }
-
 
         return $this->render('stock/index.html.twig', [
             'stocks' => $sku,
@@ -114,8 +116,13 @@ class StockController extends AbstractController
 
     #[Route('/{id}/reference', name: 'app_stock_reference')]
     public function reference(Request $request, Stock $stock): Response
+
     {
-        $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
+
+        $dataArray = [
+            $stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit(), $stock->getStatus(),
+            $stock->getResultUnit()
+        ];
         
         $dataToEncode = implode("\t", $dataArray);
 
@@ -133,7 +140,7 @@ class StockController extends AbstractController
         $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
-        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-'. 'id' . '.png');
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
 
         // Generate a data URI to include image data inline (i.e. inside an <img> tag)
         $dataUri = $result->getDataUri();
@@ -142,7 +149,7 @@ class StockController extends AbstractController
             'controller_name' => 'StockController',
             'stock' => $stock,
             'dataUri' => $dataUri,
-        
+
         ]);
     }
 
@@ -150,7 +157,7 @@ class StockController extends AbstractController
     public function noImpression(Request $request, Stock $stock): Response
     {
         $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
-        
+
         $dataToEncode = implode("\t", $dataArray);
 
         $writer = new PngWriter();
@@ -167,8 +174,8 @@ class StockController extends AbstractController
         $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
-        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-'. 'id' . '.png');
-        
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
+
         $dataUri = $result->getDataUri();
 
         return $this->render('no_impression/index.html.twig', [
@@ -178,4 +185,44 @@ class StockController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/reference/impression', name: 'app_stock_impression')]
+    public function impression(Request $request, Stock $stock): Response
+    {
+        $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
+
+        $dataToEncode = implode("\t", $dataArray);
+
+        $writer = new PngWriter();
+
+        // Create QR code
+        $qrCode = QrCode::create($dataToEncode)
+            ->setEncoding(new Encoding('UTF-8'))
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->setSize(300);
+
+        $result = $writer->write($qrCode);
+
+        // Validate the result
+        $writer->validateResult($result, $dataToEncode);
+        // Save it to a file
+        // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
+
+        $dataUri = $result->getDataUri();
+
+        return $this->render('impression/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+            'dataUri' => $dataUri,
+        ]);
+    }
+
+    #[Route('/{id}/print', name: 'app_stock_print')]
+    public function print(Request $request, Stock $stock): Response
+    {
+        return $this->render('print/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+        ]);
+    }
 }
