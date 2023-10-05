@@ -24,13 +24,18 @@
   font-weight: bold;
 }
 
-
 .stock {
   margin-right: 0.50rem;
 }
 
 .stock-svg {
   margin-right: 0.2rem;
+}
+
+a.logout {
+  position: absolute;
+  top: 13rem;
+  left: 0.8rem;
 }
 
 .scan {
@@ -74,6 +79,12 @@
     position: absolute;
     bottom: 40rem;
     left: 2rem;
+  }
+
+  a.logout {
+    position: absolute;
+    top: 30rem;
+    left: 2.5rem;
   }
 
   

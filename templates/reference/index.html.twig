@@ -9,142 +9,67 @@
 {% endblock %}
 
 {% block body %}
-<style>
-@media print {
 
-
-    @page {
-        size: portrait !important;
-    }
-
-    * {
-        margin:0.3rem !important;
-        padding:0 !important;
-    }
-
-
-    body * {
-        display: none;
-    }
-
-    .a-imprimer,
-    .a-imprimer * {
-        display: block !important;
-        zoom: 65% !important;
-    }
-
-    img.datamatrix * {
-        position: absolute !important;
-        left: 10rem !important;
-        zoom: 150% !important;
-    }
-
-    .card-reference * {
-        font-size: larger !important;
-    }
-
-    .datamatrix * {
-        zoom: 300% !important;
-    }
-
-    .border-primary * {
-        border-color: none !important;
-        width: 250rem;
-    }
-
-    .card-text * {
-        font-size: 11rem !important;
-        font-weight: bold !important;
-        display: flex !important;
-    }
-
-    .border * {
-        border: none !important;
-    }
-
-
-    .card-body * {
-        margin-top: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-    }
-
-    .card-title * {
-        font-size: 6rem !important;
-    }
-
-
-    .datamatrix * {
-        margin-top: 0 !important;
-    }
-
-    h3.card-title * {
-        font-size: 3rem !important;
-        color: #191926 !important;
-    } 
-
-}
-</style>
 	{% include 'home/index.html.twig' %}
 	<section class='all-new-product'>
 		<section class="container">
-			<a href="/gestion" class="return">
+			<a href="/gestion" class="return DO-NOT-PRINT">
 				< Retour à la gestion du stock
 			</a>
-			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+			<h1 class="DO-NOT-PRINT title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
             
- <section class="elementToPrint">
- <div id="element-a-imprimer" class="a-imprimer">
-    <div class="card-reference border border-primary">
-        <div class="card-body">
-            <h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
-            <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
-             <div class="row">
-                <div class="col">
-                <p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
-                <p class="card-text"><span class="span-text">Dimensions </span></br> 
-                 {{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
-                 {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
-                </p>
-                	{% if stock.status == "Inutilisable" %}
-									<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
-								{% else %}
-									<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
-								{% endif %}
-                </div>
-                <div class="col">
-                <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
-                <p class="card-text"><span class="span-text">Aire calculée </span></br> 
-        			{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-					    {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-					{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-						{{ (stock.size1 * (stock.size2 / 1000 )) }} L
-                    {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
-						{{ (stock.size1 * stock.size2) / 1000000 }} m²
-					{% endif %}
-                </p>
-                
-                </div>
-                    <div class="col">
-                <p class="card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+            <section class="elementToPrint">
+                <div id="element-a-imprimer">
+                    <div class="card-reference border border-primary">
+                        <div class="card-body">
+                            <h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
+                            <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                            <div class="row">
+                                <div class="col">
+                                <p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+                                <p class="card-text"><span class="span-text">Dimensions </span></br> 
+                                {{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+                                {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+                                </p>
+                                    {% if stock.status == "Inutilisable" %}
+                                                    <span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+                                                {% else %}
+                                                    <span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+                                                {% endif %}
+                                </div>
+                                <div class="col">
+                                <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+                                <p class="card-text"><span class="span-text">Aire calculée </span></br> 
+                                    {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                        {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                    {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                        {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                    {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                        {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                    {% endif %}
+                                </p>
+                                
+                                </div>
+                                    <div class="col">
+                                <p class="card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+                                    </div>
+                                <img class="datamatrix w-25 h-25" src="{{ dataUri }}" alt="datamatrix">
+                            </div>
+                        </div>
                     </div>
-                <img class="datamatrix w-25 h-25" src="{{ dataUri }}" alt="datamatrix">
-            </div>
-        </div>
-    </div>
-</div>
+                </div>
 </div>
 <div class="row">
  
 <div class="col-4">
-<a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
+<a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="DO-NOT-PRINT button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
 </div>
 <div class="col-5">
-<a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="button-no-impr btn">Créer sans imprimmer l'étiquette</a>
+<a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="DO-NOT-PRINT button-no-impr btn">Créer sans imprimmer l'étiquette</a>
 </div>
 
 <div class="col-3">
-<a href="{{ path('app_stock_print', {'id': stock.id}) }}" id="imprimerPage" class="button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
+<a href="{{ path('app_stock_print', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
  <script>
         document.getElementById("imprimerPage").addEventListener("click", function() {
             window.print();

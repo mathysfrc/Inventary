@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block body %}
-	<main class="main">
+	<main class="main DO-NOT-PRINT">
 		<aside class="sidebar">
 			<nav class="nav">
 				<div class="blue-icon">
@@ -26,6 +26,11 @@
 							<a class="gestion" href="/gestion">
 								{% include 'icons/Scan.svg' %}
 								Gestion</a>
+						</li>
+
+						<li>
+							<a class="logout" href="/logout">
+								{% include 'icons/logout.svg' %}</a>
 						</li>
 					{% endif %}
 				</ul>

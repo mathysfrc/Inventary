@@ -60,6 +60,30 @@ class StockController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // on prépare la ligne tracking a injecter dans la BDD
+            $tracking = new Tracking();
+            $tracking->setSKU($stock->getSKU());
+            $tracking->setDescription($stock->getDescription());
+            $tracking->setSize1($stock->getSize1());
+            $tracking->setSize2($stock->getSize2());
+            $tracking->setSize1Unit($stock->getSize1Unit());
+            $tracking->setSize2Unit($stock->getSize2Unit());
+            $tracking->setSize1Name($stock->getSize1Name());
+            $tracking->setSize2Name($stock->getSize2Name());
+            $tracking->setResultUnit($stock->getResultUnit());
+            $tracking->setPrice($stock->getPrice());
+            $tracking->setProductFamily($stock->getProductFamily());
+            $tracking->setReference($stock->getReference());
+            $tracking->setFree($stock->getFree());
+            $tracking->setComment($stock->getComment());
+            $tracking->setStatus($stock->getStatus());
+            // $tracking->setMovementType();
+            // $tracking->setTimestamp();
+
+
+            $entityManager->persist($tracking);
+            //$entityManager -> flush();
+            // on envoie en BDD le stock du formulaire
             $entityManager->persist($stock);
             $entityManager->flush();
             $id = $stock->getId();
