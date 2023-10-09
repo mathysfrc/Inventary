@@ -3,64 +3,90 @@
 {% block title %}Consommation
 {% endblock %}
 
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('partielle') }}
+{% endblock %}
+
 {% block body %}
-
-	<section class="container">
-		<h1 class="my-5 fw-bold text-primary">Consommation</h1>
-
-		<div class="row">
-			<div class="col">
-				{{ form_start(form) }}
-
-				{{ form_widget(form) }}
-			</div>
-			<div class="col mt-4">
-
-				<button class="mb-5 btn btn-lg btn-primary">Rechercher</button>
-
-				{{ form_end(form) }}
-			</div>
-
-			<a href="/gestion" type="button" class="mb-5 text-uppercase fw-bold text-primary text-decoration-none">
-				<p>Retour &nbsp
-					{% include 'icons/return.svg' %}</p>
+	{% include 'home/index.html.twig' %}
+	<section class="all-gestion">
+		<div class="container">
+			<div class="return-element">
+			<a href="/gestion" class="return text-primary">
+				 < Retour à la gestion du stock
 			</a>
+			<h1 class=" fw-bold text-primary">Consommation partielle</h1>
+			</div>
+
+  <div class="card-body">
+        <h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
+            <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                <div class="row">
+                    <div class="col">
+					<p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+					<p class="card-text"><span class="span-text">Dimensions </span></br> 
+						{{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+						{{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+						</p>
+							{% if stock.status == "Inutilisable" %}
+											<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+										{% else %}
+											<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+										{% endif %}
+						</div>
+						<div class="col">
+						<p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+						<p class="card-text"><span class="span-text">Aire calculée </span></br> 
+							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+								{{ (stock.size1 / 1000)  *  stock.size2 }} m²
+							{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+								{{ (stock.size1 * (stock.size2 / 1000 )) }} L
+							{% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+								{{ (stock.size1 * stock.size2) / 1000000 }} m²
+							{% endif %}
+						</p>
+						
+						</div>
+							<div class="col">
+						<p class="price-card card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+							</div>
+					</div>
+          		</div>
 		</div>
-
-		<table class="table">
-
-			<tbody>
-				{% for stock in stocks %}
-					<tr>
-						<td>{{ stock.SKU }}</td>
-						<td>{{ stock.description }}</td>
-						<td>{{ stock.size1 }}</td>
-						<td>{{ stock.size2 }}</td>
-						<td>{{ stock.size1Unit }}</td>
-						<td>{{ stock.size2Unit }}</td>
-						<td>{{ stock.size1Name }}</td>
-						<td>{{ stock.size2Name }}</td>
-						<td>{{ stock.resultUnit }}</td>
-						<td>{{ stock.price }}</td>
-						<td>{{ stock.productFamily }}</td>
-						<td>{{ stock.reference }}</td>
-						{# <td>{{ stock.free }}</td>
-																																																																															                <td>{{ stock.comment }}</td> #}
-						<td>{{ stock.status }}</td>
-
-						<td>
-							<a type="button" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
-								{% include 'icons/edit.svg' %}
-							</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="17">Vueillez scanner ou renseigner le numéro SKU de l'élément recherché</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-	</section>
+		<div class="modif-col col-4">
+		
+		<form action="{{ path('app_stock_update')}}" method="POST" class="p-0">
+			<label class="text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
+			 
+				<div class="row">
+				<div class="col">
+					<input name="size1" type="text" placeholder="Ex : Produit" /> 
+					</div>
+					<div class="col-1">
+					{{ stock.size1Unit }}
+					</div>
+					</div>
+					
+					<label class="text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
+					<div class="row">
+					<div class="col">
+					<input name="size2" type="text" placeholder="Ex : Produit" />  
+					</div>
+					<div class="col-1">
+					{{ stock.size2Unit }}
+					</div>
+					</div>
+					<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
+				
+					<input type="submit" class="validation btn-primary btn-lg" />
+			</div>
+		</form>
+		<div class="row">
+			<div class="col-4">
+				<a href="/scan/entry" class="re-scan button-impr btn btn-outline-primary btn-lg" type="button">Scanner à nouveau</a>
+			</div>
+		</div>
+	</div>
+</section>
 {% endblock %}

@@ -243,4 +243,27 @@ class Stock
 
         return $this;
     }
+
+    public static function getStockFromTracking(Tracking $tracking): Stock
+    {
+        
+        $stock = new Stock();
+        $stock->setSKU($tracking->getSKU());
+        $stock->setDescription($tracking->getDescription());
+        $stock->setSize1($tracking->getSize1());
+        $stock->setSize2($tracking->getSize2());
+        $stock->setSize1Unit($tracking->getSize1Unit());
+        $stock->setSize2Unit($tracking->getSize2Unit());
+        $stock->setSize1Name($tracking->getSize1Name());
+        $stock->setSize2Name($tracking->getSize2Name());
+        $stock->setResultUnit($tracking->getResultUnit());
+        $stock->setPrice($tracking->getPrice());
+        $stock->setProductFamily($tracking->getProductFamily());
+        $stock->setReference($tracking->getReference());
+        $stock->setFree($tracking->getFree());
+        $stock->setComment($tracking->getComment());
+        $stock->setStatus($tracking->getStatus());
+
+        return $stock;
+    }
 }

@@ -12,7 +12,21 @@
 	{% include 'home/index.html.twig' %}
 	<section class="all-stock">
 		<section class="container">
-			<h1 class="my-5 fw-bold text-primary">Stock</h1>
+
+			<div class="row">
+				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
+			</div>
+
+			<ul class="nav nav-tabs mx-5" >
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
+				</li>
+			</ul>
+
 
 			<div class="row mb-4">
 				<div class="col-9">
@@ -46,14 +60,16 @@
 						<th class="border-top-0 border-bottom-0">Résultat</th>
 						<th class="border-top-0 border-bottom-0">Prix</th>
 						<th class="border-top-0 border-bottom-0">Famille produit</th>
-						<th class="border-top-0 border-bottom-0">Référence</th>																																																																			               
+						<th class="border-top-0 border-bottom-0">Référence</th>
 						<th class="border-top-0 border-bottom-0">Status</th>
+
 					</tr>
 				</thead>
 				<tbody>
 					{% for stock in stocks %}
 						<tr>
 							<td class="border-top-0">{{ stock.SKU }}</td>
+
 							<td class="border-top-0">{{ stock.description }}</td>
 							<td class="border-top-0">
 								{{ stock.size1Name }}&nbsp;:
@@ -65,15 +81,17 @@
 								{{ stock.size2Unit }}
 							</td>
 							<td class="border-top-0">
-							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-							  {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-							  {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-							 {{ (stock.size1 * (stock.size2 / 1000 )) }} L
-							 {% endif %}
-							  </td>
+								{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+									{{ (stock.size1 / 1000)  *  stock.size2 }}
+									m²
+								{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+									{{ (stock.size1 * (stock.size2 / 1000 )) }}
+									L
+								{% endif %}
+							</td>
 							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
 							<td class="border-top-0">{{ stock.productFamily }}</td>
-							<td class="border-top-0">{{ stock.reference }}</td>																																																																																					              
+							<td class="border-top-0">{{ stock.reference }}</td>
 							<td class="border-top-0">
 								{% if stock.status == "Inutilisable" %}
 									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
@@ -88,7 +106,6 @@
 								</a>
 							</td>
 
-
 						</tr>
 					{% else %}
 						<tr>
@@ -99,4 +116,6 @@
 			</table>
 		</section>
 	</section>
+
+
 {% endblock %}

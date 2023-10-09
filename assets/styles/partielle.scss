@@ -1,47 +1,24 @@
 @import "variables";
 
-a.btn {
-    width: 30rem;
-    height: 15rem;
-    border-radius: 40px;
-    margin-right: 2.5rem;
-    margin-left: 1rem;
-    margin-top: 8rem;
+.card-title {
+    margin-left: 0;
 }
 
-.btn:hover {
-    color: white;
-
-}
-
-
-a.bouton {
-    margin-left: 65%;
+.return-element {
     margin-top: 3rem;
 }
 
-a.bout-recep {
-    margin-left: 1rem;
-}
-
-a.bout-cons {
-    margin-right:
-        1.3rem;
-}
-
-
 div.col-12 {
     height: 90vh;
-    margin-left: 2.5rem;
+    margin-left: 1rem;
 }
 
 .all-gestion {
     padding-left: 120px;
 }
 
-
-#text {
-    margin-top: 10rem;
+div.col {
+    width: 3rem;
 }
 
 p {
@@ -50,49 +27,25 @@ p {
     font-weight: bold;
     font-family: $font-family-base;
     text-align: start;
+    margin-left: 0.3rem;
+}
+
+.card-body {
+    width: 30rem;
+    margin-top: 7rem;
+    margin-left: 2.5rem;
+}
+
+
+
+P.card-text {
+    font-size: medium;
+    font-weight: normal;
     margin-left: 1rem;
 }
 
 .text {
-    color: #191926;
-    font-size: 1rem;
-    font-weight: lighter;
-}
-
-.reception {
-    position: absolute;
-    left: 19.4rem;
-    top: -0.25rem;
-    z-index: 2;
-    border-radius: 0px 0px 40px 0px;
-}
-
-.arrow-left {
-    position: absolute;
-    left: 1.5rem;
-    top: 11rem;
-}
-
-.all-new-product {
-    padding-left: 120px;
-}
-
-.container {
-    margin-top: 3rem;
-}
-
-button.bt-return {
-    margin-left: 49.2rem;
-    margin-top: 3rem;
-    width: 50%;
-}
-
-.title-enter-stock {
-    margin-bottom: 5rem;
-}
-
-.card-text {
-    font-size: small;
+    font-size: medium;
     font-weight: normal;
 }
 
@@ -100,63 +53,50 @@ button.bt-return {
     font-weight: bold;
 }
 
-.card-reference {
-    margin-left: 23%;
-    margin-top: 15%;
-    border-radius: 20px;
-}
 
 .inutilisable,
 .utilisable {
     position: absolute;
-    bottom: 13rem;
-    left: 27rem;
+    bottom: 22rem;
+    left: 2rem;
 }
 
-a.button-impr {
-    width: auto;
-    height: auto;
-    border-radius: 5px;
-}
-
-a.button-no-impr {
-    color: $primary;
-}
-
-button.bouton-suppr {
-    position: absolute;
-    bottom: 9rem;
-}
-
-h1.title-no-impression {
-    margin-left: 20%;
-    position: absolute;
-    top: 20%;
-}
-
-.validation {
-    position: absolute;
-    left: 31%;
-    top: 10%;
-}
-
-a.button-no-impression {
-    margin-top: 3rem;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    margin-left: 23.2%;
-
-}
 
 .card-reference {
     width: 35rem;
 }
 
-.delete-form {
+.re-scan {
     position: absolute;
-    top: 62rem;
-    width: 15rem;
+    top: 9rem;
+    left: 2rem;
+    width: 16rem;
+    height: 3rem;
+
+}
+
+.validation {
+    position: absolute;
+    top: 25rem;
+    left: 14rem;
+    width: 16rem;
+    height: 3rem;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+}
+
+div.modif-col {
+    position: absolute;
+    left: 43rem;
+    top: 20rem;
+}
+
+input {
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 7px;
+    border:1px solid #0000002a;
 }
 
 @media (min-width: 1201px) {
@@ -198,7 +138,6 @@ a.button-no-impression {
     a.return {
         position: absolute !important;
         top: 15rem;
-        z-index: 100;
     }
 
     .validation {
@@ -214,7 +153,7 @@ a.button-no-impression {
     }
 
     .DO-NOT-PRINT {
-         display: none !important; 
+        display: none !important;
     }
 
     .elementToPrint {
@@ -228,7 +167,7 @@ a.button-no-impression {
         z-index: 100 !important;
     }
 
-    #element-a-imprimer  {
+    #element-a-imprimer {
         position: absolute !important;
         top: 0 !important;
         left: 0 !important;
@@ -247,8 +186,8 @@ a.button-no-impression {
     }
 
     body {
-    width: 760% !important;
-    height: 510px !important;
+        width: 760% !important;
+        height: 510px !important;
     }
 
     .card-text {

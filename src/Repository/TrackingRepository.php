@@ -21,6 +21,22 @@ class TrackingRepository extends ServiceEntityRepository
         parent::__construct($registry, Tracking::class);
     }
 
+    public function findLikeName(string $name)
+
+{
+
+    $queryBuilder = $this->createQueryBuilder('p')
+
+        ->where('p.SKU LIKE :name')
+
+        ->setParameter('name', '%' . $name . '%')
+
+        ->getQuery();
+
+
+    return $queryBuilder->getResult();
+}
+
 //    /**
 //     * @return Tracking[] Returns an array of Tracking objects
 //     */

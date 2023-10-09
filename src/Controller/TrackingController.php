@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Tracking;
+use App\Form\SearchOneType;
 use App\Form\TrackingType;
 use App\Repository\StockRepository;
 use App\Repository\TrackingRepository;
@@ -15,30 +16,29 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/tracking')]
 class TrackingController extends AbstractController
 {
-    #[Route('/', name: 'app_tracking_index', methods: ['GET'])]
-    public function index(TrackingRepository $trackingRepository, Request $request, StockRepository $stockRepository): Response
+    #[Route('/', name: 'app_tracking_index')]
+    public function index(TrackingRepository $trackingRepository, Request $request): Response
     {
         {
-            $form = $this->createForm(SearchSkuType::class);
-    
+
+            $form = $this->createForm(SearchOneType::class);
+
             $form->handleRequest($request);
-        
-        
+    
+    
             if ($form->isSubmitted() && $form->isValid()) {
-        
+    
                 $search = $form->getData()['search'];
-            
-                $sku = $stockRepository->findLikeName($search);
-            
-                return $this->render('consommation/index.html.twig', [
-                    'stocks' => $sku,
-                    'form' => $form,
-                ]);
-            } 
-            
-            return $this->render('consommation/index.html.twig', [
-            'form' => $form,
-            'stocks' => '',
+    
+                $sku = $trackingRepository->findLikeName($search);
+            } else {
+    
+                $sku = $trackingRepository->findAll();
+            }
+    
+            return $this->render('tracking/index.html.twig', [
+                'trackings' => $sku,
+                'form' => $form,
             ]);
         }
     }

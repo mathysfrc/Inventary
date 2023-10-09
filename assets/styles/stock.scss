@@ -35,6 +35,17 @@ input#search_sku_search {
     margin-bottom: 0.3rem;
 }
 
+.locked-content {
+    position: fixed;
+}
+
+ul.nav.nav-tabs.mx-5 {
+    margin-left: 25rem !important;
+    border-bottom: none !important;
+}
+
+
+
 
 @media (min-width: 1201px) {
     .all-stock {

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TrackingRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -56,10 +57,10 @@ class Tracking
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $comment = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $timestamp = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $movementType = null;
 
     #[ORM\Column(length: 255)]
@@ -243,7 +244,7 @@ class Tracking
         return $this->timestamp;
     }
 
-    public function setTimestamp(\DateTimeInterface $timestamp): static
+    public function setTimestamp( ?\DateTimeInterface $timestamp): static
     {
         $this->timestamp = $timestamp;
 
@@ -255,7 +256,7 @@ class Tracking
         return $this->movementType;
     }
 
-    public function setMovementType(string $movementType): static
+    public function setMovementType(?string $movementType): static
     {
         $this->movementType = $movementType;
 
@@ -272,5 +273,28 @@ class Tracking
         $this->status = $status;
 
         return $this;
+    }
+
+    public static function getTrackingFromStock(Stock $stock, string $movementType, DateTime $timestamp) : Tracking {
+        $tracking = new Tracking();
+        $tracking->setSKU($stock->getSKU());
+        $tracking->setDescription($stock->getDescription());
+        $tracking->setSize1($stock->getSize1());
+        $tracking->setSize2($stock->getSize2());
+        $tracking->setSize1Unit($stock->getSize1Unit());
+        $tracking->setSize2Unit($stock->getSize2Unit());
+        $tracking->setSize1Name($stock->getSize1Name());
+        $tracking->setSize2Name($stock->getSize2Name());
+        $tracking->setResultUnit($stock->getResultUnit());
+        $tracking->setPrice($stock->getPrice());
+        $tracking->setProductFamily($stock->getProductFamily());
+        $tracking->setReference($stock->getReference());
+        $tracking->setFree($stock->getFree());
+        $tracking->setComment($stock->getComment());
+        $tracking->setStatus($stock->getStatus());
+        $tracking->setMovementType($movementType);
+        $tracking->setTimestamp($timestamp);
+
+        return $tracking;
     }
 }

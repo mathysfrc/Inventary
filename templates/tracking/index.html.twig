@@ -1,65 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tracking index{% endblock %}
+{% block title %}Liste de la consommation
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Tracking index</h1>
+	{% include 'home/index.html.twig' %}
+	<section class="all-stock">
+		<section class="container">
+			<div class="row">
+				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
+			</div>
 
-    <table class="table">
-        <thead>
-            <tr>
-          
-                <th>Description</th>
-                <th>Size1</th>
-                <th>Size2</th>
-                <th>Size1Unit</th>
-                <th>Size2Unit</th>
-                <th>Size1Name</th>
-                <th>Size2Name</th>
-                <th>ResultUnit</th>
-                <th>Price</th>
-                <th>ProductFamily</th>
-                <th>Reference</th>
-                <th>Free</th>
-                <th>Comment</th>
-                <th>Timestamp</th>
-                <th>MovementType</th>
-                <th>Status</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for tracking in trackings %}
-            <tr>
+			<ul class="nav nav-tabs mx-5">
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
+				</li>
+			</ul>
 
-                <td>{{ tracking.description }}</td>
-                <td>{{ tracking.size1 }}</td>
-                <td>{{ tracking.size2 }}</td>
-                <td>{{ tracking.size1Unit }}</td>
-                <td>{{ tracking.size2Unit }}</td>
-                <td>{{ tracking.size1Name }}</td>
-                <td>{{ tracking.size2Name }}</td>
-                <td>{{ tracking.resultUnit }}</td>
-                <td>{{ tracking.price }}</td>
-                <td>{{ tracking.productFamily }}</td>
-                <td>{{ tracking.reference }}</td>
-                <td>{{ tracking.free }}</td>
-                <td>{{ tracking.comment }}</td>
-                <td>{{ tracking.timestamp ? tracking.timestamp|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ tracking.movementType }}</td>
-                <td>{{ tracking.status }}</td>
-                <td>
-                    <a href="{{ path('app_tracking_show', {'id': tracking.id}) }}">show</a>
-                    <a href="{{ path('app_tracking_edit', {'id': tracking.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="19">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+			<div class="row mb-4 ml-2">
+				<div class="col-9">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form) }}
+						</div>
+						<div class="col">
+							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/search.svg' %}</button>
+						</div>
+					</div>
+					{{ form_end(form) }}
+				</div>
+				<div class="col-3">
 
-    <a href="{{ path('app_tracking_new') }}">Create new</a>
+					<a type="button" href="/table/export" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1">
+						{% include 'icons/Download.svg' %}
+						&nbsp Exporter
+					</a>
+
+				</div>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="border-top-0 border-bottom-0">SKU</th>
+						<th class="border-top-0 border-bottom-0">Description</th>
+						<th class="border-top-0 border-bottom-0">Dimensions</th>
+						<th class="border-top-0 border-bottom-0">Résultat</th>
+						<th class="border-top-0 border-bottom-0">Prix</th>
+						<th class="border-top-0 border-bottom-0">Famille produit</th>
+						<th class="border-top-0 border-bottom-0">Référence</th>
+						{# <th class="border-top-0 border-bottom-0">Date</th> #}
+						<th class="border-top-0 border-bottom-0">Type de mouvement</th>
+						<th class="border-top-0 border-bottom-0">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for tracking in trackings %}
+						<tr>
+							<td class="border-top-0">{{ tracking.SKU }}</td>
+							<td class="border-top-0">{{ tracking.description }}</td>
+							<td class="border-top-0">
+								{{ tracking.size1Name }}&nbsp;:
+								{{ tracking.size1 }}
+								{{ tracking.size1Unit }}
+								x
+								{{ tracking.size2Name }}&nbsp;:
+								{{ tracking.size2 }}
+								{{ tracking.size2Unit }}
+							</td>
+							<td class="border-top-0">
+								{% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "m"  %}
+									{{ (tracking.size1 / 1000)  *  tracking.size2 }}
+									m²
+								{% elseif  tracking.size1Unit == 'unité'  and  tracking.size2Unit == 'mL'  %}
+									{{ (tracking.size1 * (tracking.size2 / 1000 )) }}
+									L
+								{% endif %}
+							</td>
+							<td class="border-top-0">{{ tracking.price }}&nbsp;€</td>
+							<td class="border-top-0">{{ tracking.productFamily }}</td>
+							<td class="border-top-0">{{ tracking.reference }}</td>
+							{# <td class="border-top-0">{{ tracking.timestamp ? tracking.timestamp|date('d-m-Y H:i:s') : '' }}</td> #}
+							<td class="border-top-0">{{ tracking.movementType }}</td>
+							<td class="border-top-0">
+								{% if tracking.status == "Inutilisable" %}
+									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+								{% else %}
+									<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+								{% endif %}
+							</td>
+
+							<td class="border-top-0">
+								<a type="button" class="text-black" href="{{ path('app_tracking_edit', {'id': tracking.id }) }}">
+									{% include 'icons/edit.svg' %}
+								</a>
+							</td>
+
+
+						</tr>
+
+					{% else %}
+						<tr>
+							<td colspan="17">Aucun ligne de stock récuperée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+	</section>
 {% endblock %}

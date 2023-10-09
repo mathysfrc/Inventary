@@ -25,6 +25,11 @@ Encore
     .addStyleEntry('login', './assets/styles/login.scss')
     .addStyleEntry('stock', './assets/styles/stock.scss')
     .addStyleEntry('print', './assets/styles/print.scss')
+    .addStyleEntry('scan', './assets/styles/scan.scss')
+    .addStyleEntry('partielle', './assets/styles/partielle.scss')
+    .addStyleEntry('empty', './assets/styles/empty.scss')
+
+
 
     .copyFiles({
         from: './assets/images',

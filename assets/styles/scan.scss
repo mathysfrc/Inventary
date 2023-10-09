@@ -1,0 +1,72 @@
+@import "variables";
+
+body {
+    background-color: $primary;
+}
+
+.hidden {
+    opacity: 0;
+}
+form {
+    position: absolute;
+}
+
+a.return {
+    position: absolute;
+    top: 3rem;
+    z-index: 100;
+}
+
+.title-enter-stock {
+    position: absolute;
+    top: 4.5rem;
+}
+
+svg {
+    position: absolute;
+    left: 24rem;
+    margin-top: 11rem;
+
+}
+
+h1.text-scan {
+    text-align: center;
+    position: absolute;
+    top: 32rem;
+    left: 20.8rem;
+    margin-top: 5rem;
+}
+
+input.hidden {
+    margin-left: 20rem;
+}
+
+@media (min-width: 1201px) {
+    a.return {
+        position: absolute;
+        top: 3rem;
+        left: 4rem;
+    }
+    
+    .title-enter-stock {
+        position: absolute;
+        top: 4.5rem;
+        left: 4rem;
+    }
+    
+    svg {
+        position: absolute;
+        left: 65rem;
+        margin-top: 22rem;
+        transform: scale(1.5);
+    
+    }
+    
+    h1.text-scan {
+        text-align: center;
+        position: absolute;
+        top: 51rem;
+        left: 62.8rem;
+        margin-top: 5rem;
+    }
+}
