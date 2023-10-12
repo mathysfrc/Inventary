@@ -58,25 +58,17 @@
                         </div>
                     </div>
                 </div>
-</div>
-<div class="row">
- 
-<div class="col-4">
-<a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="DO-NOT-PRINT button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
-</div>
-<div class="col-5">
-<a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="DO-NOT-PRINT button-no-impr btn">Créer sans imprimmer l'étiquette</a>
-</div>
-
-<div class="col-3">
-<a href="{{ path('app_stock_print_with_id', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
- <script>
-        document.getElementById("imprimerPage").addEventListener("click", function() {
-            window.print();
-        });
-    </script>
-</div>
-</div>
-</section>
+    </div>
+        <div class="row">
+            <div class="col-3">
+            <a href="{{ path('app_stock_print_SKU', {'SKU': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
+                <script>
+                    document.getElementById("imprimerPage").addEventListener("click", function() {
+                        window.print();
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
 </section>
 {% endblock %}

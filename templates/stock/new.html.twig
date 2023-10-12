@@ -22,37 +22,42 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					{{ form_row(form.SKU) }}
-					{{ form_row(form.description) }}
+
+					<div class="input-marge">{{ form_row(form.description) }}</div>
+
+					<div class="input-marge">
+					{{ form_row(form.productFamily, {'attr': {'id': 'productFamilyInput'}}) }}
 
 					{{ form_row(form.price) }}
-
+					</div>
 					
 					{{ form_row(form.size1) }}
 				</div>
 				<div class="col">
-					{{ form_row(form.productFamily) }}
+					<div class="gap"></div>
+					<div class="input-marge">
 					{{ form_row(form.reference) }}
 					{{ form_row(form.status) }}
+					</div>
 					{{ form_row(form.size2) }}
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 
-					{{ form_row(form.size1Unit) }}
+					{{ form_row(form.size1Unit, {'attr': {'id': 'size1UnitInput'}}) }}
 				</div>
 				<div class="col">
 
-					{{ form_row(form.size1Name) }}
+					{{ form_row(form.size1Name, {'attr': {'id': 'size1NameInput'}}) }}
 				</div>
 				<div class="col">
 
-					{{ form_row(form.size2Unit) }}
+					{{ form_row(form.size2Unit, {'attr': {'id': 'size2UnitInput'}}) }}
 				</div>
 				<div class="col">
 
-					{{ form_row(form.size2Name) }}
+					{{ form_row(form.size2Name, {'attr': {'id': 'sier2NameInput'}}) }}
 
 				{# <div class="row">
 
@@ -69,4 +74,27 @@
 
 		</section>
 	</section>
+
+
+	<script>
+		let productFamilyInput = document.getElementById('stock_productFamily')
+		let size1Unit = document.getElementById('stock_size1Unit')
+		// let size1Name = document.getElementById('stock_size1Name')
+		let size2Unit = document.getElementById('stock_size2Unit')
+		// let size2Name = document.getElementById('stock_size2Name')
+
+		productFamilyInput.addEventListener('change', function(e) {
+			let selectedValue = productFamilyInput.value;
+
+    		if (selectedValue === 'Liquide') {
+        	size1Unit.value = 'unité';
+        	size2Unit.value = 'mL';
+			} else {
+        	// Si la valeur n'est pas 'Liquide'
+       		size1Unit.value = 'mm';  // Par exemple, videz le champ size1Unit
+        	size2Unit.value = 'm';  // Par exemple, videz le champ size2Unit
+    }
+});
+	</script>
+
 {% endblock %}

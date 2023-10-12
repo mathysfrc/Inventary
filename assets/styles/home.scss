@@ -1,6 +1,5 @@
 @import "variables";
 
-
 .sidebar {
   position: fixed;
   width: 6%;
@@ -25,7 +24,7 @@
 }
 
 .stock {
-  margin-right: 0.50rem;
+  margin-right: 0.60rem;
 }
 
 .stock-svg {
@@ -51,31 +50,34 @@ a.logout {
 .nav ul {
   list-style: none;
   padding: 0;
-
+  
   li {
     position: relative;
     margin: 3.2em 0;
+  }
 
-    a {
-      text-decoration: none;
-      font-weight: bold;
-      color: black;
-      font-size: 0.9rem;
-      display: block;
-      transition: all ease-out 300ms;
-      font-family: $font-family-base;
-    }
+  .active {
+    border-bottom: 2px solid $primary;
+    width: fit-content;
+  }
 
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 0.9rem;
+    display: block;
+    transition: all ease-out 300ms;
+    font-family: $font-family-base;
+  }
 
-    &:not(.active):hover a {
-      color: $primary;
-    }
-
+  &:not(.active):hover a {
+    color: $primary;
   }
 }
 
-  @media (min-width: 1201px) {
-    .blue-icon {
+@media (min-width: 1201px) {
+  .blue-icon {
     position: absolute;
     bottom: 40rem;
     left: 2rem;
@@ -86,6 +88,4 @@ a.logout {
     top: 30rem;
     left: 2.5rem;
   }
-
-  
 }

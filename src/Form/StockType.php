@@ -43,6 +43,7 @@ class StockType extends AbstractType
         $builder
             ->add('SKU', TextType::class, [
                 'label' => 'Numéro SKU',
+                'required' => false,
                 'attr' => [
                     'class' => 'border-tertiary',
                     'placeholder' => '(000)0118',
@@ -78,6 +79,7 @@ class StockType extends AbstractType
             ])
             ->add('size1Unit', ChoiceType::class, [
                 'label' => 'Unité de la dimension 1',
+                'empty_data' => '',
                 'choices' => self::UNIT1,
                 'attr' => [
                     'class' => 'border-tertiary',
@@ -85,6 +87,7 @@ class StockType extends AbstractType
             ])
             ->add('size2Unit', ChoiceType::class, [
                 'label' => 'Unité de la dimension 2',
+                'empty_data' => '',
                 'choices' => self::UNIT2,
                 'attr' => [
                     'class' => 'border-tertiary',

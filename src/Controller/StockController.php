@@ -57,32 +57,20 @@ class StockController extends AbstractController
     {
         $stock = new Stock();
         $form = $this->createForm(StockType::class, $stock);
+        $form->remove('SKU');
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // on prépare la ligne tracking a injecter dans la BDD
-            $tracking = new Tracking();
-            $tracking->setSKU($stock->getSKU());
-            $tracking->setDescription($stock->getDescription());
-            $tracking->setSize1($stock->getSize1());
-            $tracking->setSize2($stock->getSize2());
-            $tracking->setSize1Unit($stock->getSize1Unit());
-            $tracking->setSize2Unit($stock->getSize2Unit());
-            $tracking->setSize1Name($stock->getSize1Name());
-            $tracking->setSize2Name($stock->getSize2Name());
-            $tracking->setResultUnit($stock->getResultUnit());
-            $tracking->setPrice($stock->getPrice());
-            $tracking->setProductFamily($stock->getProductFamily());
-            $tracking->setReference($stock->getReference());
-            $tracking->setFree($stock->getFree());
-            $tracking->setComment($stock->getComment());
-            $tracking->setStatus($stock->getStatus());
-            $tracking->setMovementType('initialisation');
-            $tracking->setTimestamp(new \DateTime());
+            //on génère le SKU du produit que l'on veut créer
+            $generatedSKU = Stock::generateSKU($stock, $entityManager);
+            $stock->setSKU($generatedSKU);
 
+            // on prépare la ligne tracking à injecter dans la BDD
 
+            $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', new DateTime());
+            
             $entityManager->persist($tracking);
+
             // on envoie en BDD le stock du formulaire
             $entityManager->persist($stock);
             $entityManager->flush();
@@ -106,8 +94,24 @@ class StockController extends AbstractController
         $sku = $request->request->get('SKU');
         // on recupère l'objet en BDD et on le met à jour
         $stock = $stockRepository->findOneBy(['SKU' => $sku]);
+        // on test si les nouvelles valeurs sont bien inférieures
+
+        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2()) {
+            return $this->render('error/index.html.twig', [
+                'error' => 'Les nouvelles valeures sont supérieures aux anciennes, merci de ressaisir une valeur.'
+            ]);
+        }
+
+        if ($size1 == null || $size2 == null) {
+            return $this->render('error/index.html.twig', [
+                'error' => 'Veuillez rentrer les valeurs consommées.'
+            ]);
+        }
+
+
         $stock->setSize1($size1);
         $stock->setSize2($size2);
+
 
         // on rajoute les lignes de tracking pour dire que l'on a consommé telle référence
 
@@ -120,7 +124,72 @@ class StockController extends AbstractController
         $entityManager->flush();
 
 
-        return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_partial_conso_imprim', [
+            'SKU' => $stock->getSKU(),
+        ], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/partial-conso/{SKU}', name: 'app_partial_conso_imprim')]
+    public function conso(Request $request, string $SKU, StockRepository $stockRepository): Response
+    {
+        // on récupère le stock dans la BDD 
+        $stock = $stockRepository->findOneBy([
+            'SKU' => $SKU,
+        ]);
+
+        if ($stock === null) {
+            return $this->render('error/index.html.twig', [
+                'error' => 'Le SKU mentionné n\'est pas trouvé'
+            ]);
+        }
+
+        // on prépare le str qu'on encodera dans le QRCode
+        $dataArray = [$stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit()];
+        $dataToEncode = implode("\t", $dataArray);
+
+        // Create QR code
+        $qrCode = QrCode::create($dataToEncode)
+            ->setEncoding(new Encoding('UTF-8'))
+            ->setErrorCorrectionLevel(new ErrorCorrectionLevelLow())
+            ->setSize(300);
+
+        // on encode la string
+        $writer = new PngWriter();
+        $result = $writer->write($qrCode);
+
+        // Validate the result
+        $writer->validateResult($result, $dataToEncode);
+        // Save it to a file
+        // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
+        $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
+
+        $dataUri = $result->getDataUri();
+
+            
+        return $this->render('partial_conso_imprim/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+            'dataUri' => $dataUri,
+        ]);
+    }
+
+
+    #[Route('/{SKU}/impress', name: 'app_stock_print_SKU')]
+    public function printSKU(Request $request, Stock $stock): Response
+    {
+        return $this->render('print/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+        ]);
+    }
+
+    #[Route('/{id}/print', name: 'app_stock_print_with_id')]
+    public function print(Request $request, Stock $stock): Response
+    {
+        return $this->render('print/index.html.twig', [
+            'controller_name' => 'StockController',
+            'stock' => $stock,
+        ]);
     }
 
 
@@ -135,10 +204,14 @@ class StockController extends AbstractController
     #[Route('/{id}/edit', name: 'app_stock_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
     {
+       
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
             // on prépare la ligne tracking a injecter dans la BDD
             $tracking = new Tracking();
             $tracking->setSKU($stock->getSKU());
@@ -156,7 +229,7 @@ class StockController extends AbstractController
             $tracking->setFree($stock->getFree());
             $tracking->setComment($stock->getComment());
             $tracking->setStatus($stock->getStatus());
-            $tracking->setMovementType('Edition manuelle');
+            $tracking->setMovementType('Édition manuelle');
             $tracking->setTimestamp(new \DateTime());
 
 
@@ -180,6 +253,28 @@ class StockController extends AbstractController
     public function delete(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $stock->getId(), $request->request->get('_token'))) {
+
+            $tracking = new Tracking();
+            $tracking->setSKU($stock->getSKU());
+            $tracking->setDescription($stock->getDescription());
+            $tracking->setSize1($stock->getSize1());
+            $tracking->setSize2($stock->getSize2());
+            $tracking->setSize1Unit($stock->getSize1Unit());
+            $tracking->setSize2Unit($stock->getSize2Unit());
+            $tracking->setSize1Name($stock->getSize1Name());
+            $tracking->setSize2Name($stock->getSize2Name());
+            $tracking->setResultUnit($stock->getResultUnit());
+            $tracking->setPrice($stock->getPrice());
+            $tracking->setProductFamily($stock->getProductFamily());
+            $tracking->setReference($stock->getReference());
+            $tracking->setFree($stock->getFree());
+            $tracking->setComment($stock->getComment());
+            $tracking->setStatus($stock->getStatus());
+            $tracking->setMovementType('Suppression manuelle');
+            $tracking->setTimestamp(new \DateTime());
+
+            $entityManager->persist($tracking);
+
             $entityManager->remove($stock);
             $entityManager->flush();
         }
@@ -289,15 +384,6 @@ class StockController extends AbstractController
             'controller_name' => 'StockController',
             'stock' => $stock,
             'dataUri' => $dataUri,
-        ]);
-    }
-
-    #[Route('/{id}/print', name: 'app_stock_print')]
-    public function print(Request $request, Stock $stock): Response
-    {
-        return $this->render('print/index.html.twig', [
-            'controller_name' => 'StockController',
-            'stock' => $stock,
         ]);
     }
 }

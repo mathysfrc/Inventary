@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StockRepository;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StockRepository::class)]
@@ -246,7 +247,7 @@ class Stock
 
     public static function getStockFromTracking(Tracking $tracking): Stock
     {
-        
+
         $stock = new Stock();
         $stock->setSKU($tracking->getSKU());
         $stock->setDescription($tracking->getDescription());
@@ -265,5 +266,34 @@ class Stock
         $stock->setStatus($tracking->getStatus());
 
         return $stock;
+    }
+
+
+    public static function generateSKU(Stock $stock, EntityManagerInterface $entityManager)
+    {
+        // Récupérez le dernier SKU de la base de données
+        $latestSKU = $entityManager
+            ->getRepository(Tracking::class)
+            ->createQueryBuilder('s')
+            ->select('MAX(s.SKU)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        if ($latestSKU === null) {
+            $latestSKU = 0;
+        }
+
+        // Incrémentez le SKU
+        $nextSKU = intval(substr($latestSKU, 5, strlen($latestSKU) - 1)) + 1;
+
+
+        // Formatez le SKU avec des zéros à gauche
+        $formattedSKU = sprintf("(000)%018d", $nextSKU);
+
+        // Définissez le SKU généré dans l'entité $stock
+        $stock->setSKU($formattedSKU);
+
+        // Retournez le SKU généré
+        return $formattedSKU;
     }
 }

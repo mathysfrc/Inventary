@@ -53,6 +53,7 @@ class TrackingType extends AbstractType
         $builder
             ->add('SKU', TextType::class, [
                 'label' => 'Numéro SKU',
+                'required' => false,
                 'attr' => [
                     'class' => 'border-tertiary',
                     'placeholder' => '(000)0118',

@@ -87,8 +87,12 @@ button.bt-return {
     width: 50%;
 }
 
+.input-marge {
+    margin-bottom: 3rem;
+}
+
 .title-enter-stock {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .card-text {
@@ -106,10 +110,14 @@ button.bt-return {
     border-radius: 20px;
 }
 
+.gap {
+    margin-top: 7.3rem;
+}
+
 .inutilisable,
 .utilisable {
     position: absolute;
-    bottom: 13rem;
+    bottom: 12rem;
     left: 27rem;
 }
 
@@ -125,7 +133,7 @@ a.button-no-impr {
 
 button.bouton-suppr {
     position: absolute;
-    bottom: 9rem;
+    bottom: 4rem;
 }
 
 h1.title-no-impression {
@@ -260,7 +268,7 @@ a.button-no-impression {
     .card-title {
         color: black !important;
         margin-top: 20px !important;
-        font-size: 2.5rem !important;
+        font-size: 1.7rem !important;
     }
 
     .datamatrix {
