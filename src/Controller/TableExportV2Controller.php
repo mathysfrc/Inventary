@@ -37,7 +37,7 @@ class TableExportV2Controller extends AbstractController
                     $txtContent .= ($item->getSize1() * $item->getSize2()) . ' L ';
                 }
             
-                $txtContent .= "\t" . $item->getPrice() .  ' € '  .  "\t" . $item->getProductFamily() .  "\t" . $item->getReference() . "\t" . $item->getMovementType() . "\t" . $item->getTimestamp()->format('Y-m-d H:i:s') . "\t" . $item->getStatus() . "\n";
+                $txtContent .= "\t" . $item->getPrice() .  ' € '  .  "\t" . $item->getProductFamily() .  "\t" . $item->getReference() . "\t" . $item->getMovementType() . "\t" . $item->getTimestamp()->format('d-m-Y H:i:s') . "\t" . $item->getStatus() . "\n";
             }
         
             // Créez une réponse Symfony avec le contenu du fichier txt.

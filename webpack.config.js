@@ -28,6 +28,8 @@ Encore
     .addStyleEntry('scan', './assets/styles/scan.scss')
     .addStyleEntry('partielle', './assets/styles/partielle.scss')
     .addStyleEntry('empty', './assets/styles/empty.scss')
+    .addStyleEntry('error', './assets/styles/error.scss')
+
 
 
 

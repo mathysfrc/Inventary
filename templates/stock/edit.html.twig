@@ -20,24 +20,30 @@
 			</div>
 			<div class="row">
 				<div class="col">
-					{{ form_row(form.SKU) }}
-					{{ form_row(form.description) }}
-
+					<div class="input-marge">
+					{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
+					</div>
+					{{ form_row(form.productFamily, {'attr': {'read_only': true, 'readonly': true}}) }}
+					<div class="input-marge">
 					{{ form_row(form.price) }}
-
+					</div>
 					{{ form_row(form.size1) }}
 				</div>
 				<div class="col">
-					{{ form_row(form.productFamily) }}
+				<div class="input-marge">
+				{{ form_row(form.description) }}
+			</div>
 					{{ form_row(form.reference) }}
+					<div class="input-marge">
 					{{ form_row(form.status) }}
+					</div>
 					{{ form_row(form.size2) }}
 				</div>
 			</div>
 			<div class="row">
 				<div class="col">
 
-					{{ form_row(form.size1Unit) }}
+					{{ form_row(form.size1Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
 				</div>
 				<div class="col">
 
@@ -45,7 +51,7 @@
 				</div>
 				<div class="col">
 
-					{{ form_row(form.size2Unit) }}
+					{{ form_row(form.size2Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
 				</div>
 				<div class="col">
 

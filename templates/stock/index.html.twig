@@ -16,14 +16,15 @@
 			<div class="row">
 				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
 			</div>
-
+			
+			
 			<ul class="nav nav-tabs mx-5" >
 				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
+					<a class="tabs nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
+					<a class="tabs nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
 				</li>
 			</ul>
 
@@ -116,6 +117,5 @@
 			</table>
 		</section>
 	</section>
-
 
 {% endblock %}

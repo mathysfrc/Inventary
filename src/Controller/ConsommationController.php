@@ -38,7 +38,7 @@ class ConsommationController extends AbstractController
         // on convertit le tracking en un obj de class Stock
         $stock = Stock::getStockFromTracking($lastTracking);
         
-
+        
         
 
         return $this->render('consommation/index.html.twig', [
