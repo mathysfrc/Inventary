@@ -22,6 +22,19 @@ body {
     }
     
     .svgPrint {
+        margin-left: 48rem;
+        margin-top: 25rem;
+    }
+}
+
+
+@media (min-width: 1921px) {
+    .title {
+        margin-top: 3rem;
+        text-align: center;
+    }
+    
+    .svgPrint {
         margin-left: 67rem;
         margin-top: 25rem;
     }
