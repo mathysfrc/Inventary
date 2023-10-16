@@ -137,7 +137,7 @@ class TrackingType extends AbstractType
                 ]
             ])
             ->add('status', ChoiceType::class, [
-                'label' => 'Status',
+                'label' => 'Statut',
                 'attr' => [
                     'class' => 'border-tertiary',
                 ],
