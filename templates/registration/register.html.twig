@@ -16,7 +16,10 @@
         }) }}
 		{{ form_row(registrationForm.agreeTerms) }}
 
-		<button type="submit" class="btn btn-outline-primary">Créer son compte</button>
+		<button type="submit" class="btn btn-outline-primary mt-5">Créer son compte</button>
 		{{ form_end(registrationForm) }}
+
+		<a class="btn btn-outline-primary mt-5" href="{{path('app_login')}}">Retour</a>
+
 	</section>
 {% endblock %}
