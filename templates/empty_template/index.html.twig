@@ -13,10 +13,10 @@
 	<section class='all-new-product'>
 		<section class="container">
 
-
+<div class="reference-no-impression">
  <img class="validation" src="{{ asset('build/images/frame.svg')}}">
 			<h1 class="title-no-impression fw-bold text-primary">Référence totalement </br> consommée !</h1>
-            <h1 class="text-light">.</h1>
+</div>
            
 
 <div class="card-reference border border-primary" style="width: 35rem;">
@@ -31,9 +31,9 @@
                  {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
                 </p>
                 	{% if stock.status == "Inutilisable" %}
-									<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+									<span class="inutilisabled badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
 								{% else %}
-									<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+									<span class="utilisabled badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
 								{% endif %}
             </div>
             <div class="col">
@@ -55,12 +55,12 @@
          </div>
     </div>
 </div>
-<div class="col">
+<div class="end-button">
 <div class="row">
 <a href="/scan/empty" class="button-no-impression btn btn-outline-primary" type="button">{% include 'icons/downlooad.svg' %} &nbsp; Nouvelle référence consommée totalement ?</a>
 </div>
 <div class="row">
-<a href="/gestion" class="button-no-impression btn btn-primary" type="button">Revenir à la gestion du stock</a>
+<a href="/gestion" class="button-return-no-impr btn btn-primary" type="button">Revenir à la gestion du stock</a>
 </div>
 </div>
 {% endblock %}

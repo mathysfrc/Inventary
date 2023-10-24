@@ -18,11 +18,23 @@ div.col-12 {
 
 .all-gestion {
     padding-left: 120px;
-    margin-top: 8rem;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #text {
     margin-top: 10rem;
+}
+
+.return-to-home {
+    padding-top: 3rem;
+    padding-bottom: 5%;
+}
+
+.three-buttons {
+    padding-top: 5rem;
 }
 
 p {
@@ -66,15 +78,6 @@ p {
     padding-left: 120px;
 }
 
-.container {
-    margin-top: 3rem;
-}
-
-button.bt-return {
-    margin-left: 49.2rem;
-    margin-top: 3rem;
-    width: 50%;
-}
 
 .input-marge {
     margin-bottom: 3rem;
@@ -84,9 +87,6 @@ button.bt-return {
     margin-top: 1rem;
 }
 
-.title-enter-stock {
-    margin-bottom: 4rem;
-}
 
 .card-text {
     font-size: small;
@@ -98,8 +98,7 @@ button.bt-return {
 }
 
 .card-reference {
-    margin-left: 23%;
-    margin-top: 15%;
+    margin-left: 24.5%;
     border-radius: 20px;
 }
 
@@ -110,56 +109,71 @@ button.bt-return {
 .inutilisable,
 .utilisable {
     position: absolute;
-    bottom: 11.5rem;
+    bottom: 12.5rem;
+    left: 27rem;
+}
+
+.inutilisabled,
+.utilisabled {
+    position: absolute;
+    bottom: 10.5rem;
     left: 27rem;
 }
 
 a.button-impr {
-    width: auto;
-    height: auto;
+    height: 2.5rem;
+    width: 15rem;
     border-radius: 5px;
 }
 
 a.button-no-impr {
     color: $primary;
+    height: 2.5rem;
 }
 
-button.bouton-suppr {
-    position: absolute;
-    bottom: 4rem;
+.button-no-impression {
+    height: 2.5rem !important;
+    border-radius: 5px !important;
 }
 
-h1.title-no-impression {
-    margin-left: 20%;
-    position: absolute;
-    top: 20%;
+.button-return-no-impr {
+    height: 4rem !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
-.validation {
-    position: absolute;
-    left: 31%;
-    top: 10%;
+.end-button {
+display: grid;
+justify-content: center;
+gap: 1rem;
+padding-top: 3rem;
 }
 
-a.button-no-impression {
-    margin-top: 1rem;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    margin-left: 23.2%;
+.reference-no-impression {
+    display: grid;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
 
+.dont-forget {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.impression-or-no {
+    display: flex;
+    justify-content: end;
+    width: 35rem;
 }
 
 .card-reference {
     width: 35rem;
-    margin-bottom: 3rem;
 }
 
-.delete-form {
-    position: absolute;
-    top: 62rem;
-    width: 15rem;
-}
 
 .gestion-board {
     display: flex !important;
@@ -173,24 +187,33 @@ a.button-no-impression {
     margin-top: 5rem;
 }
 
+.modif-title {
+    margin: 0 !important;
+}
 
+.suppr-modif {
+    justify-content: end;
+    display: flex;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.modif-suppr {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.bouton-suppr {
+    height: 2.5rem;
+    width: 14rem;
+}
+
+.bt-return {
+    height: 2.5rem;
+    width: 14rem;
+}
 
 @media (min-width: 1281px) {
-    a.bouton {
-        margin-left: 70%;
-        margin-top: 3rem;
-    }
-
-    a.bout-recep {
-        margin-top: 15rem;
-        margin-left: 4rem;
-    }
-
-    a.bout-cons {
-        margin-top: 15rem;
-        margin-right:
-            1.3rem;
-    }
 
     .title-enter-stock {
         margin-top: 18rem;
@@ -198,11 +221,6 @@ a.button-no-impression {
 
     h1.modif-title {
         margin-top: 10rem !important;
-    }
-
-    button.bouton-suppr {
-        position: absolute !important;
-        bottom: 15rem !important;
     }
 
     h1.title-no-impression {
@@ -230,21 +248,6 @@ a.button-no-impression {
 
 
 @media (min-width: 1921px) {
-    a.bouton {
-        margin-left: 75%;
-        margin-top: 3rem;
-    }
-
-    a.bout-recep {
-        margin-top: 21rem;
-        margin-left: 5.5rem;
-    }
-
-    a.bout-cons {
-        margin-top: 21rem;
-        margin-right:
-            1.3rem;
-    }
 
     .title-enter-stock {
         margin-top: 18rem;
@@ -254,10 +257,6 @@ a.button-no-impression {
         margin-top: 22rem !important;
     }
 
-    button.bouton-suppr {
-        position: absolute !important;
-        bottom: 24rem !important;
-    }
 
     h1.title-no-impression {
         margin-left: 14% !important;
@@ -284,7 +283,7 @@ a.button-no-impression {
     }
 
     .DO-NOT-PRINT {
-         display: none !important; 
+        display: none !important;
     }
 
     .elementToPrint {
@@ -298,7 +297,7 @@ a.button-no-impression {
         z-index: 100 !important;
     }
 
-    #element-a-imprimer  {
+    #element-a-imprimer {
         position: absolute !important;
         top: 0 !important;
         left: 0 !important;
@@ -317,8 +316,8 @@ a.button-no-impression {
     }
 
     body {
-    width: 760% !important;
-    height: 510px !important;
+        width: 760% !important;
+        height: 510px !important;
     }
 
     .card-text {
