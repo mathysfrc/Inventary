@@ -62,7 +62,7 @@
     </div>
         <div class="row justify-content-center pt-5">
             <div class="col-3">
-            <a href="{{ path('app_stock_print_SKU', {'SKU': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
+            <a href="{{ path('app_stock_print_SKU', {'SKU': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
                 <script>
                     document.getElementById("imprimerPage").addEventListener("click", function() {
                         window.print();
