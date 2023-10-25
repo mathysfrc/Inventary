@@ -65,9 +65,12 @@ class StockController extends AbstractController
             $generatedSKU = Stock::generateSKU($stock, $entityManager);
             $stock->setSKU($generatedSKU);
 
+            $dateTime = new DateTime();
+
+            $dateTime->modify('+2 hours');
             // on prépare la ligne tracking à injecter dans la BDD
 
-            $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', new DateTime());
+            $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
             
             $entityManager->persist($tracking);
 
@@ -113,9 +116,12 @@ class StockController extends AbstractController
         $stock->setSize2($size2);
 
 
+        $dateTime = new DateTime();
+
+        $dateTime->modify('+2 hours');
         // on rajoute les lignes de tracking pour dire que l'on a consommé telle référence
 
-        $tracking = Tracking::getTrackingFromStock($stock, 'Consommation', new DateTime());
+        $tracking = Tracking::getTrackingFromStock($stock, 'Consommation', $dateTime);
 
 
         $entityManager->persist($tracking);
@@ -208,6 +214,9 @@ class StockController extends AbstractController
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
 
+        $dateTime = new DateTime();
+
+        $dateTime->modify('+2 hours');
 
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -230,7 +239,7 @@ class StockController extends AbstractController
             $tracking->setComment($stock->getComment());
             $tracking->setStatus($stock->getStatus());
             $tracking->setMovementType('Édition manuelle');
-            $tracking->setTimestamp(new \DateTime());
+            $tracking->setTimestamp($dateTime);
 
 
             $entityManager->persist($tracking);

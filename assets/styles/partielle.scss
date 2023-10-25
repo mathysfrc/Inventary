@@ -112,6 +112,129 @@ input {
 
     .re-scan {
         position: absolute;
+        top: 15rem;
+        left: 5rem;
+        width: 16rem;
+        height: 3rem;
+    
+    }
+
+
+    input {
+        position: absolute;
+        left: 20rem;
+        height: 3rem;
+    }
+
+    .size1 {
+        position: absolute;
+        top: 2.5rem;
+        width: 90%;
+    }
+
+    .size1Unit {
+        position: absolute;
+        top: 3.5rem;
+        left: 16.5rem;
+    }
+
+    .size2Unit {
+        position: absolute;
+        top: 8rem;
+        left: 16.5rem;
+    }
+
+    .size2 {
+        position: absolute;
+        top: 7rem;
+        width: 90%;
+
+    }
+
+
+    .size2rest {
+        position: absolute;
+        top: 6rem;
+    }
+
+    input.validation {
+        position: absolute;
+        top: 33rem !important;
+        left: 40rem !important;
+    }
+
+    label.text {
+        position: absolute;
+        left: 40rem;
+    }
+
+    a.bout-recep {
+        margin-top: 21rem;
+        margin-left: 5.5rem;
+    }
+
+    a.bout-cons {
+        margin-top: 21rem;
+        margin-right:
+            1.3rem;
+    }
+
+    .title-enter-stock {
+        margin-top: 18rem;
+    }
+
+    h1.modif-title {
+        margin-top: 22rem !important;
+    }
+
+    button.bouton-suppr {
+        position: absolute !important;
+        bottom: 24rem !important;
+    }
+
+    h1.title-no-impression {
+        margin-left: 14% !important;
+        position: absolute !important;
+        top: 12.5% !important;
+    }
+
+    a.return {
+        position: absolute !important;
+        top: 15rem;
+    }
+
+    .validation {
+        position: absolute !important;
+        left: 38% !important;
+        top: 10% !important;
+    }
+
+    label.size1rest {
+        position: absolute;
+        left: 20rem;
+    }
+
+    label.size2rest {
+        position: absolute;
+        left: 20rem;
+    }
+
+}
+
+
+@media (min-width: 1921px) {
+    a.bouton {
+        margin-left: 75%;
+        margin-top: 3rem;
+    }
+
+    a.return {
+        position: absolute;
+        top: 1rem !important;
+    }
+
+    .re-scan {
+        position: absolute;
         top: 27rem;
         left: 15rem;
         width: 16rem;

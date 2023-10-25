@@ -117,7 +117,7 @@ button.bt-return {
 .inutilisable,
 .utilisable {
     position: absolute;
-    bottom: 12rem;
+    bottom: 11.5rem;
     left: 27rem;
 }
 
@@ -168,6 +168,60 @@ a.button-no-impression {
 }
 
 @media (min-width: 1201px) {
+    a.bouton {
+        margin-left: 70%;
+        margin-top: 3rem;
+    }
+
+    a.bout-recep {
+        margin-top: 15rem;
+        margin-left: 4rem;
+    }
+
+    a.bout-cons {
+        margin-top: 15rem;
+        margin-right:
+            1.3rem;
+    }
+
+    .title-enter-stock {
+        margin-top: 18rem;
+    }
+
+    h1.modif-title {
+        margin-top: 10rem !important;
+    }
+
+    button.bouton-suppr {
+        position: absolute !important;
+        bottom: 15rem !important;
+    }
+
+    h1.title-no-impression {
+        margin-left: 14% !important;
+        position: absolute !important;
+        top: 12.5% !important;
+    }
+
+    a.return {
+        position: absolute !important;
+        top: 15rem;
+        z-index: 100;
+    }
+
+    .validation {
+        position: absolute !important;
+        left: 38% !important;
+        top: 7% !important;
+    }
+
+    img.datamatrix {
+        margin-top: 2rem;
+    }
+}
+
+
+@media (min-width: 1921px) {
     a.bouton {
         margin-left: 75%;
         margin-top: 3rem;
@@ -262,25 +316,28 @@ a.button-no-impression {
     .card-text {
         font-size: large !important;
         color: black !important;
-        font-size: 1.4rem !important;
+        font-size: 4.4rem !important;
+        padding-top: 5rem !important;
     }
 
     .card-title {
         color: black !important;
         margin-top: 20px !important;
-        font-size: 1.7rem !important;
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
     }
 
     .datamatrix {
         margin-top: 90px !important;
-        margin-right: 40px !important;
+        margin-right: 100px !important;
         transform: scale(1.5) !important;
     }
 
     span.utilisable {
-        margin-bottom: 170px !important;
-        margin-left: 80px !important;
-        font-size: 1.4rem !important;
+        position: absolute !important;
+        bottom: 77rem !important;
+        left: 105rem !important;
+        font-size: 5.7rem !important;
     }
 
     .price-card {

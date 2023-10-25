@@ -49,6 +49,32 @@ ul.nav.nav-tabs.mx-5 {
     border-bottom: none !important;
 }
 
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-scroll {
+    width: 120%; /* Ajustez la largeur en fonction du nombre de colonnes */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+.fixed-col {
+    position: sticky;
+    left: 0;
+    background-color: #F8F9FA !important;
+    z-index: 100;
+}
 
 
 @media (min-width: 1201px) {
