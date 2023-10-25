@@ -308,6 +308,8 @@ padding-top: 3rem;
     }
   
     .card-reference {
+        width: max-content !important;
+        height: max-content !important;
       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
       transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
