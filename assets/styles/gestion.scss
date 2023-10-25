@@ -294,11 +294,15 @@ img.datamatrix{
       }
 
     .card-title h3{
-        font-size:36pt;
+        font-size:40pt;
       }
-    .card-text {
+
+    .card-text .badge{
+        font-size:24pt
+    }
+    .card-text{
         font-size: 32pt;
-        line-height: 1;
+        line-height: 1.2;
     }
 
     .card-text .span-text{
@@ -310,7 +314,7 @@ img.datamatrix{
     }
 
     .print .desc{
-        margin-bottom:4mm;
+        margin-bottom:12mm!important;
     }
  }
  @media not print {
