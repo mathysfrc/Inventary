@@ -235,10 +235,6 @@ a.button-no-impr {
         left: 38% !important;
         top: 7% !important;
     }
-
-    img.datamatrix {
-        margin-top: 2rem;
-    }
 }
 
 
@@ -283,12 +279,16 @@ a.button-no-impr {
     margin-bottom:0
 }
 
+img.datamatrix{
+    width: 100%;
+    height: 100%;
+}
+
 
 @media print {
-
     @page {
-        size: 760mm 510mm landscape;
-        margin:0;
+        size: 760mm 510mm landscape!important;
+        margin:0!important;
     }
 
     .DO-NOT-PRINT,.three-buttons{
@@ -296,8 +296,8 @@ a.button-no-impr {
     }
 
     .elementToPrint #element-a-imprimer{
-        max-width: 100%;
-        width: auto;
+        width: 760px;
+  height: 510px;
         
     }
 
