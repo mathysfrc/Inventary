@@ -38,12 +38,9 @@ div.col-12 {
 }
 
 p {
-    margin-top: 1rem;
     font-size: 2rem;
-    font-weight: bold;
     font-family: $font-family-base;
     text-align: start;
-    margin-left: 1rem;
 }
 
 .col-3 {
@@ -114,12 +111,12 @@ p {
     margin-top: 7.3rem;
 }
 
-.inutilisable,
-.utilisable {
-    position: absolute;
-    bottom: 12.5rem;
-    left: 27rem;
-}
+// .inutilisable,
+// .utilisable {
+//     position: absolute;
+//     bottom: 12.5rem;
+//     left: 27rem;
+// }
 
 .inutilisabled,
 .utilisabled {
@@ -290,4 +287,14 @@ a.button-no-impr {
         width: auto;
     }
 
+}
+
+/********CUSTOM*******/
+
+.card-title h3{
+    width: initial;
+}
+
+.card-title .badge{
+    width: initial;
 }

@@ -20,16 +20,20 @@
             <div class="elementToPrint">
                 <div class="card-reference border border-primary">
                     <div class="card-body" id="element-a-imprimer">
-                        <div class="row d-flex">
-                        <h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
-                         {% if stock.status == "Inutilisable" %}
-                                    <span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
-                                                    {% else %}
-                                                        <span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
-                                                    {% endif %}
+                        <div class="row card-title ">
+                            <div class="col d-flex justify-content-between">
+                            <h3 class="text-primary">SKU : {{ stock.SKU }}</h3>
+                            {% if stock.status == "Inutilisable" %}
+                                        <p class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</p>
+                                                        {% else %}
+                                                            <p class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</p>
+                                                        {% endif %}
+                            </div>                            
                         </div>    
-                        <div>
-                            <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                        <div class="row">
+                            <div>
+                                <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                            </div>
                         </div>                        
                         <div class="row">
                             <div class="col">
