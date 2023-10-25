@@ -290,8 +290,8 @@ padding-top: 3rem;
     body {
       margin: 0 !important;
       padding: 0 !important;
-      width: 150% !important;
-      height: 150% !important;
+      width: 0% !important;
+      height: 0% !important;
     }
   
     .elementToPrint {
@@ -304,20 +304,20 @@ padding-top: 3rem;
     #element-a-imprimer {
       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
       transform: scale(1) !important;
-      width: 150% !important;
-      height: 150% !important; /* L'échelle est initialement de 1, aucun changement de taille */
+      width: 0% !important;
+      height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     .card-body {
       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
       transform: scale(1) !important;
-      width: 150% !important;
-      height: 150% !important; /* L'échelle est initialement de 1, aucun changement de taille */
+      width: 0% !important;
+      height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     .card-reference {
-        width: 150% !important;
-        height: 150% !important;
+        width: 0% !important;
+        height: 0% !important;
       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
       transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
