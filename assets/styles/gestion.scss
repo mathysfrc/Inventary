@@ -279,84 +279,62 @@ padding-top: 3rem;
 
 @media print {
     @page {
-        size: landscape !important; /* Taille de la page pour votre étiquette */
+      size: 100mm 75mm !important; /* Définissez la taille de la page sur 100 mm x 75 mm */
     }
-
+  
+    /* Supprimez les éléments que vous ne voulez pas imprimer */
     .DO-NOT-PRINT {
-        display: none !important;
+      display: none !important;
     }
-
+  
     body {
-        width: 100% !important; /* Largeur de la page */
-        height: 100% !important; /* Hauteur de la page */
-        margin: 0 !important;
-        padding: 0 !important;
+      width: 100mm !important; /* Largeur de la page */
+      height: 75mm !important; /* Hauteur de la page */
+      margin: 0 !important;
+      padding: 0 !important;
     }
-
+  
     .elementToPrint {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
-        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
-        z-index: 200 !important;
+      width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
-
+  
     #element-a-imprimer {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
-        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
-        z-index: 200 !important;
+      width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
-
+  
     .card-body {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
+      width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
-
+  
     .card-reference {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 350% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
-        height: 500% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
-        z-index: 200 !important;
+      width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
-
+  
     .card-text {
-        font-size: large !important;
-        color: black !important;
-        font-size: 8.4rem !important;
-        padding-top: 9rem !important;
+      font-size: 8.4mm !important; /* Ajustez la taille de police en millimètres */
     }
-
+  
     .card-title {
-        color: black !important;
-        margin-top: 20px !important;
-        font-size: 10rem !important;
-        margin-bottom: 8rem !important;
+      font-size: 10mm !important; /* Ajustez la taille de police en millimètres */
     }
-
+  
     .datamatrix {
-        position: absolute;
-        bottom: 20rem !important;
-        height: auto !important;
-        width: auto !important;
+      margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
+      margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
+      transform: scale(0.5) !important; /* Ajustez l'échelle si nécessaire */
     }
-
+  
     span.utilisable {
-        position: absolute !important;
-        bottom: 77rem !important;
-        left: 105rem !important;
-        font-size: 5.7rem !important;
+      bottom: 5mm !important; /* Ajustez la position en bas en millimètres */
+      left: 5mm !important; /* Ajustez la position à gauche en millimètres */
+      font-size: 5.7mm !important; /* Ajustez la taille de police en millimètres */
     }
-
+  
     .price-card {
-        flex-direction: column !important;
+      flex-direction: column !important;
     }
-
-    /* Supprimez les commentaires et ajustez les styles au besoin pour votre étiquette */
-
-    * {
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-}
+  }
