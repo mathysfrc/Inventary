@@ -277,73 +277,73 @@ padding-top: 3rem;
     }
 }
 
-@media print {
-    @page {
-      size: auto !important; /* La taille de la page est automatique, elle s'adaptera à votre contenu */
-    }
+// @media print {
+//     @page {
+//       size: auto !important; /* La taille de la page est automatique, elle s'adaptera à votre contenu */
+//     }
   
-    /* Supprimez les éléments que vous ne voulez pas imprimer */
-    .DO-NOT-PRINT {
-      display: none !important;
-    }
+//     /* Supprimez les éléments que vous ne voulez pas imprimer */
+//     .DO-NOT-PRINT {
+//       display: none !important;
+//     }
   
-    body {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 0% !important;
-      height: 0% !important;
-    }
+//     body {
+//       margin: 0 !important;
+//       padding: 0 !important;
+//       width: 0% !important;
+//       height: 0% !important;
+//     }
   
-    .elementToPrint {
-      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-      transform: scale(1) !important;
-      width: 100rem !important;
-      height: 100rem !important; /* L'échelle est initialement de 1, aucun changement de taille */
-    }
+//     .elementToPrint {
+//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+//       transform: scale(1) !important;
+//       width: 100rem !important;
+//       height: 100rem !important; /* L'échelle est initialement de 1, aucun changement de taille */
+//     }
   
-    #element-a-imprimer {
-      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-      transform: scale(1) !important;
-      width: 0% !important;
-      height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
-    }
+//     #element-a-imprimer {
+//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+//       transform: scale(1) !important;
+//       width: 0% !important;
+//       height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
+//     }
   
-    .card-body {
-      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-      transform: scale(1) !important;
-      width: 0% !important;
-      height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
-    }
+//     .card-body {
+//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+//       transform: scale(1) !important;
+//       width: 0% !important;
+//       height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
+//     }
   
-    .card-reference {
-        width: 0% !important;
-        height: 0% !important;
-      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-      transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
-    }
+//     .card-reference {
+//         width: 0% !important;
+//         height: 0% !important;
+//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+//       transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
+//     }
   
-    .card-text {
-      font-size: 58.4mm !important; /* Ajustez la taille de police en millimètres */
-    }
+//     .card-text {
+//       font-size: 58.4mm !important; /* Ajustez la taille de police en millimètres */
+//     }
   
-    .card-title {
-      font-size: 70mm !important; /* Ajustez la taille de police en millimètres */
-    }
+//     .card-title {
+//       font-size: 70mm !important; /* Ajustez la taille de police en millimètres */
+//     }
   
-    .datamatrix {
-      margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
-      margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
-      /* Aucune transformation d'échelle nécessaire, car elle est déjà ajustée dans votre style d'origine */
-      transform: scale(1.5) !important;
-    }
+//     .datamatrix {
+//       margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
+//       margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
+//       /* Aucune transformation d'échelle nécessaire, car elle est déjà ajustée dans votre style d'origine */
+//       transform: scale(1.5) !important;
+//     }
   
-    span.utilisable {
-      bottom: 5mm !important; /* Ajustez la position en bas en millimètres */
-      left: 5mm !important; /* Ajustez la position à gauche en millimètres */
-      font-size: 35.7mm !important; /* Ajustez la taille de police en millimètres */
-    }
+//     span.utilisable {
+//       bottom: 5mm !important; /* Ajustez la position en bas en millimètres */
+//       left: 5mm !important; /* Ajustez la position à gauche en millimètres */
+//       font-size: 35.7mm !important; /* Ajustez la taille de police en millimètres */
+//     }
   
-    .price-card {
-      flex-direction: column !important;
-    }
-  }
+//     .price-card {
+//       flex-direction: column !important;
+//     }
+//   }
