@@ -281,10 +281,9 @@ a.button-no-impr {
         size: landscape !important;
     }
 
-    .DO-NOT-PRINT, div:not(.elementToPrint) {
+    .DO-NOT-PRINT {
         display: none !important;
     }
-
 
     .elementToPrint {
         max-width: 100%;
