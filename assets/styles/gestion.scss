@@ -296,14 +296,14 @@ padding-top: 3rem;
     .elementToPrint {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
         width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
-        height: 300% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
         z-index: 200 !important;
     }
 
     #element-a-imprimer {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
         width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
-        height: 300% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
         z-index: 200 !important;
     }
 
@@ -324,21 +324,21 @@ padding-top: 3rem;
     .card-text {
         font-size: large !important;
         color: black !important;
-        font-size: 20.4rem !important;
-        padding-top: 25rem !important;
+        font-size: 8.4rem !important;
+        padding-top: 9rem !important;
     }
 
     .card-title {
         color: black !important;
-        margin-top: 1000px !important;
-        font-size: 25rem !important;
-        margin-bottom: 20rem !important;
+        margin-top: 20px !important;
+        font-size: 10rem !important;
+        margin-bottom: 8rem !important;
     }
 
     .datamatrix {
-        margin-top: 350px !important;
-        margin-right: 500px !important;
-        transform: scale(3) !important;
+        margin-top: 90px !important;
+        margin-right: 170px !important;
+        transform: scale(4.5) !important;
     }
 
     span.utilisable {
