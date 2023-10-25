@@ -320,24 +320,24 @@ padding-top: 3rem;
     }
 
 
-        .datamatrix {
-        margin-top: 30px !important;
-        margin-right: 170px !important;
-        transform: scale(1.05) !important;
-    }
-
     .card-text {
         font-size: large !important;
         color: black !important;
-        font-size: 0.8rem !important;
-        padding-top: 0.5rem !important;
+        font-size: 4.4rem !important;
+        padding-top: 5rem !important;
     }
 
     .card-title {
         color: black !important;
         margin-top: 20px !important;
-        font-size: 1rem !important;
-        margin-bottom: 0.5rem !important;
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+
+    .datamatrix {
+        margin-top: 90px !important;
+        margin-right: 100px !important;
+        transform: scale(1.5) !important;
     }
 
     span.utilisable {
@@ -351,6 +351,7 @@ padding-top: 3rem;
         flex-direction: column !important;
     }
 
+    
     
 
     /* Supprimez les commentaires et ajustez les styles au besoin pour votre étiquette */
