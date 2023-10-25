@@ -21,25 +21,25 @@
 			</div>
 			<div class="row">
 				<div class="col">
-				<div class="input-marge">
-					{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
+					<div class="input-marge">
+						{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
 					</div>
-					
+
 					{{ form_row(form.productFamily) }}
 
 					<div class="input-marge">
-					{{ form_row(form.price) }}
+						{{ form_row(form.price) }}
 					</div>
 
 					{{ form_row(form.size1) }}
 				</div>
 				<div class="col">
-				<div class="input-marge">
-				{{ form_row(form.description) }}
-				</div>
+					<div class="input-marge">
+						{{ form_row(form.description) }}
+					</div>
 					{{ form_row(form.reference) }}
 					<div class="input-marge">
-					{{ form_row(form.status) }}
+						{{ form_row(form.status) }}
 					</div>
 					{{ form_row(form.size2) }}
 				</div>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="col">
 					<div class="input-marge">
-					{{ form_row(form.size2Unit) }}
+						{{ form_row(form.size2Unit) }}
 					</div>
 				</div>
 				<div class="col">
@@ -63,27 +63,32 @@
 					{{ form_row(form.size2Name) }}
 
 					{# <div class="row">
-										
-															{{ form_row(form.resultUnit) }}
-														</div> #}
+															
+																				{{ form_row(form.resultUnit) }}
+																			</div> #}
 				</div>
 				<div class="row">
-                {{ form_row(form.timestamp)}}
-                </div>
+					{{ form_row(form.timestamp)}}
+				</div>
 
 				<div class="row">
-                {{ form_row(form.movementType)}}
-                </div>
+					{{ form_row(form.movementType)}}
+				</div>
 			</div>
 
-			<div class="col-6">
-				<a href="#">
-					<button type="submit" class="bt-return btn btn-lg bg-primary text-white">Modifier</button>
-				</a>
+			<div class="row">
+				<div class="col-6">
+					<div class="modif-suppr">
+						<a href="#">
+							<button type="submit" class="bt-return btn bg-primary text-white">Modifier</button>
+						</a>
+					</div>
+				</div>
+				<div class="col-6 suppr-modif ">
+					{{ form_end(form) }}
+					{{ include('tracking/_delete_form.html.twig') }}
+				</div>
 			</div>
-
-			{{ form_end(form) }}
-			{{ include('tracking/_delete_form.html.twig') }}
 		</section>
 	</section>
 {% endblock %}

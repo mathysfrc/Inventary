@@ -2,7 +2,7 @@
 
 
 .all-stock {
-padding-left: 120px;
+    padding-left: 160px;
 }
 
 .sidebar {
@@ -21,6 +21,7 @@ padding-left: 120px;
 div.col {
     padding: 0;
 }
+
 
 
 input#search_sku_search {
@@ -45,8 +46,9 @@ input#search_one_search {
 }
 
 ul.nav.nav-tabs.mx-5 {
-    margin-left: 25rem !important;
     border-bottom: none !important;
+    justify-content: center;
+    flex-direction: initial;
 }
 
 .table-container {
@@ -55,7 +57,8 @@ ul.nav.nav-tabs.mx-5 {
 }
 
 .table-scroll {
-    width: 120%; /* Ajustez la largeur en fonction du nombre de colonnes */
+    width: 120%;
+    /* Ajustez la largeur en fonction du nombre de colonnes */
 }
 
 .table {
@@ -77,7 +80,7 @@ td {
 }
 
 
-@media (min-width: 1201px) {
+@media (min-width: 1281px) {
     .all-stock {
         padding-left: 0px;
     }

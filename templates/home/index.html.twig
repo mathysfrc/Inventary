@@ -29,34 +29,36 @@
 								Gestion
 							</a>
 						</li>
-
+					</ul>
+					<ul class="logout-link">
 						<li>
 							<a class="logout" href="/logout">
 								{% include 'icons/logout.svg' %}
 							</a>
 						</li>
-					{% endif %}
-				</ul>
+					</ul>
+				{% endif %}
+
 			</nav>
 		</aside>
 	</section>
 
 	<script>
 
-    let stockLink = document.getElementById("stock-link");
-    let gestionLink = document.getElementById("gestion-link");
+		let stockLink = document.getElementById("stock-link");
+let gestionLink = document.getElementById("gestion-link");
 
-	window.onload = function (e) {
-		if (window.location.href.includes('/stock')) {
-			console.log('stock')
-			stockLink.classList.add("active");
-		}
+window.onload = function (e) {
+if (window.location.href.includes('/stock')) {
+console.log('stock')
+stockLink.classList.add("active");
+}
 
-		if (window.location.href.includes('/gestion')) {
-			console.log('gestion')
-			gestionLink.classList.add("active");
-		}
-	}
+if (window.location.href.includes('/gestion')) {
+console.log('gestion')
+gestionLink.classList.add("active");
+}
+}
 	</script>
 
 

@@ -12,10 +12,12 @@
 	{% include 'home/index.html.twig' %}
 	<section class='all-new-product'>
 		<section class="container">
+			<div class="return-to-home">
 			<a href="/gestion" class="return">
 				< Retour à la gestion du stock
 			</a>
 			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+			</div>
 			{{ form_start(form) }}
 			<div class="my-custom-class-for-errors">
 				{{ form_errors(form) }}
@@ -67,7 +69,7 @@
 			</div>
 
 			<div class="col-6">
-				<a href="/reference"><button type="submit" class="bt-return btn btn-lg bg-primary text-white">Suivant</button></a>
+				<a href="/reference"><button type="submit" class="bt-return btn  bg-primary text-white">Suivant</button></a>
 			</div>
 		
 			{{ form_end(form) }}

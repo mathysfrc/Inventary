@@ -13,11 +13,12 @@
 	{% include 'home/index.html.twig' %}
 	<section class='all-new-product'>
 		<section class="container">
+        <div class="return-to-home">
 			<a href="/gestion" class="return DO-NOT-PRINT">
 				< Retour à la gestion du stock
 			</a>
 			<h1 class="DO-NOT-PRINT title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
-            
+            </div>
             <section class="elementToPrint">
                 <div id="element-a-imprimer">
                     <div class="card-reference border border-primary">
@@ -59,9 +60,9 @@
                     </div>
                 </div>
     </div>
-        <div class="row">
+        <div class="row justify-content-center pt-5">
             <div class="col-3">
-            <a href="{{ path('app_stock_print_SKU', {'SKU': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimmer l'étiquette</a>
+            <a href="{{ path('app_stock_print_SKU', {'SKU': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
                 <script>
                     document.getElementById("imprimerPage").addEventListener("click", function() {
                         window.print();

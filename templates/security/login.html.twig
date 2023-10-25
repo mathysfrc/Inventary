@@ -12,9 +12,10 @@
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
 
-			<div class="row">
-            
-				<div class="col-6">
+		<div class="row">
+
+			<div class="col-6">
+				<div class="login-container">
 					<img class="logo" src="{{ asset('build/images/logo-imprinova.svg')}}">
 
 					<div class="form-outline form-white mb-4">
@@ -29,15 +30,15 @@
 						<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					</div>
 
-					<p class="small mb-5 pb-lg-2">
+					<div class="d-flex justify-content-between">
 						<a class="text-black-50" href="/reset-password">Mot de passe oublié ?</a>
-					</p>
+						<a class="text-black-50" href="{{ path('app_register')}}">S'enregistrer ?</a>
+					</div>
 
-					<button class="btn bg-primary btn-outline-dark text-white btn-lg px-5 mb-5" type="submit">Connexion</button>
-				</div>
-				<div class="col-6">
-					<img class="image" src="{{ asset('build/images/imprinova-accueil.svg')}}">
+					<button class="btn bg-primary btn-outline-dark text-white btn-lg px-5 mt-5" type="submit">Connexion</button>
 				</div>
 			</div>
+			<div class="col-6 background-login"></div>
+		</div>
 	</form>
 {% endblock %}
