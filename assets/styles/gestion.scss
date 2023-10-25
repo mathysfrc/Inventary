@@ -280,7 +280,7 @@ padding-top: 3rem;
 @media print {
 
     @page {
-        size: landscape !important;
+        size: auto !important;
     }
 
     .DO-NOT-PRINT {
