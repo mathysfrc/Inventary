@@ -338,7 +338,8 @@ padding-top: 3rem;
     .datamatrix {
         position: absolute;
         bottom: 20rem !important;
-        left: 105rem !important;
+        height: auto !important;
+        width: auto !important;
     }
 
     span.utilisable {
