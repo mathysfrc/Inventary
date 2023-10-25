@@ -78,12 +78,12 @@ p {
     padding-left: 120px;
 }
 
-.all-new-product .container{
-min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-bottom: 2rem;
+.all-new-product .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2rem;
 }
 
 
@@ -153,10 +153,10 @@ a.button-no-impr {
 }
 
 .end-button {
-display: grid;
-justify-content: center;
-gap: 1rem;
-padding-top: 3rem;
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 3rem;
 }
 
 .reference-no-impression {
@@ -315,7 +315,7 @@ padding-top: 3rem;
         margin-top: 0 !important;
         width: 0% !important;
         height: 0% !important;
-        }
+    }
 
 
     // .card-text {
@@ -331,8 +331,8 @@ padding-top: 3rem;
     }
 
     .datamatrix {
-    //     margin-top: 90px !important;
-    //     margin-right: 100px !important;
+        //     margin-top: 90px !important;
+        //     margin-right: 100px !important;
         transform: scale(1.3) !important;
     }
 
