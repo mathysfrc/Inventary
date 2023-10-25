@@ -289,7 +289,7 @@ img.datamatrix{
     .no-print,.DO-NOT-PRINT{display: none!important}
 
     @page {
-        size: landscape;
+        size: auto;
         margin:0!important;
       }
 
