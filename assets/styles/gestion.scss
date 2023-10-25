@@ -287,8 +287,8 @@ padding-top: 3rem;
     }
 
     body {
-        width: 7.6cm !important; /* Largeur de la page */
-        height: 5.1cm !important; /* Hauteur de la page */
+        width: 100% !important; /* Largeur de la page */
+        height: 100% !important; /* Hauteur de la page */
         margin: 0 !important;
         padding: 0 !important;
     }
@@ -315,14 +315,24 @@ padding-top: 3rem;
     
     .card-body {
         /* Ajustez ces dimensions en fonction de la taille de l'étiquette */
-        width: 7.6cm !important;
-        height: 5.1cm !important;
+        width: 100% !important;
+        height: 100% !important;
     }
+
+
+        .datamatrix {
+    //     margin-top: 90px !important;
+    //     margin-right: 100px !important;
+        transform: scale(1.3) !important;
+    }
+
 
     // .card-title {
     //     /* Ajustez la taille de la police en fonction de vos besoins */
     //     font-size: 1.2rem !important;
     // }
+
+    
 
     /* Supprimez les commentaires et ajustez les styles au besoin pour votre étiquette */
 
