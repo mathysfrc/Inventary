@@ -279,7 +279,7 @@ padding-top: 3rem;
 
 @media print {
     @page {
-      size: 100mm 75mm !important; /* Définissez la taille de la page sur 100 mm x 75 mm */
+      size: auto !important; /* La taille de la page est automatique, elle s'adaptera à votre contenu */
     }
   
     /* Supprimez les éléments que vous ne voulez pas imprimer */
@@ -293,23 +293,23 @@ padding-top: 3rem;
     }
   
     .elementToPrint {
-      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+      transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     #element-a-imprimer {
-      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+      transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     .card-body {
-      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-      height: 75 !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+      transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     .card-reference {
-      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+      /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
+      transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
     }
   
     .card-text {
@@ -323,7 +323,7 @@ padding-top: 3rem;
     .datamatrix {
       margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
       margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
-      transform: scale(0.5) !important; /* Ajustez l'échelle si nécessaire */
+      /* Aucune transformation d'échelle nécessaire, car elle est déjà ajustée dans votre style d'origine */
     }
   
     span.utilisable {
