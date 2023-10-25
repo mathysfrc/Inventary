@@ -13,11 +13,10 @@
 	<section class='all-new-product'>
 		<section class="container">
 
-
+<div class="reference-no-impression">
  <img class="validation" src="{{ asset('build/images/frame.svg')}}">
 			<h1 class="title-no-impression fw-bold text-primary">Nouvelle référence crée !</h1>
-            <h1 class="text-light">.</h1>
-           
+</div>
 
 <div class="card-reference border border-primary" style="width: 35rem;">
     <div class="card-body">
@@ -55,12 +54,12 @@
          </div>
     </div>
 </div>
-<div class="col">
+<div class="end-button">
 <div class="row">
 <a href="{{ path('app_stock_new')}}" class="button-no-impression btn btn-outline-primary" type="button">{% include 'icons/downlooad.svg' %} &nbsp; Ajouter une nouvelle référence</a>
 </div>
 <div class="row">
-<a href="/gestion" class="button-no-impression btn btn-primary" type="button">Revenir à la gestion du stock</a>
+<a href="/gestion" class="button-return-no-impr btn btn-primary" type="button">Revenir à la gestion du stock</a>
 </div>
 </div>
 {% endblock %}

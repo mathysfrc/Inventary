@@ -3,32 +3,13 @@
 a.btn {
     width: 30rem;
     height: 15rem;
-    border-radius: 40px;
-    margin-right: 2.5rem;
-    margin-left: 1rem;
-    margin-top: 8rem;
+    border-radius: 40px
 }
 
 .btn:hover {
     color: white;
 
 }
-
-
-a.bouton {
-    margin-left: 65%;
-    margin-top: 3rem;
-}
-
-a.bout-recep {
-    margin-left: 1rem;
-}
-
-a.bout-cons {
-    margin-right:
-        1.3rem;
-}
-
 
 div.col-12 {
     height: 90vh;
@@ -37,20 +18,37 @@ div.col-12 {
 
 .all-gestion {
     padding-left: 120px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
 
 #text {
     margin-top: 10rem;
 }
 
+.return-to-home {
+    padding-top: 3rem;
+    padding-bottom: 5%;
+}
+
+.three-buttons {
+    padding-top: 5rem;
+}
+
 p {
-    margin-top: 1rem;
     font-size: 2rem;
-    font-weight: bold;
     font-family: $font-family-base;
     text-align: start;
-    margin-left: 1rem;
+}
+
+.col-3 {
+    text-align: end;
+}
+
+.return {
+    margin-top: 2rem !important;
 }
 
 .text {
@@ -77,26 +75,26 @@ p {
     padding-left: 120px;
 }
 
-.container {
-    margin-top: 3rem;
+.all-new-product .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2rem;
 }
 
-button.bt-return {
-    margin-left: 49.2rem;
-    margin-top: 3rem;
-    width: 50%;
-}
 
 .input-marge {
     margin-bottom: 3rem;
 }
 
-.title-enter-stock {
-    margin-bottom: 4rem;
+.contain {
+    margin-top: 1rem;
 }
 
+
 .card-text {
-    font-size: small;
+    font-size: 20px;
     font-weight: normal;
 }
 
@@ -104,97 +102,126 @@ button.bt-return {
     font-weight: bold;
 }
 
-.card-reference {
-    margin-left: 23%;
-    margin-top: 15%;
-    border-radius: 20px;
-}
+// .card-reference {
+//     margin-left: 24.5%;
+//     border-radius: 20px;
+// }
 
 .gap {
     margin-top: 7.3rem;
 }
 
-.inutilisable,
-.utilisable {
+// .inutilisable,
+// .utilisable {
+//     position: absolute;
+//     bottom: 12.5rem;
+//     left: 27rem;
+// }
+
+.inutilisabled,
+.utilisabled {
     position: absolute;
-    bottom: 11.5rem;
+    bottom: 10.5rem;
     left: 27rem;
 }
 
 a.button-impr {
-    width: auto;
-    height: auto;
+    height: 2.5rem;
+    width: 15rem;
     border-radius: 5px;
 }
 
 a.button-no-impr {
     color: $primary;
+    height: 2.5rem;
 }
 
-button.bouton-suppr {
-    position: absolute;
-    bottom: 4rem;
+.button-no-impression {
+    height: 2.5rem !important;
+    border-radius: 5px !important;
 }
 
-h1.title-no-impression {
-    margin-left: 20%;
-    position: absolute;
-    top: 20%;
+.button-return-no-impr {
+    height: 4rem !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
-.validation {
-    position: absolute;
-    left: 31%;
-    top: 10%;
+.end-button {
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 3rem;
 }
 
-a.button-no-impression {
-    margin-top: 3rem;
-    width: 50%;
-    height: auto;
-    border-radius: 5px;
-    margin-left: 23.2%;
-
+.reference-no-impression {
+    display: grid;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
-.card-reference {
+.dont-forget {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.impression-or-no {
+    display: flex;
+    justify-content: end;
     width: 35rem;
 }
 
-.delete-form {
-    position: absolute;
-    top: 62rem;
-    width: 15rem;
+// .card-reference {
+//     width: 35rem;
+// }
+
+
+.gestion-board {
+    display: flex !important;
+    justify-content: center !important;
 }
 
-@media (min-width: 1201px) {
-    a.bouton {
-        margin-left: 70%;
-        margin-top: 3rem;
-    }
+.first-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
 
-    a.bout-recep {
-        margin-top: 15rem;
-        margin-left: 4rem;
-    }
+.modif-title {
+    margin: 0 !important;
+}
 
-    a.bout-cons {
-        margin-top: 15rem;
-        margin-right:
-            1.3rem;
-    }
+.suppr-modif {
+    justify-content: end;
+    display: flex;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 
-    .title-enter-stock {
-        margin-top: 18rem;
-    }
+.modif-suppr {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.bouton-suppr {
+    height: 2.5rem;
+    width: 14rem;
+}
+
+.bt-return {
+    height: 2.5rem;
+    width: 14rem;
+}
+
+@media (min-width: 1281px) {
 
     h1.modif-title {
         margin-top: 10rem !important;
-    }
-
-    button.bouton-suppr {
-        position: absolute !important;
-        bottom: 15rem !important;
     }
 
     h1.title-no-impression {
@@ -203,40 +230,15 @@ a.button-no-impression {
         top: 12.5% !important;
     }
 
-    a.return {
-        position: absolute !important;
-        top: 15rem;
-        z-index: 100;
-    }
-
     .validation {
         position: absolute !important;
         left: 38% !important;
         top: 7% !important;
     }
-
-    img.datamatrix {
-        margin-top: 2rem;
-    }
 }
 
 
 @media (min-width: 1921px) {
-    a.bouton {
-        margin-left: 75%;
-        margin-top: 3rem;
-    }
-
-    a.bout-recep {
-        margin-top: 21rem;
-        margin-left: 5.5rem;
-    }
-
-    a.bout-cons {
-        margin-top: 21rem;
-        margin-right:
-            1.3rem;
-    }
 
     .title-enter-stock {
         margin-top: 18rem;
@@ -246,10 +248,6 @@ a.button-no-impression {
         margin-top: 22rem !important;
     }
 
-    button.bouton-suppr {
-        position: absolute !important;
-        bottom: 24rem !important;
-    }
 
     h1.title-no-impression {
         margin-left: 14% !important;
@@ -270,78 +268,56 @@ a.button-no-impression {
     }
 }
 
-@media print {
-    @page {
-        size: landscape !important;
-    }
+/********CUSTOM*******/
 
-    .DO-NOT-PRINT {
-         display: none !important; 
-    }
-
-    .elementToPrint {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        z-index: 100 !important;
-    }
-
-    #element-a-imprimer  {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        z-index: 100 !important;
-    }
-
-    .card-reference {
-        margin-left: 0 !important;
-        margin-top: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-    }
-
-    body {
-    width: 760% !important;
-    height: 510px !important;
-    }
-
-    .card-text {
-        font-size: large !important;
-        color: black !important;
-        font-size: 4.4rem !important;
-        padding-top: 5rem !important;
-    }
-
-    .card-title {
-        color: black !important;
-        margin-top: 20px !important;
-        font-size: 6rem !important;
-        margin-bottom: 4rem !important;
-    }
-
-    .datamatrix {
-        margin-top: 90px !important;
-        margin-right: 100px !important;
-        transform: scale(1.5) !important;
-    }
-
-    span.utilisable {
-        position: absolute !important;
-        bottom: 77rem !important;
-        left: 105rem !important;
-        font-size: 5.7rem !important;
-    }
-
-    .price-card {
-        flex-direction: column !important;
-    }
-
+.card-title h3{
+    width: initial;
 }
+
+.card-title .badge{
+    width: initial;
+    margin-bottom:0
+}
+
+img.datamatrix{
+    width: 100%;
+    height: 100%;
+}
+
+
+@media print {
+    .no-print,.DO-NOT-PRINT{display: none!important}
+
+    @page {
+        size: landscape;
+        margin:0!important;
+      }
+
+    .card-title h3{
+        font-size:40pt;
+        margin-top:12mm;
+      }
+
+    .print .badge{
+        font-size:24pt!important
+    }
+    .card-text{
+        font-size: 34pt;
+        line-height: 1.2;
+    }
+
+    .card-text .span-text{
+        margin-top:4mm;
+    }
+    .print img.datamatrix{
+        width: 33%!important;
+        height: 33%!important;
+    }
+
+    .print .desc{
+        margin-bottom:12mm!important;
+    }
+ }
+ @media not print {
+    .print { display: none!important }
+ }

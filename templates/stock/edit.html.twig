@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modification{% endblock %}
+{% block title %}Modification
+{% endblock %}
 
 
 {% block stylesheets %}
@@ -9,33 +10,33 @@
 {% endblock %}
 
 {% block body %}
-{% include 'home/index.html.twig' %}
+	{% include 'home/index.html.twig' %}
 	<section class="all-new-product">
-<section class="container">
-    <h1 class="modif-title fw-bold text-primary my-5">Modifier un produit du stock</h1>
+		<section class="container">
+			<h1 class="modif-title fw-bold text-primary py-5">Modifier un produit du stock</h1>
 
-   		{{ form_start(form) }}
+			{{ form_start(form) }}
 			<div class="my-custom-class-for-errors">
 				{{ form_errors(form) }}
 			</div>
 			<div class="row">
 				<div class="col">
 					<div class="input-marge">
-					{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
+						{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
 					</div>
 					{{ form_row(form.productFamily, {'attr': {'read_only': true, 'readonly': true}}) }}
 					<div class="input-marge">
-					{{ form_row(form.price) }}
+						{{ form_row(form.price) }}
 					</div>
 					{{ form_row(form.size1) }}
 				</div>
 				<div class="col">
-				<div class="input-marge">
-				{{ form_row(form.description) }}
-			</div>
+					<div class="input-marge">
+						{{ form_row(form.description) }}
+					</div>
 					{{ form_row(form.reference) }}
 					<div class="input-marge">
-					{{ form_row(form.status) }}
+						{{ form_row(form.status) }}
 					</div>
 					{{ form_row(form.size2) }}
 				</div>
@@ -57,19 +58,28 @@
 
 					{{ form_row(form.size2Name) }}
 
-				{# <div class="row">
-
-					{{ form_row(form.resultUnit) }}
-				</div> #}
+					{# <div class="row">
+															
+																				{{ form_row(form.resultUnit) }}
+																			</div> #}
 				</div>
 			</div>
 
-			<div class="col-6">
-				<a href="#"><button type="submit" class="bt-return btn btn-lg bg-primary text-white">Modifier</button></a>
+			<div class="row">
+				<div class="col-6">
+					<div class="modif-suppr">
+						<a href="#">
+							<button type="submit" class="bt-return btn bg-primary text-white">Modifier</button>
+						</a>
+					</div>
+				</div>
+				<div class="col-6 suppr-modif ">
+					{{ form_end(form) }}
+					{{ include('stock/_delete_form.html.twig') }}
+				</div>
 			</div>
-		
-			{{ form_end(form) }}
-		{{ include('stock/_delete_form.html.twig') }}
-    </section>
-    </section>
+
+
+		</section>
+	</section>
 {% endblock %}

@@ -2,48 +2,43 @@
 
 .sidebar {
   position: fixed;
-  width: 6%;
-  height: 100vh;
+  height: calc(100vh - 4rem);
   background-color: #D6EBFF;
   font-size: 1rem;
-  height: 95%;
-  margin-top: 2rem;
-  margin-left: 2.5rem;
-  margin-bottom: 1rem;
+  margin: 2rem;
   border-radius: 20px;
-  bottom: 0;
+  top: 0;
 }
 
 .nav {
-  position: relative;
-  margin: 0 15%;
-  text-align: right;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
   font-weight: bold;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
 }
 
-a.logout {
-  position: absolute;
-  top: 13rem;
-  left: 0.8rem;
+#gestion-link {
+  display: grid;
+  margin: auto;
+  padding-top: 2rem;
 }
 
+#stock-link {
+  display: grid;
+  margin: auto;
+}
 
-.blue-icon {
-  position: absolute;
-  bottom: 28rem;
-  left: 0rem;
+.stock-svg, svg.scan {
+  margin: auto;
 }
 
 .nav ul {
   list-style: none;
   padding: 0;
 
-  li {
-    position: relative;
-    margin: 3.2em 0;
-  }
 
   .active {
     border-bottom: 2px solid $primary;
@@ -61,35 +56,4 @@ a.logout {
     text-align: center;
   }
 
-  &:not(.active):hover a {
-    color: $primary;
-  }
-}
-
-@media (min-width: 1201px) {
-  .blue-icon {
-    position: absolute;
-    bottom: 35rem;
-    left: 1rem;
-  }
-
-  a.logout {
-    position: absolute;
-    top: 20rem;
-    left: 1.8rem;
-  }
-}
-
-@media (min-width: 1921px) {
-  .blue-icon {
-    position: absolute;
-    bottom: 40rem;
-    left: 2rem;
-  }
-
-  a.logout {
-    position: absolute;
-    top: 30rem;
-    left: 2.5rem;
-  }
 }

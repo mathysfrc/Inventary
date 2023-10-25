@@ -5,7 +5,7 @@
 
 {% block body %}
 	<section class="container">
-		<h1>Se créer un compte</h1>
+		<h1 class="mt-5 text-primary">Se créer un compte</h1>
 
 		{{ form_errors(registrationForm) }}
 
@@ -16,7 +16,10 @@
         }) }}
 		{{ form_row(registrationForm.agreeTerms) }}
 
-		<button type="submit" class="btn">S'enregistrer</button>
+		<button type="submit" class="btn btn-outline-primary mt-5">Créer son compte</button>
 		{{ form_end(registrationForm) }}
+
+		<a class="btn btn-outline-primary mt-5" href="{{path('app_login')}}">Retour</a>
+
 	</section>
 {% endblock %}
