@@ -307,18 +307,19 @@ padding-top: 3rem;
         z-index: 100 !important;
     }
 
-    // .card-reference {
-    //     /* Les marges ici doivent être ajustées en fonction de la taille de l'étiquette */
-    //     margin-left: 0.2cm !important; 
-    //     margin-top: 0.2cm !important;
-    // }
-    
     .card-body {
-        /* Ajustez ces dimensions en fonction de la taille de l'étiquette */
-        width: 100% !important;
-        height: 100% !important;
+        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+        z-index: 100 !important;
     }
 
+    .card-reference {
+        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+        z-index: 100 !important;
+    }
 
     .card-text {
         font-size: large !important;
@@ -336,7 +337,7 @@ padding-top: 3rem;
 
     .datamatrix {
         margin-top: 90px !important;
-        margin-right: 100px !important;
+        margin-right: 170px !important;
         transform: scale(1.5) !important;
     }
 
@@ -350,9 +351,6 @@ padding-top: 3rem;
     .price-card {
         flex-direction: column !important;
     }
-
-    
-    
 
     /* Supprimez les commentaires et ajustez les styles au besoin pour votre étiquette */
 
