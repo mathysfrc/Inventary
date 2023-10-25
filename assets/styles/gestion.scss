@@ -272,23 +272,6 @@ a.button-no-impr {
     }
 }
 
-@media print {
-
-    @page {
-        size: landscape !important;
-    }
-
-    .DO-NOT-PRINT {
-        display: none !important;
-    }
-
-    .elementToPrint #element-a-imprimer{
-        max-width: 100%;
-        width: auto;
-    }
-
-}
-
 /********CUSTOM*******/
 
 .card-title h3{
@@ -297,4 +280,26 @@ a.button-no-impr {
 
 .card-title .badge{
     width: initial;
+    margin-bottom:0
 }
+
+
+@media print {
+
+    @page {
+        size: 760mm 510mm landscape;
+        margin:0;
+    }
+
+    .DO-NOT-PRINT,.three-buttons{
+        display: none!important;
+    }
+
+    .elementToPrint #element-a-imprimer{
+        max-width: 100%;
+        width: auto;
+        
+    }
+
+}
+
