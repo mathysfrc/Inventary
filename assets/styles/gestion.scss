@@ -290,21 +290,27 @@ img.datamatrix{
 
     @page {
         size: landscape;
+        margin:0!important;
       }
 
     .card-title h3{
-        font-size:40pt;
+        font-size:36pt;
       }
-
-    .card-title {
-        font-size: 32pt;
-    }
     .card-text {
         font-size: 32pt;
+        line-height: 1;
+    }
+
+    .card-text .span-text{
+        margin-top:4mm;
     }
     .print img.datamatrix{
         width: 33%!important;
         height: 33%!important;
+    }
+
+    .print .desc{
+        margin-bottom:4mm;
     }
  }
  @media not print {
