@@ -78,6 +78,14 @@ p {
     padding-left: 120px;
 }
 
+.all-new-product .container{
+min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+}
+
 
 .input-marge {
     margin-bottom: 3rem;
@@ -215,10 +223,6 @@ padding-top: 3rem;
 
 @media (min-width: 1281px) {
 
-    .title-enter-stock {
-        margin-top: 18rem;
-    }
-
     h1.modif-title {
         margin-top: 10rem !important;
     }
@@ -227,12 +231,6 @@ padding-top: 3rem;
         margin-left: 14% !important;
         position: absolute !important;
         top: 12.5% !important;
-    }
-
-    a.return {
-        position: absolute !important;
-        top: 15rem;
-        z-index: 100;
     }
 
     .validation {
