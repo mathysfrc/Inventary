@@ -289,6 +289,7 @@ img.datamatrix{
     @page {
         size: 760mm 510mm landscape!important;
         margin:0!important;
+        font-size: 100%!important;
     }
 
     .DO-NOT-PRINT,.three-buttons, .sidebar{
