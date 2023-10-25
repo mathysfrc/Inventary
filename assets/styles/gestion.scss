@@ -336,8 +336,9 @@ padding-top: 3rem;
     }
 
     .datamatrix {
-        margin-top: 90px !important;
-        margin-right: 170px !important;
+        position: absolute;
+        bottom: 77rem !important;
+        left: 105rem !important;
         transform: scale(1.5) !important;
     }
 
