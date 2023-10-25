@@ -279,7 +279,7 @@ padding-top: 3rem;
 
 @media print {
     @page {
-        size: 7.6cm 5.1cm !important; /* Taille de la page pour votre étiquette */
+        size: landscape !important; /* Taille de la page pour votre étiquette */
     }
 
     .DO-NOT-PRINT {
@@ -293,36 +293,36 @@ padding-top: 3rem;
         padding: 0 !important;
     }
 
-    .elementToPrint {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
-    }
+    // .elementToPrint {
+    //     position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+    //     width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+    //     height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+    //     z-index: 100 !important;
+    // }
 
-    #element-a-imprimer {
-        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
-    }
+    // #element-a-imprimer {
+    //     position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+    //     width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+    //     height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+    //     z-index: 100 !important;
+    // }
 
-    .card-reference {
-        /* Les marges ici doivent être ajustées en fonction de la taille de l'étiquette */
-        margin-left: 0.2cm !important; 
-        margin-top: 0.2cm !important;
-    }
+    // .card-reference {
+    //     /* Les marges ici doivent être ajustées en fonction de la taille de l'étiquette */
+    //     margin-left: 0.2cm !important; 
+    //     margin-top: 0.2cm !important;
+    // }
     
     .card-body {
         /* Ajustez ces dimensions en fonction de la taille de l'étiquette */
-        width: 7.2cm !important;
-        height: 4.7cm !important;
+        width: 7.6cm !important;
+        height: 5.1cm !important;
     }
 
-    .card-title {
-        /* Ajustez la taille de la police en fonction de vos besoins */
-        font-size: 1.2rem !important;
-    }
+    // .card-title {
+    //     /* Ajustez la taille de la police en fonction de vos besoins */
+    //     font-size: 1.2rem !important;
+    // }
 
     /* Supprimez les commentaires et ajustez les styles au besoin pour votre étiquette */
 
