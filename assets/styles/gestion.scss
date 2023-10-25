@@ -3,7 +3,7 @@
 a.btn {
     width: 30rem;
     height: 15rem;
-    border-radius: 40px;
+    border-radius: 40px
 }
 
 .btn:hover {
@@ -38,12 +38,9 @@ div.col-12 {
 }
 
 p {
-    margin-top: 1rem;
     font-size: 2rem;
-    font-weight: bold;
     font-family: $font-family-base;
     text-align: start;
-    margin-left: 1rem;
 }
 
 .col-3 {
@@ -78,6 +75,14 @@ p {
     padding-left: 120px;
 }
 
+.all-new-product .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+}
+
 
 .input-marge {
     margin-bottom: 3rem;
@@ -89,7 +94,7 @@ p {
 
 
 .card-text {
-    font-size: small;
+    font-size: 20px;
     font-weight: normal;
 }
 
@@ -97,21 +102,21 @@ p {
     font-weight: bold;
 }
 
-.card-reference {
-    margin-left: 24.5%;
-    border-radius: 20px;
-}
+// .card-reference {
+//     margin-left: 24.5%;
+//     border-radius: 20px;
+// }
 
 .gap {
     margin-top: 7.3rem;
 }
 
-.inutilisable,
-.utilisable {
-    position: absolute;
-    bottom: 12.5rem;
-    left: 27rem;
-}
+// .inutilisable,
+// .utilisable {
+//     position: absolute;
+//     bottom: 12.5rem;
+//     left: 27rem;
+// }
 
 .inutilisabled,
 .utilisabled {
@@ -145,10 +150,10 @@ a.button-no-impr {
 }
 
 .end-button {
-display: grid;
-justify-content: center;
-gap: 1rem;
-padding-top: 3rem;
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 3rem;
 }
 
 .reference-no-impression {
@@ -170,9 +175,9 @@ padding-top: 3rem;
     width: 35rem;
 }
 
-.card-reference {
-    width: 35rem;
-}
+// .card-reference {
+//     width: 35rem;
+// }
 
 
 .gestion-board {
@@ -215,10 +220,6 @@ padding-top: 3rem;
 
 @media (min-width: 1281px) {
 
-    .title-enter-stock {
-        margin-top: 18rem;
-    }
-
     h1.modif-title {
         margin-top: 10rem !important;
     }
@@ -229,20 +230,10 @@ padding-top: 3rem;
         top: 12.5% !important;
     }
 
-    a.return {
-        position: absolute !important;
-        top: 15rem;
-        z-index: 100;
-    }
-
     .validation {
         position: absolute !important;
         left: 38% !important;
         top: 7% !important;
-    }
-
-    img.datamatrix {
-        margin-top: 2rem;
     }
 }
 
@@ -277,73 +268,56 @@ padding-top: 3rem;
     }
 }
 
-// @media print {
-//     @page {
-//       size: auto !important; /* La taille de la page est automatique, elle s'adaptera à votre contenu */
-//     }
-  
-//     /* Supprimez les éléments que vous ne voulez pas imprimer */
-//     .DO-NOT-PRINT {
-//       display: none !important;
-//     }
-  
-//     body {
-//       margin: 0 !important;
-//       padding: 0 !important;
-//       width: 0% !important;
-//       height: 0% !important;
-//     }
-  
-//     .elementToPrint {
-//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-//       transform: scale(1) !important;
-//       width: 100rem !important;
-//       height: 100rem !important; /* L'échelle est initialement de 1, aucun changement de taille */
-//     }
-  
-//     #element-a-imprimer {
-//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-//       transform: scale(1) !important;
-//       width: 0% !important;
-//       height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
-//     }
-  
-//     .card-body {
-//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-//       transform: scale(1) !important;
-//       width: 0% !important;
-//       height: 0% !important; /* L'échelle est initialement de 1, aucun changement de taille */
-//     }
-  
-//     .card-reference {
-//         width: 0% !important;
-//         height: 0% !important;
-//       /* Utilisez "scale" pour ajuster la taille en fonction de la taille de la page */
-//       transform: scale(1) !important; /* L'échelle est initialement de 1, aucun changement de taille */
-//     }
-  
-//     .card-text {
-//       font-size: 58.4mm !important; /* Ajustez la taille de police en millimètres */
-//     }
-  
-//     .card-title {
-//       font-size: 70mm !important; /* Ajustez la taille de police en millimètres */
-//     }
-  
-//     .datamatrix {
-//       margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
-//       margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
-//       /* Aucune transformation d'échelle nécessaire, car elle est déjà ajustée dans votre style d'origine */
-//       transform: scale(1.5) !important;
-//     }
-  
-//     span.utilisable {
-//       bottom: 5mm !important; /* Ajustez la position en bas en millimètres */
-//       left: 5mm !important; /* Ajustez la position à gauche en millimètres */
-//       font-size: 35.7mm !important; /* Ajustez la taille de police en millimètres */
-//     }
-  
-//     .price-card {
-//       flex-direction: column !important;
-//     }
-//   }
+/********CUSTOM*******/
+
+.card-title h3{
+    width: initial;
+}
+
+.card-title .badge{
+    width: initial;
+    margin-bottom:0
+}
+
+img.datamatrix{
+    width: 100%;
+    height: 100%;
+}
+
+
+@media print {
+    .no-print,.DO-NOT-PRINT{display: none!important}
+
+    @page {
+        size: landscape;
+        margin:0!important;
+      }
+
+    .card-title h3{
+        font-size:40pt;
+        margin-top:12mm;
+      }
+
+    .print .badge{
+        font-size:24pt!important
+    }
+    .card-text{
+        font-size: 34pt;
+        line-height: 1.2;
+    }
+
+    .card-text .span-text{
+        margin-top:4mm;
+    }
+    .print img.datamatrix{
+        width: 33%!important;
+        height: 33%!important;
+    }
+
+    .print .desc{
+        margin-bottom:12mm!important;
+    }
+ }
+ @media not print {
+    .print { display: none!important }
+ }
