@@ -286,7 +286,23 @@ img.datamatrix{
 
 
 @media print {
-    .no-print { display: none!important }
+    .no-print,.DO-NOT-PRINT{display: none!important}
+
+    @page {
+        size: landscape;
+      }
+
+
+    .card-title {
+        font-size: 40pt;
+    }
+    .card-text {
+        font-size: 40pt;
+    }
+    // .print img.datamatrix{
+    //     width: 33%;
+    //     height: auto;
+    // }
  }
  @media not print {
     .print { display: none!important }
