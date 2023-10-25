@@ -278,34 +278,34 @@ padding-top: 3rem;
 }
 
 @media print {
-    // @page {
-    //     size: landscape !important; /* Taille de la page pour votre étiquette */
-    // }
+    @page {
+        size: landscape !important; /* Taille de la page pour votre étiquette */
+    }
 
     .DO-NOT-PRINT {
         display: none !important;
     }
 
-    // body {
-    //     width: 100% !important; /* Largeur de la page */
-    //     height: 100% !important; /* Hauteur de la page */
-    //     margin: 0 !important;
-    //     padding: 0 !important;
-    // }
+    body {
+        width: 100% !important; /* Largeur de la page */
+        height: 100% !important; /* Hauteur de la page */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 
-    // .elementToPrint {
-    //     position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-    //     width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-    //     height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-    //     z-index: 100 !important;
-    // }
+    .elementToPrint {
+        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+        z-index: 100 !important;
+    }
 
-    // #element-a-imprimer {
-    //     position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-    //     width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-    //     height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-    //     z-index: 100 !important;
-    // }
+    #element-a-imprimer {
+        position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
+        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+        z-index: 100 !important;
+    }
 
     // .card-reference {
     //     /* Les marges ici doivent être ajustées en fonction de la taille de l'étiquette */
@@ -313,24 +313,43 @@ padding-top: 3rem;
     //     margin-top: 0.2cm !important;
     // }
     
-    // .card-body {
-    //     /* Ajustez ces dimensions en fonction de la taille de l'étiquette */
-    //     width: 100% !important;
-    //     height: 100% !important;
-    // }
+    .card-body {
+        /* Ajustez ces dimensions en fonction de la taille de l'étiquette */
+        width: 100% !important;
+        height: 100% !important;
+    }
 
 
-    //     .datamatrix {
-    // //     margin-top: 90px !important;
-    // //     margin-right: 100px !important;
-    //     transform: scale(1.3) !important;
-    // }
+        .datamatrix {
+        margin-top: 30px !important;
+        margin-right: 170px !important;
+        transform: scale(1.05) !important;
+    }
 
+    .card-text {
+        font-size: large !important;
+        color: black !important;
+        font-size: 0.8rem !important;
+        padding-top: 0.5rem !important;
+    }
 
-    // // .card-title {
-    // //     /* Ajustez la taille de la police en fonction de vos besoins */
-    // //     font-size: 1.2rem !important;
-    // // }
+    .card-title {
+        color: black !important;
+        margin-top: 20px !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    span.utilisable {
+        position: absolute !important;
+        bottom: 77rem !important;
+        left: 105rem !important;
+        font-size: 5.7rem !important;
+    }
+
+    .price-card {
+        flex-direction: column !important;
+    }
 
     
 
