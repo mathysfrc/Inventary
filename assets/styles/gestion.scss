@@ -287,38 +287,38 @@ padding-top: 3rem;
     }
 
     body {
-        width: 100% !important; /* Largeur de la page */
-        height: 100% !important; /* Hauteur de la page */
+        width: 200% !important; /* Largeur de la page */
+        height: 200% !important; /* Hauteur de la page */
         margin: 0 !important;
         padding: 0 !important;
     }
 
     .elementToPrint {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
+        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        z-index: 200 !important;
     }
 
     #element-a-imprimer {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
+        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        z-index: 200 !important;
     }
 
     .card-body {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
+        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        z-index: 200 !important;
     }
 
     .card-reference {
         position: relative !important; /* Utilisez "relative" plutôt que "absolute" pour le dimensionnement */
-        width: 100% !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
-        height: 100% !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
-        z-index: 100 !important;
+        width: 200% !important; /* Définissez la largeur de l'élément à imprimer sur 200% */
+        height: 200% !important; /* Définissez la hauteur de l'élément à imprimer sur 200% */
+        z-index: 200 !important;
     }
 
     .card-text {
