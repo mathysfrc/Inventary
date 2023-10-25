@@ -94,7 +94,7 @@ p {
 
 
 .card-text {
-    font-size: small;
+    font-size: 20px;
     font-weight: normal;
 }
 
@@ -295,10 +295,13 @@ img.datamatrix{
         display: none!important;
     }
 
+    .container{
+        max-width:100%!important;
+    }
+
     .elementToPrint #element-a-imprimer{
-        width: 760px;
-  height: 510px;
-        
+        width:100%!important;
+        max-width:100%!important;
     }
 
 }
