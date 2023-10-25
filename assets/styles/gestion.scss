@@ -288,8 +288,8 @@ padding-top: 3rem;
     }
   
     body {
-      width: 100mm !important; /* Largeur de la page */
-      height: 75mm !important; /* Hauteur de la page */
+      width: 1000mm !important; /* Largeur de la page */
+      height: 750mm !important; /* Hauteur de la page */
       margin: 0 !important;
       padding: 0 !important;
     }
@@ -315,23 +315,23 @@ padding-top: 3rem;
     }
   
     .card-text {
-      font-size: 8.4mm !important; /* Ajustez la taille de police en millimètres */
+      font-size: 80.4mm !important; /* Ajustez la taille de police en millimètres */
     }
   
     .card-title {
-      font-size: 10mm !important; /* Ajustez la taille de police en millimètres */
+      font-size: 100mm !important; /* Ajustez la taille de police en millimètres */
     }
   
     .datamatrix {
-      margin-top: 5mm !important; /* Ajustez la marge supérieure en millimètres */
-      margin-right: 5mm !important; /* Ajustez la marge droite en millimètres */
+      margin-top: 50mm !important; /* Ajustez la marge supérieure en millimètres */
+      margin-right: 50mm !important; /* Ajustez la marge droite en millimètres */
       transform: scale(0.5) !important; /* Ajustez l'échelle si nécessaire */
     }
   
     span.utilisable {
-      bottom: 5mm !important; /* Ajustez la position en bas en millimètres */
-      left: 5mm !important; /* Ajustez la position à gauche en millimètres */
-      font-size: 5.7mm !important; /* Ajustez la taille de police en millimètres */
+      bottom: 50mm !important; /* Ajustez la position en bas en millimètres */
+      left: 50mm !important; /* Ajustez la position à gauche en millimètres */
+      font-size: 50.7mm !important; /* Ajustez la taille de police en millimètres */
     }
   
     .price-card {
