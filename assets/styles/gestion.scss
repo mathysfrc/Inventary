@@ -292,17 +292,20 @@ img.datamatrix{
         size: landscape;
       }
 
+    .card-title h3{
+        font-size:40pt;
+      }
 
     .card-title {
-        font-size: 40pt;
+        font-size: 32pt;
     }
     .card-text {
-        font-size: 40pt;
+        font-size: 32pt;
     }
-    // .print img.datamatrix{
-    //     width: 33%;
-    //     height: auto;
-    // }
+    .print img.datamatrix{
+        width: 33%!important;
+        height: 33%!important;
+    }
  }
  @media not print {
     .print { display: none!important }
