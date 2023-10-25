@@ -288,30 +288,28 @@ padding-top: 3rem;
     }
   
     body {
-      width: 100vh !important; /* Largeur de la page */
-      height: 100vh !important; /* Hauteur de la page */
       margin: 0 !important;
       padding: 0 !important;
     }
   
     .elementToPrint {
-      width: 100vh !important; /* Définissez la largeur de l'élément à imprimer sur 100vh */
-      height: 100vh !important; /* Définissez la hauteur de l'élément à imprimer sur 100vh */
+      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
   
     #element-a-imprimer {
-      width: 100vh !important; /* Définissez la largeur de l'élément à imprimer sur 100vh */
-      height: 100vh !important; /* Définissez la hauteur de l'élément à imprimer sur 100vh */
+      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
   
     .card-body {
-      width: 100vh !important; /* Définissez la largeur de l'élément à imprimer sur 100vh */
-      height: 100vh !important; /* Définissez la hauteur de l'élément à imprimer sur 100vh */
+      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 75 !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
   
     .card-reference {
-      width: 100vh !important; /* Définissez la largeur de l'élément à imprimer sur 100vh */
-      height: 100vh !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
+      width: 100mm !important; /* Définissez la largeur de l'élément à imprimer sur 100% */
+      height: 75mm !important; /* Définissez la hauteur de l'élément à imprimer sur 100% */
     }
   
     .card-text {
