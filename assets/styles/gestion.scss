@@ -286,31 +286,8 @@ img.datamatrix{
 
 
 @media print {
-    @page {
-        size: 760mm 510mm landscape!important;
-        margin:0!important;
-        font-size: 100%!important;
-    }
-
-    .DO-NOT-PRINT,.three-buttons, .sidebar{
-        display: none!important;
-    }
-
-    .container{
-        max-width:100%!important;
-        width: 760px;
-        margin:0!important;
-        padding: 0!important;
-    }
-
-    .elementToPrint #element-a-imprimer{
-        width:100%!important;
-        max-width:100%!important;
-    }
-
-    p,.card-text{
-        font-size: 100%!important;
-    }
-
-}
-
+    .no-print { display: none!important }
+ }
+ @media not print {
+    .print { display: none!important }
+ }
