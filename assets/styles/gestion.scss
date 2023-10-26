@@ -34,7 +34,8 @@ div.col-12 {
 }
 
 .three-buttons {
-    padding-top: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
 }
 
 p {
@@ -81,6 +82,7 @@ p {
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 2rem;
+
 }
 
 
@@ -102,10 +104,14 @@ p {
     font-weight: bold;
 }
 
-// .card-reference {
-//     margin-left: 24.5%;
-//     border-radius: 20px;
-// }
+.card-reference {
+    border-radius: 20px;
+}
+
+.reference-to-impress {
+    display: flex;
+    align-items: center;
+}
 
 .gap {
     margin-top: 7.3rem;
@@ -153,7 +159,8 @@ a.button-no-impr {
     display: grid;
     justify-content: center;
     gap: 1rem;
-    padding-top: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
 
 .reference-no-impression {
@@ -213,9 +220,25 @@ a.button-no-impr {
     width: 14rem;
 }
 
+.suivant {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 1rem;
+    margin: 0 !important;
+    display: flex;
+    justify-content: end;
+    text-align: end;
+    height: 2.5rem !important;
+}
+
 .bt-return {
     height: 2.5rem;
     width: 14rem;
+}
+
+.stock-form {
+    padding-bottom: 3rem;
+
 }
 
 @media (min-width: 1281px) {

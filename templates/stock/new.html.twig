@@ -18,6 +18,7 @@
 			</a>
 			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
 			</div>
+			<div class="stock-form">
 			{{ form_start(form) }}
 			<div class="my-custom-class-for-errors">
 				{{ form_errors(form) }}
@@ -68,11 +69,12 @@
 				</div>
 			</div>
 
-			<div class="col-6">
+			<div class="col-12 suivant">
 				<a href="/reference"><button type="submit" class="bt-return btn  bg-primary text-white">Suivant</button></a>
 			</div>
 		
 			{{ form_end(form) }}
+			</div>
 
 		</section>
 	</section>
