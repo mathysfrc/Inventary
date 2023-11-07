@@ -42,6 +42,7 @@ class TrackingController extends AbstractController
             ]);
         }
     }
+    
 
     #[Route('/new', name: 'app_tracking_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -62,7 +63,7 @@ class TrackingController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    
     #[Route('/{id}', name: 'app_tracking_show', methods: ['GET'])]
     public function show(Tracking $tracking): Response
     {
@@ -99,4 +100,6 @@ class TrackingController extends AbstractController
 
         return $this->redirectToRoute('app_tracking_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    
 }

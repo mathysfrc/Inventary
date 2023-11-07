@@ -35,7 +35,37 @@ class StockType extends AbstractType
         'Adhésif découpe' => 'Adhésif découpe',
         'Support rigide' => 'Support rigide',
         'Support souple' => 'Support souple',
+        'Adhésif impression' => 'Adhésif impression',
+        'Film de lamination' => 'Film de lamination',
         'Liquide' => 'Liquide',
+    ];
+
+    public const DIMENSION1 = [
+        '1' => '1',
+        '610' => '610',
+        '1000' => '1000',
+        '1050' => '1050',
+        '1230' => '1230',
+        '1250' => '1250',
+        '1370' => '1370',
+        '1520' => '1520',
+        '1600' => '1600',
+        '2000' => '2000',
+        '3000' => '3000',
+    ];
+
+    public const DIMENSION2 = [
+        '1.20' => '1.20',
+        '1.50' => '1.50',
+        '2' => '2',
+        '3' => '3',
+        '2.50' => '2.50',
+        '5' => '5',
+        '15' => '15',
+        '30' => '30',
+        '50' => '50',
+        '1500' => '1500',
+        '5000' => '5000',
     ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -63,18 +93,20 @@ class StockType extends AbstractType
                     'placeholder' => 'Ex : Produit',
                 ]
             ])
-            ->add('size1', NumberType::class, [
+            ->add('size1', ChoiceType::class, [
                 'label' => 'Dimension 1',
+                'empty_data' => '',
+                'choices' => self::DIMENSION1,
                 'attr' => [
                     'class' => 'border-tertiary',
-                    'placeholder' => 'Ex : Produit',
                 ]
             ])
-            ->add('size2', NumberType::class, [
+            ->add('size2', ChoiceType::class, [
                 'label' => 'Dimension 2',
+                'empty_data' => '',
+                'choices' => self::DIMENSION2,
                 'attr' => [
                     'class' => 'border-tertiary',
-                    'placeholder' => 'Ex : Produit',
                 ]
             ])
             ->add('size1Unit', ChoiceType::class, [

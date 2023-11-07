@@ -64,6 +64,20 @@ class StockController extends AbstractController
             //on génère le SKU du produit que l'on veut créer
             $generatedSKU = Stock::generateSKU($stock, $entityManager);
             $stock->setSKU($generatedSKU);
+            $stock = $form->getData(); // Récupérez l'objet Stock du formulaire
+
+            $size1Manual = $request->request->get('size1Manual'); // Récupérez la valeur de size1Manual depuis la demande
+            $size2Manual = $request->request->get('size2Manual');  // Obtenez l'objet Stock à partir du formulaire
+
+if ($size1Manual) {
+    // Si la case à cocher "size1Manual" est cochée, mettez à jour la valeur de "size1" avec "size1ManualValue"
+    $stock->setSize1($request->request->get('size1ManualValue'));
+}
+
+if ($size2Manual) {
+    // Si la case à cocher "size2Manual" est cochée, mettez à jour la valeur de "size2" avec "size2ManualValue"
+    $stock->setSize2($request->request->get('size2ManualValue'));
+}
 
             $dateTime = new DateTime();
 
@@ -88,48 +102,46 @@ class StockController extends AbstractController
         ]);
     }
 
-    #[Route('/update', name: 'app_stock_update', methods: ['POST'])]
     public function update(Request $request, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
     {
-        // on recupère les paramètres dans notre form de type PUT
+        // Retrieve the parameters from the PUT request
         $size1 = $request->request->get('size1');
         $size2 = $request->request->get('size2');
         $sku = $request->request->get('SKU');
-        // on recupère l'objet en BDD et on le met à jour
-        $stock = $stockRepository->findOneBy(['SKU' => $sku]);
-        // on test si les nouvelles valeurs sont bien inférieures
-
-        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2()) {
-            return $this->render('error/index.html.twig', [
-                'error' => 'Les nouvelles valeures sont supérieures aux anciennes, merci de ressaisir une valeur.'
-            ]);
-        }
-
-        if ($size1 == null || $size2 == null) {
+        
+        // Check if $size1 or $size2 is null
+        if ($size1 === null || $size2 === null) {
             return $this->render('error/index.html.twig', [
                 'error' => 'Veuillez rentrer les valeurs consommées.'
             ]);
         }
-
-
+    
+        // Retrieve the object from the database and update it
+        $stock = $stockRepository->findOneBy(['SKU' => $sku]);
+    
+        // Check if the new values are greater than or equal to the old values
+        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2()) {
+            return $this->render('error/index.html.twig', [
+                'error' => 'Les nouvelles valeurs sont supérieures aux anciennes, merci de ressaisir une valeur.'
+            ]);
+        }
+    
+        // Update the stock object
         $stock->setSize1($size1);
         $stock->setSize2($size2);
-
-
+    
+        // Create a DateTime object
         $dateTime = new DateTime();
-
         $dateTime->modify('+2 hours');
-        // on rajoute les lignes de tracking pour dire que l'on a consommé telle référence
-
+    
+        // Create a tracking entry and persist it
         $tracking = Tracking::getTrackingFromStock($stock, 'Consommation', $dateTime);
-
-
         $entityManager->persist($tracking);
-
-        // on envoie en BDD le stock du formulaire
+    
+        // Save the changes to the database
         $entityManager->flush();
-
-
+    
+        // Redirect to another route
         return $this->redirectToRoute('app_partial_conso_imprim', [
             'SKU' => $stock->getSKU(),
         ], Response::HTTP_SEE_OTHER);
