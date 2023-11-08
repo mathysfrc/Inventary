@@ -69,15 +69,15 @@ class StockController extends AbstractController
             $size1Manual = $request->request->get('size1Manual'); // Récupérez la valeur de size1Manual depuis la demande
             $size2Manual = $request->request->get('size2Manual');  // Obtenez l'objet Stock à partir du formulaire
 
-if ($size1Manual) {
-    // Si la case à cocher "size1Manual" est cochée, mettez à jour la valeur de "size1" avec "size1ManualValue"
-    $stock->setSize1($request->request->get('size1ManualValue'));
-}
+            if ($size1Manual) {
+                // Si la case à cocher "size1Manual" est cochée, mettez à jour la valeur de "size1" avec "size1ManualValue"
+                $stock->setSize1($request->request->get('size1ManualValue'));
+            }
 
-if ($size2Manual) {
-    // Si la case à cocher "size2Manual" est cochée, mettez à jour la valeur de "size2" avec "size2ManualValue"
-    $stock->setSize2($request->request->get('size2ManualValue'));
-}
+            if ($size2Manual) {
+                // Si la case à cocher "size2Manual" est cochée, mettez à jour la valeur de "size2" avec "size2ManualValue"
+                $stock->setSize2($request->request->get('size2ManualValue'));
+            }
 
             $dateTime = new DateTime();
 
@@ -85,7 +85,7 @@ if ($size2Manual) {
             // on prépare la ligne tracking à injecter dans la BDD
 
             $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
-            
+
             $entityManager->persist($tracking);
 
             // on envoie en BDD le stock du formulaire
@@ -102,45 +102,46 @@ if ($size2Manual) {
         ]);
     }
 
+    #[Route('/update', name: 'app_stock_update', methods: ['GET', 'POST'])]
     public function update(Request $request, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
     {
         // Retrieve the parameters from the PUT request
         $size1 = $request->request->get('size1');
         $size2 = $request->request->get('size2');
         $sku = $request->request->get('SKU');
-        
+
         // Check if $size1 or $size2 is null
         if ($size1 === null || $size2 === null) {
             return $this->render('error/index.html.twig', [
                 'error' => 'Veuillez rentrer les valeurs consommées.'
             ]);
         }
-    
+
         // Retrieve the object from the database and update it
         $stock = $stockRepository->findOneBy(['SKU' => $sku]);
-    
+
         // Check if the new values are greater than or equal to the old values
         if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2()) {
             return $this->render('error/index.html.twig', [
                 'error' => 'Les nouvelles valeurs sont supérieures aux anciennes, merci de ressaisir une valeur.'
             ]);
         }
-    
+
         // Update the stock object
         $stock->setSize1($size1);
         $stock->setSize2($size2);
-    
+
         // Create a DateTime object
         $dateTime = new DateTime();
         $dateTime->modify('+2 hours');
-    
+
         // Create a tracking entry and persist it
         $tracking = Tracking::getTrackingFromStock($stock, 'Consommation', $dateTime);
         $entityManager->persist($tracking);
-    
+
         // Save the changes to the database
         $entityManager->flush();
-    
+
         // Redirect to another route
         return $this->redirectToRoute('app_partial_conso_imprim', [
             'SKU' => $stock->getSKU(),
@@ -183,7 +184,7 @@ if ($size2Manual) {
 
         $dataUri = $result->getDataUri();
 
-            
+
         return $this->render('partial_conso_imprim/index.html.twig', [
             'controller_name' => 'StockController',
             'stock' => $stock,
@@ -222,18 +223,34 @@ if ($size2Manual) {
     #[Route('/{id}/edit', name: 'app_stock_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
     {
-       
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
-
-        $dateTime = new DateTime();
-
-        $dateTime->modify('+2 hours');
-
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
-
-            // on prépare la ligne tracking a injecter dans la BDD
+            // Récupérez l'objet Stock du formulaire
+            $stock = $form->getData();
+    
+            $size1Manual = $request->request->get('size1Manual');
+            $size2Manual = $request->request->get('size2Manual');
+    
+            // Récupérez la valeur de "size1ManualValue" depuis la demande
+            $size1ManualValue = $request->request->get('size1ManualValue');
+            $size2ManualValue = $request->request->get('size2ManualValue');
+    
+            // Vérifiez si "size1ManualValue" est un nombre (entier ou float) avant de le mettre à jour
+            if ($size1Manual && is_numeric($size1ManualValue)) {
+                $stock->setSize1(floatval($size1ManualValue));
+            }
+    
+            // Vérifiez si "size2ManualValue" est un nombre (entier ou float) avant de le mettre à jour
+            if ($size2Manual && is_numeric($size2ManualValue)) {
+                $stock->setSize2(floatval($size2ManualValue));
+            }
+    
+            $dateTime = new DateTime();
+            $dateTime->modify('+2 hours');
+    
+            // Préparez la ligne de tracking à injecter dans la BDD
             $tracking = new Tracking();
             $tracking->setSKU($stock->getSKU());
             $tracking->setDescription($stock->getDescription());
@@ -252,23 +269,23 @@ if ($size2Manual) {
             $tracking->setStatus($stock->getStatus());
             $tracking->setMovementType('Édition manuelle');
             $tracking->setTimestamp($dateTime);
-
-
+    
             $entityManager->persist($tracking);
-
-            // on envoie en BDD le stock du formulaire
+    
+            // Enregistrez les modifications dans la base de données
             $entityManager->flush();
+    
             $id = $stock->getId();
-
-
+    
             return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
-
+    
         return $this->render('stock/edit.html.twig', [
             'stock' => $stock,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_stock_delete', methods: ['POST'])]
     public function delete(Request $request, Stock $stock, EntityManagerInterface $entityManager): Response
