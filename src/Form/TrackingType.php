@@ -29,7 +29,6 @@ class TrackingType extends AbstractType
     ];
 
     public const UNIT2 = [
-        'm' => 'm',
         'mm' => 'mm',
         'mL' => 'mL',
     ];

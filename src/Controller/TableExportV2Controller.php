@@ -31,8 +31,8 @@ class TableExportV2Controller extends AbstractController
             foreach ($donnees as $item) {
                 $txtContent .= $item->getSKU() . "\t" . $item->getDescription() . "\t" . $item->getSize1Name() . ' : ' . $item->getSize1() . ' ' .  $item->getSize1Unit() . ' x '  . $item->getSize2Name() . ' : ' . $item->getSize2() . ' ' . $item->getSize2Unit()  . "\t";
             
-                if ($item->getSize1Unit() == "mm"  && $item->getSize2Unit() == "m") {
-                    $txtContent .= ($item->getSize1() * $item->getSize2()) / 1000 . ' m² ';
+                if ($item->getSize1Unit() == "mm"  && $item->getSize2Unit() == "mm") {
+                    $txtContent .= ($item->getSize1() * $item->getSize2()) / 1000000 . ' m² ';
                 } elseif ($item->getSize1Unit() == 'unité'  && $item->getSize2Unit() == 'L') {
                     $txtContent .= ($item->getSize1() * $item->getSize2()) . ' L ';
                 }

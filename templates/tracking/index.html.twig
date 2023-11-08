@@ -79,8 +79,8 @@
 										{{ tracking.size2Unit }}
 									</td>
 									<td class="border-top-0">
-										{% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "m"  %}
-											{{ (tracking.size1 / 1000)  *  tracking.size2 }}
+										{% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "mm"  %}
+											{{ (tracking.size1 / 1000000)  *  tracking.size2 }}
 											m²
 										{% elseif  tracking.size1Unit == 'unité'  and  tracking.size2Unit == 'mL'  %}
 											{{ (tracking.size1 * (tracking.size2 / 1000 )) }}
