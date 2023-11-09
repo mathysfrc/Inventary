@@ -106,22 +106,39 @@ class StockController extends AbstractController
     public function update(Request $request, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
     {
         // Retrieve the parameters from the PUT request
-        $size1 = $request->request->get('size1');
-        $size2 = $request->request->get('size2');
+        // Try to convert them into "int", 0 if fail
+        $size1restant = intval($request->request->get('size1restant'));
+        $size2restant = intval($request->request->get('size2restant'));
+        $size1consommation = intval($request->request->get('size1consommation'));
+        $size2consommation = intval($request->request->get('size2consommation'));
         $sku = $request->request->get('SKU');
 
-        // Check if $size1 or $size2 is null
-        if ($size1 === null || $size2 === null) {
-            return $this->render('error/index.html.twig', [
-                'error' => 'Veuillez rentrer les valeurs consommées.'
-            ]);
-        }
 
         // Retrieve the object from the database and update it
         $stock = $stockRepository->findOneBy(['SKU' => $sku]);
+        
+        if ($size1restant != 0 && $size2restant != 0) {
+            $size1 = $size1restant;
+            $size2 = $size2restant;
+        } else if ($size1consommation != 0 && $size2consommation != 0 && $size1restant === 0 && $size2restant === 0) {
+            $size1 =  $stock -> getSize1() - $size1consommation;
+            $size2 =  $stock -> getSize2() - $size2consommation;
+        } else {
+            return $this->render('error/index.html.twig', [
+                'error' => 'Veuillez rentrer les deux valeurs consommées ou restantes.'
+            ]);
+        }
 
         // Check if the new values are greater than or equal to the old values
-        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2()) {
+        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 < 0 || $size2 < 0) {
+            if ($size1 === 0 || $size2 === 0) {
+
+            return $this->render('error/index.html.twig', [
+                'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
+            ]);
+
+            }
+
             return $this->render('error/index.html.twig', [
                 'error' => 'Les nouvelles valeurs sont supérieures aux anciennes, merci de ressaisir une valeur.'
             ]);
