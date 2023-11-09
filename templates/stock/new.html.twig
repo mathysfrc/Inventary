@@ -4,37 +4,37 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ parent()}}
-	{{ encore_entry_link_tags('gestion') }}
+    {{ parent()}}
+    {{ encore_entry_link_tags('gestion') }}
 {% endblock %}
 
 {% block body %}
-	{% include 'home/index.html.twig' %}
-	<section class='all-new-product'>
-		<section class="container">
-			<div class="return-to-home">
-			<a href="/gestion" class="return">
-				< Retour à la gestion du stock
-			</a>
-			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
-			</div>
-			<div class="stock-form">
-			{{ form_start(form) }}
-			<div class="my-custom-class-for-errors">
-				{{ form_errors(form) }}
-			</div>
-			<div class="row">
-				<div class="col">
+    {% include 'home/index.html.twig' %}
+    <section class='all-new-product'>
+        <section class="container">
+            <div class="return-to-home">
+            <a href="/gestion" class="return">
+                < Retour à la gestion du stock
+            </a>
+            <h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+            </div>
+            <div class="stock-form">
+            {{ form_start(form) }}
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(form) }}
+            </div>
+            <div class="row">
+                <div class="col">
 
-					<div class="input-marge">{{ form_row(form.description) }}</div>
+                    <div class="input-marge">{{ form_row(form.description) }}</div>
 
-					<div class="input-marge">
-					{{ form_row(form.productFamily, {'attr': {'id': 'productFamilyInput'}}) }}
+                    <div class="input-marge">
+                    {{ form_row(form.productFamily, {'attr': {'id': 'productFamilyInput'}}) }}
 
-					{{ form_row(form.price) }}
-					</div>
-					
-					{{ form_row(form.size1, {'attr': {'id': 'size1'}}) }}
+                    {{ form_row(form.price) }}
+                    </div>
+                    
+                    {{ form_row(form.size1, {'attr': {'id': 'size1'}}) }}
 
                         <div class="form-group">
                         <input type="checkbox" id="size1Manual" name="size1Manual">
@@ -43,14 +43,14 @@
                         </div>
                 
 
-				</div>
-				<div class="col">
-					<div class="gap"></div>
-					<div class="input-marge">
-					{{ form_row(form.reference) }}
-					{{ form_row(form.status) }}
-					</div>
-					{{ form_row(form.size2, {'attr': {'id': 'size2'}}) }}
+                </div>
+                <div class="col">
+                    <div class="gap"></div>
+                    <div class="input-marge">
+                    {{ form_row(form.reference) }}
+                    {{ form_row(form.status) }}
+                    </div>
+                    {{ form_row(form.size2, {'attr': {'id': 'size2'}}) }}
 
     <div class="form-group">
      <input type="checkbox" id="size2Manual" name="size2Manual">
@@ -58,41 +58,41 @@
         <input type="text" id="size2ManualValue" name="size2ManualValue">
     </div>
                     
-				</div>
-			</div>
-			<div class="row">
-				<div class="col">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
 
-					{{ form_row(form.size1Unit, {'attr': {'id': 'size1UnitInput'}}) }}
-				</div>
-				<div class="col">
+                    {{ form_row(form.size1Unit, {'attr': {'id': 'size1UnitInput'}}) }}
+                </div>
+                <div class="col">
 
-					{{ form_row(form.size1Name, {'attr': {'id': 'size1NameInput'}}) }}
-				</div>
-				<div class="col">
+                    {{ form_row(form.size1Name, {'attr': {'id': 'size1NameInput'}}) }}
+                </div>
+                <div class="col">
 
-					{{ form_row(form.size2Unit, {'attr': {'id': 'size2UnitInput'}}) }}
-				</div>
-				<div class="col">
+                    {{ form_row(form.size2Unit, {'attr': {'id': 'size2UnitInput'}}) }}
+                </div>
+                <div class="col">
 
-					{{ form_row(form.size2Name, {'attr': {'id': 'sier2NameInput'}}) }}
+                    {{ form_row(form.size2Name, {'attr': {'id': 'sier2NameInput'}}) }}
 
-				{# <div class="row">
+                {# <div class="row">
 
-					{{ form_row(form.resultUnit) }}
-				</div> #}
-				</div>
-			</div>
+                    {{ form_row(form.resultUnit) }}
+                </div> #}
+                </div>
+            </div>
 
-			<div class="col-12 suivant">
-				<a href="/reference"><button type="submit" class="bt-return btn  bg-primary text-white">Suivant</button></a>
-			</div>
-		
-			{{ form_end(form) }}
-			</div>
+            <div class="col-12 suivant">
+                <a href="/reference"><button type="submit" class="bt-return btn  bg-primary text-white">Suivant</button></a>
+            </div>
+        
+            {{ form_end(form) }}
+            </div>
 
-		</section>
-	</section>
+        </section>
+    </section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -105,19 +105,28 @@ document.addEventListener('DOMContentLoaded', function () {
     let size2 = document.getElementById('stock_size2');
     let size1ManualCheckbox = document.getElementById('size1Manual');
     let size2ManualCheckbox = document.getElementById('size2Manual');
+    let size1ManualValue = document.getElementById('size1ManualValue');
+    let size2ManualValue = document.getElementById('size2ManualValue');
 
                 // Fonction pour gérer la visibilité des champs manuels
-    let toggleManualFields = function (checkbox, input) {
-        input.disabled = checkbox.checked;
-    };
 
+    let toggleManualFields = function (checkbox, input, isInverted = false) {
+        if (isInverted) {
+            input.hidden = !checkbox.checked;
+        } else {
+            input.hidden = checkbox.checked;
+        }
+    };
     size1ManualCheckbox.addEventListener('change', function () {
         toggleManualFields(size1ManualCheckbox, size1);
+        toggleManualFields(size1ManualCheckbox, size1ManualValue, isInverted = true)
     });
 
     size2ManualCheckbox.addEventListener('change', function () {
         toggleManualFields(size2ManualCheckbox, size2);
+        toggleManualFields(size2ManualCheckbox, size2ManualValue, isInverted = true)
     });
+
 
 
 
@@ -243,9 +252,9 @@ document.addEventListener('DOMContentLoaded', function () {
             option2000.textContent = '2000';
 
             size1.appendChild(option610);
-			size1.appendChild(option1000);
+            size1.appendChild(option1000);
             size1.appendChild(option1050);
-			size1.appendChild(option1230);
+            size1.appendChild(option1230);
             size1.appendChild(option1370);
             size1.appendChild(option1520);
             size1.appendChild(option1600);
