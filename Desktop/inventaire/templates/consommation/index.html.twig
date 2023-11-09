@@ -59,19 +59,19 @@
 
 				<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
 				<div class="row restant-mode">
-					<div class="col">
+					<div class="col-auto">
 						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" />
 					</div>
-					<div class="size1Unit col-1">
+					<div class="size1Unit col-auto">
 					{{ stock.size1Unit }}
 					</div>
 				</div>
 				<label class="size2rest restant-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
 				<div class="row restant-mode">
-					<div class="col">
+					<div class="col-auto">
 						<input class='size2' name="size2restant" type="text" placeholder="Ex : Produit" />  
 					</div>
-					<div class="size2Unit col-1">
+					<div class="size2Unit col-auto">
 						{{ stock.size2Unit }}
 					</div>
 				</div>
@@ -81,7 +81,7 @@
 
 				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
 				<div class="row consommation-mode">
-					<div class="col">
+					<div class="col-auto">
 						<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
 					</div>
 					<div class="size1Unit col-1">
@@ -90,7 +90,7 @@
 				</div>
 				<label class="size2rest consommation-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} consommée</label>
 				<div class="row consommation-mode">
-					<div class="col">
+					<div class="col-auto">
 						<input class='size2' name="size2consommation" type="text" placeholder="Ex : Produit" />  
 					</div>
 					<div class="size2Unit col-1">
@@ -99,7 +99,10 @@
 				</div>
 
 
-
+<div class="mt-5">
+<input class="form-check-input" type="checkbox" id="showRestant">
+<label class="form-check-label" for="showRestant">Afficher les champs de valeurs restantes </label>
+</div>
 
 
 				<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
@@ -116,34 +119,22 @@
 
 
 <script>
+    let showRestantCheckbox = document.getElementById('showRestant');
+    let restantFields = document.querySelectorAll('.restant-mode');
+    let consommationFields = document.querySelectorAll('.consommation-mode');
 
-    let size1restanteManualCheckbox = document.getElementById('size1restant');
-    let size2restanteManualCheckbox = document.getElementById('size2restant');
-	let size1consommationManualCheckbox = document.getElementById('size1consommation');
-    let size2consommationManualCheckbox = document.getElementById('size2consommation');
+    let toggleFields = function () {
+        restantFields.forEach(function (field) {
+            field.style.display = showRestantCheckbox.checked ? 'block' : 'none';
+        });
 
-                // Fonction pour gérer la visibilité des champs manuels
-    let toggleManualFields = function (checkbox, input) {
-        input.disabled = checkbox.checked;
+        consommationFields.forEach(function (field) {
+            field.style.display = showRestantCheckbox.checked ? 'none' : 'block';
+        });
     };
 
-    size1ManualCheckbox.addEventListener('change', function () {
-        toggleManualFields(size1restanteManualCheckbox, size1restant);
-    });
-
-    size2ManualCheckbox.addEventListener('change', function () {
-        toggleManualFields(size2restanteManualCheckbox, size2restant);
-    });
-
-    size1consommationManualCheckbox.addEventListener('change', function () {
-        toggleManualFields(size1consommationManualCheckbox, size1consommation);
-    });
-
-    size2consommationManualCheckbox.addEventListener('change', function () {
-        toggleManualFields(size2consommationManualCheckbox, size2consommation);
-    });
-
-
+    showRestantCheckbox.addEventListener('change', toggleFields);
+    toggleFields(); // Assurez-vous que l'état initial est pris en compte
 </script>
 
 {% endblock %}
