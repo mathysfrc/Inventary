@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig'%}
+	<section class="all-gestion">
+		<div class="container">
+			<div class="gestion">
+				<div class="global">
+
+					<div class="row">
+						<div class="col gestion-board">
+							<a href="/stock/new" type="button" class="bout-recep btn btn-primary btn-lg bg-white border-primary fw-bold text-primary">
+								<div class="col">
+									<p>Réception</p>
+									<p class="text">
+										Ajouter une référence dans le référentiel.
+									</p>
+									{% include 'icons/arrow_left.svg'%}
+								</div>
+								<div class="col">
+									{% include 'icons/group.svg' %}
+								</div>
+							</a>
+						</div>
+						<div class="col gestion-board">
+							<a href="{{ path('app_scan_entry')}}" type="button" class="bout-cons btn btn-primary btn-lg bg-white border-primary fw-bold text-primary">
+								<div class="col">
+									<p>Consommation partielle</p>
+									<p class="text">
+										Gérer la consommation du produit.</p>
+									{% include 'icons/arrow_left.svg'%}
+								</div>
+								<div class="col">
+									{% include 'icons/group.svg' %}
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="row gestion-board">
+						<div class="col first-board">
+							<a href="/scan/empty" type="button" class="bouton btn btn-primary btn-lg bg-white border-primary  fw-bold text-primary">
+								<div class="col">
+									<p>Consommation totale</p>
+									<p class="text">
+										Retrouver les produits totalement consommés.</p>
+									{% include 'icons/arrow_left.svg'%}
+								</div>
+								<div class="col">
+									{% include 'icons/group.svg' %}
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

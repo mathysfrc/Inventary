@@ -1,0 +1,59 @@
+@import "variables";
+
+.sidebar {
+  position: fixed;
+  height: calc(100vh - 4rem);
+  background-color: #D6EBFF;
+  font-size: 1rem;
+  margin: 2rem;
+  border-radius: 20px;
+  top: 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  padding: 1rem;
+}
+
+#gestion-link {
+  display: grid;
+  margin: auto;
+  padding-top: 2rem;
+}
+
+#stock-link {
+  display: grid;
+  margin: auto;
+}
+
+.stock-svg, svg.scan {
+  margin: auto;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+
+
+  .active {
+    border-bottom: 2px solid $primary;
+    width: fit-content;
+  }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 0.9rem;
+    display: block;
+    transition: all ease-out 300ms;
+    font-family: $font-family-base;
+    text-align: center;
+  }
+
+}

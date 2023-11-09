@@ -1,0 +1,41 @@
+@import "variables";
+
+body {
+    background-color: $primary;
+    height: 100vh;
+}
+
+.title {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.svgPrint {
+    margin-left: 27rem;
+    margin-top: 7rem;
+}
+
+@media (min-width: 1281px) {
+    .title {
+        margin-top: 3rem;
+        text-align: center;
+    }
+    
+    .svgPrint {
+        margin-left: 48rem;
+        margin-top: 25rem;
+    }
+}
+
+
+@media (min-width: 1921px) {
+    .title {
+        margin-top: 3rem;
+        text-align: center;
+    }
+    
+    .svgPrint {
+        margin-left: 67rem;
+        margin-top: 25rem;
+    }
+}

@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réference
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
+{% endblock %}
+
+
+{% block body %}
+
+	{% include 'home/index.html.twig' %}
+	<section class='all-new-product no-print'>
+		<div class="container">
+            <div class="return-to-home">
+                <a href="/gestion" class="return DO-NOT-PRINT">< Retour à la gestion du stock</a>
+                <h1 class="DO-NOT-PRINT title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+            </div>
+
+            
+            <div class="elementToPrint">
+                <div class="card-reference border border-primary">
+                    <div class="card-body" id="element-a-imprimer">
+                        <div class="row card-title ">
+                            <div class="col d-flex justify-content-between align-items-center">
+                            <h3 class="text-primary">SKU : {{ stock.SKU }}</h3>
+                            {% if stock.status == "Inutilisable" %}
+                                        <p class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</p>
+                                                        {% else %}
+                                                            <p class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</p>
+                                                        {% endif %}
+                            </div>                            
+                        </div>    
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+                                <p class="card-text"><span class="span-text">Dimensions </span></br> 
+                                {{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+                                {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+                                </p>
+                               
+                            </div>
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+                                <p class="card-text"><span class="span-text">Aire calculée </span></br> 
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+                                </p>
+                                    
+                            </div>
+                            <div class="col">
+                                <p class="price-card card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+                            </div>
+                                <img class="datamatrix w-25 h-25" src="{{ dataUri }}" alt="datamatrix">
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="row three-buttons">
+                <div class="col">
+                    <div class="modif-reference">
+                        <a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="DO-NOT-PRINT button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
+                    </div>
+                </div>
+            <div class="col">
+                <div class="impression-or-no">
+                    <a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="DO-NOT-PRINT button-no-impr btn">Créer sans imprimer l'étiquette</a>
+
+                    <a href="{{ path('app_stock_print_with_id', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
+                    <script>
+                            document.getElementById("imprimerPage").addEventListener("click", function() {
+                                window.print();
+                            });
+                    </script>
+                </div>
+            </div>
+        </div>
+</section>
+<section>
+<div class="print">
+    <div class="elementToPrint">
+                <div class="card-reference border border-primary">
+                    <div class="card-body" id="element-a-imprimer">
+                        <div class="row card-title">
+                            <div class="col d-flex justify-content-between align-items-center">
+                            <h3 class="text-primary">SKU : {{ stock.SKU }}</h3>
+                            {% if stock.status == "Inutilisable" %}
+                                        <p class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</p>
+                                                        {% else %}
+                                                            <p class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</p>
+                                                        {% endif %}
+                            </div>                            
+                        </div>    
+                        <div class="row desc">
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+                                <p class="card-text"><span class="span-text">Dimensions </span></br> 
+                                {{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+                                {{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+                                </p>
+                               
+                            </div>
+                            <div class="col">
+                                <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+                                <p class="card-text"><span class="span-text">Aire</span></br> 
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+                                </p>
+                                    
+                            </div>
+                            <div class="col">
+                                <p class="price-card card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+                            </div>
+                            <img class="datamatrix" src="{{ dataUri }}" alt="datamatrix">
+                        </div>
+                    </div>
+                </div>
+            </div>    
+</div>
+</section>
+{% endblock %}
