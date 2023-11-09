@@ -54,24 +54,54 @@
 	
 		<div class="modif-col col-4">
 			<form action="{{ path('app_stock_update') }}" method="POST" class="p-0">
-				<label class="size1rest text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
-				<div class="row">
+
+
+
+				<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
+				<div class="row restant-mode">
 					<div class="col">
-						<input class="size1" name="size1" type="text" placeholder="Ex : Produit" />
+						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" />
 					</div>
 					<div class="size1Unit col-1">
 					{{ stock.size1Unit }}
 					</div>
 				</div>
-				<label class="size2rest text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
-				<div class="row">
+				<label class="size2rest restant-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
+				<div class="row restant-mode">
 					<div class="col">
-						<input class='size2' name="size2" type="text" placeholder="Ex : Produit" />  
+						<input class='size2' name="size2restant" type="text" placeholder="Ex : Produit" />  
 					</div>
 					<div class="size2Unit col-1">
 						{{ stock.size2Unit }}
 					</div>
 				</div>
+
+
+
+
+				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
+				<div class="row consommation-mode">
+					<div class="col">
+						<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
+					</div>
+					<div class="size1Unit col-1">
+					{{ stock.size1Unit }}
+					</div>
+				</div>
+				<label class="size2rest consommation-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} consommée</label>
+				<div class="row consommation-mode">
+					<div class="col">
+						<input class='size2' name="size2consommation" type="text" placeholder="Ex : Produit" />  
+					</div>
+					<div class="size2Unit col-1">
+						{{ stock.size2Unit }}
+					</div>
+				</div>
+
+
+
+
+
 				<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
 				<input type="submit" class="validation btn-primary " />
 			</form>
@@ -83,4 +113,37 @@
 		</div>
 	</div>
 </section>
+
+
+<script>
+
+    let size1restanteManualCheckbox = document.getElementById('size1restant');
+    let size2restanteManualCheckbox = document.getElementById('size2restant');
+	let size1consommationManualCheckbox = document.getElementById('size1consommation');
+    let size2consommationManualCheckbox = document.getElementById('size2consommation');
+
+                // Fonction pour gérer la visibilité des champs manuels
+    let toggleManualFields = function (checkbox, input) {
+        input.disabled = checkbox.checked;
+    };
+
+    size1ManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size1restanteManualCheckbox, size1restant);
+    });
+
+    size2ManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size2restanteManualCheckbox, size2restant);
+    });
+
+    size1consommationManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size1consommationManualCheckbox, size1consommation);
+    });
+
+    size2consommationManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size2consommationManualCheckbox, size2consommation);
+    });
+
+
+</script>
+
 {% endblock %}

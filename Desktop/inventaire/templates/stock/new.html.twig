@@ -105,19 +105,28 @@ document.addEventListener('DOMContentLoaded', function () {
     let size2 = document.getElementById('stock_size2');
     let size1ManualCheckbox = document.getElementById('size1Manual');
     let size2ManualCheckbox = document.getElementById('size2Manual');
+    let size1ManualValue = document.getElementById('size1ManualValue');
+    let size2ManualValue = document.getElementById('size2ManualValue');
 
                 // Fonction pour gérer la visibilité des champs manuels
-    let toggleManualFields = function (checkbox, input) {
-        input.disabled = checkbox.checked;
-    };
 
+    let toggleManualFields = function (checkbox, input, isInverted = false) {
+        if (isInverted) {
+            input.hidden = !checkbox.checked;
+        } else {
+            input.hidden = checkbox.checked;
+        }
+    };
     size1ManualCheckbox.addEventListener('change', function () {
         toggleManualFields(size1ManualCheckbox, size1);
+        toggleManualFields(size1ManualCheckbox, size1ManualValue, isInverted = true)
     });
 
     size2ManualCheckbox.addEventListener('change', function () {
         toggleManualFields(size2ManualCheckbox, size2);
+        toggleManualFields(size2ManualCheckbox, size2ManualValue, isInverted = true)
     });
+
 
 
 
