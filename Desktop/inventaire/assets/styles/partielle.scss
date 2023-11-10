@@ -85,12 +85,29 @@ P.card-text {
     text-align: center;
 }
 
+.valid-button {
+    top: 30rem;
+}
+
+.form-check-label {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-check-input {
+    margin-top: 1.3rem !important;
+}
+
 div.modif-col {
     position: absolute;
     left: 43rem;
-    top: 20rem;
+    top: 15rem !important;
 }
 
+
+.image-container {
+    margin-top: 0.5rem;
+}
 input {
     width: 100%;
     height: 2.5rem;
