@@ -82,13 +82,21 @@
 								{{ stock.size2Unit }}
 							</td>
 							<td class="border-top-0">
-								{% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
-									{{ (stock.size1 / 1000000)  *  stock.size2 }}
-									m²
-								{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-									{{ (stock.size1 * (stock.size2 / 1000 )) }}
-									L
-								{% endif %}
+                                    {% if stock.surface == null %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+                                    {% else %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
+                                            {{ stock.surface / 1000000 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ stock.surface }} L
+                                        {% endif %}
+                                    {% endif %}
 							</td>
 							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
 							<td class="border-top-0">{{ stock.productFamily }}</td>

@@ -37,13 +37,14 @@
 					<div class="col">
 						<p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
 						<p class="card-text"><span class="span-text">Aire calculée </span></br> 
-							{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-								{{ (stock.size1 / 1000)  *  stock.size2 }} m²
-							{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-								{{ (stock.size1 * (stock.size2 / 1000 )) }} L
-							{% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
-								{{ (stock.size1 * stock.size2) / 1000000 }} m²
-							{% endif %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+
 						</p>
 					</div>
 					<div class="col">
@@ -98,15 +99,35 @@
 					</div>
 				</div>
 
+				<div class="d-flex row">
+				<div class="col-6 form-check">
+					<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeExternal" value="external" checked>
+					<label class="form-check-label" for="consommationModeExternal">Consommation externe</label>
+				<div class="image-container">
+				<img src= "{{ asset('build/images/external.svg')}}" class="w-25" alt="Image Consommation Externe" id="imageExterne" style="display: none;">
+				</div>
+				</div>
+
+				<div class="col-6 form-check">
+					<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeInternal" value="internal">
+					<label class="form-check-label" for="consommationModeInternal">
+						Consommation </br>interne
+					</label>
+				<div class="image-container">
+				<img src="{{ asset('build/images/internal.svg')}}" class="w-25" alt="Image Consommation Interne" id="imageInterne" style="display: none;">
+				</div>
+				</div>
+				</div>
 
 <div class="mt-5">
+
 <input class="form-check-input" type="checkbox" id="showRestant">
 <label class="form-check-label" for="showRestant">Afficher les champs de valeurs restantes </label>
 </div>
 
 
 				<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
-				<input type="submit" class="validation btn-primary " />
+				<input type="submit" class="valid-button validation btn-primary " />
 			</form>
 		</div>
 		<div class="row">
@@ -117,11 +138,13 @@
 	</div>
 </section>
 
-
 <script>
     let showRestantCheckbox = document.getElementById('showRestant');
     let restantFields = document.querySelectorAll('.restant-mode');
     let consommationFields = document.querySelectorAll('.consommation-mode');
+    let radioInputs = document.querySelectorAll('.form-check');
+    let imageExterne = document.getElementById('imageExterne');
+    let imageInterne = document.getElementById('imageInterne');
 
     let toggleFields = function () {
         restantFields.forEach(function (field) {
@@ -131,10 +154,39 @@
         consommationFields.forEach(function (field) {
             field.style.display = showRestantCheckbox.checked ? 'none' : 'block';
         });
+
+        // Afficher ou masquer les champs de type radio en fonction de l'état de la checkbox
+        radioInputs.forEach(function (input) {
+            input.style.display = showRestantCheckbox.checked ? 'none' : 'block';
+        });
+
+        // Ajoutez cette condition pour n'afficher aucune image lorsque la checkbox est cochée
+        if (!showRestantCheckbox.checked) {
+            // Afficher ou masquer les images en fonction du mode de consommation
+            if (document.getElementById('consommationModeExternal').checked) {
+                imageExterne.style.display = 'block';
+                imageInterne.style.display = 'none';
+            } else {
+                imageExterne.style.display = 'none';
+                imageInterne.style.display = 'block';
+            }
+        } else {
+            // Si la checkbox est cochée, masquer les deux images
+            imageExterne.style.display = 'none';
+            imageInterne.style.display = 'none';
+        }
     };
 
+    // Mettez à jour le gestionnaire d'événements pour inclure la gestion du changement de mode de consommation
     showRestantCheckbox.addEventListener('change', toggleFields);
-    toggleFields(); // Assurez-vous que l'état initial est pris en compte
+
+    // Ajoutez un gestionnaire d'événements pour gérer le changement de mode de consommation
+    radioInputs.forEach(function (input) {
+        input.addEventListener('change', toggleFields);
+    });
+
+    // Assurez-vous que l'état initial est pris en compte
+    toggleFields();
 </script>
 
 {% endblock %}
