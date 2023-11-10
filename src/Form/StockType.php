@@ -136,13 +136,7 @@ class StockType extends AbstractType
                     'class' => 'border-tertiary',
                 ]
             ])
-            // ->add('resultUnit', TextType::class, [
-            //     'label' => 'Résultat du calcul',
-            //     'attr' => [
-            //         'class' => 'border-tertiary',
-            //         'placeholder' => 'Rentrez le résultat en m2 du calcul des deux dimensions',
-            //     ]
-            // ])
+
             ->add('price', NumberType::class, [
                 'label' => 'Prix',
                 'attr' => [

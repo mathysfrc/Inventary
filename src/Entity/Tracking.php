@@ -39,9 +39,6 @@ class Tracking
     #[ORM\Column(length: 255)]
     private ?string $size2Name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $resultUnit = null;
-
     #[ORM\Column]
     private ?float $price = null;
 
@@ -65,6 +62,12 @@ class Tracking
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $surface = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $shape = null;
 
     public function getId(): ?int
     {
@@ -167,17 +170,6 @@ class Tracking
         return $this;
     }
 
-    public function getResultUnit(): ?string
-    {
-        return $this->resultUnit;
-    }
-
-    public function setResultUnit(string $resultUnit): static
-    {
-        $this->resultUnit = $resultUnit;
-
-        return $this;
-    }
 
     public function getPrice(): ?float
     {
@@ -275,6 +267,30 @@ class Tracking
         return $this;
     }
 
+    public function getSurface(): ?string
+    {
+        return $this->surface;
+    }
+
+    public function setSurface(?string $surface): static
+    {
+        $this->surface = $surface;
+
+        return $this;
+    }
+
+    public function getShape(): ?string
+    {
+        return $this->shape;
+    }
+
+    public function setShape(?string $shape): static
+    {
+        $this->shape = $shape;
+
+        return $this;
+    }
+
     public static function getTrackingFromStock(Stock $stock, string $movementType, DateTime $timestamp) : Tracking {
         $tracking = new Tracking();
         $tracking->setSKU($stock->getSKU());
@@ -285,11 +301,12 @@ class Tracking
         $tracking->setSize2Unit($stock->getSize2Unit());
         $tracking->setSize1Name($stock->getSize1Name());
         $tracking->setSize2Name($stock->getSize2Name());
-        $tracking->setResultUnit($stock->getResultUnit());
         $tracking->setPrice($stock->getPrice());
         $tracking->setProductFamily($stock->getProductFamily());
         $tracking->setReference($stock->getReference());
         $tracking->setFree($stock->getFree());
+        $tracking->setSurface($stock->getSurface());
+        $tracking->setShape($stock->getShape());
         $tracking->setComment($stock->getComment());
         $tracking->setStatus($stock->getStatus());
         $tracking->setMovementType($movementType);

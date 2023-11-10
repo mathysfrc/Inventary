@@ -39,9 +39,6 @@ class Stock
     #[ORM\Column(length: 255)]
     private ?string $size2Name = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $resultUnit = null;
-
     #[ORM\Column]
     private ?float $price = null;
 
@@ -59,6 +56,12 @@ class Stock
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $surface = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $shape = null;
 
     public function getId(): ?int
     {
@@ -161,17 +164,6 @@ class Stock
         return $this;
     }
 
-    public function getResultUnit(): ?string
-    {
-        return $this->size1 * $this->size2 / 1000;
-    }
-
-    public function setResultUnit(string $resultUnit): static
-    {
-        $this->resultUnit = $resultUnit;
-
-        return $this;
-    }
 
     public function getPrice(): ?float
     {
@@ -257,9 +249,10 @@ class Stock
         $stock->setSize2Unit($tracking->getSize2Unit());
         $stock->setSize1Name($tracking->getSize1Name());
         $stock->setSize2Name($tracking->getSize2Name());
-        $stock->setResultUnit($tracking->getResultUnit());
         $stock->setPrice($tracking->getPrice());
         $stock->setProductFamily($tracking->getProductFamily());
+        $stock->setSurface($tracking->getSurface());
+        $stock->setShape($tracking->getShape());
         $stock->setReference($tracking->getReference());
         $stock->setFree($tracking->getFree());
         $stock->setComment($tracking->getComment());
@@ -295,5 +288,29 @@ class Stock
 
         // Retournez le SKU généré
         return $formattedSKU;
+    }
+
+    public function getSurface(): ?string
+    {
+        return $this->surface;
+    }
+
+    public function setSurface(?string $surface): static
+    {
+        $this->surface = $surface;
+
+        return $this;
+    }
+
+    public function getShape(): ?string
+    {
+        return $this->shape;
+    }
+
+    public function setShape(?string $shape): static
+    {
+        $this->shape = $shape;
+
+        return $this;
     }
 }

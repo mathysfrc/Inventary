@@ -30,14 +30,14 @@ class TrackingController extends AbstractController
     
                 $search = $form->getData()['search'];
     
-                $sku = $trackingRepository->findLikeName($search);
+                $trackings = $trackingRepository->findLikeName($search);
             } else {
     
-                $sku = $trackingRepository->findAll();
+                $trackings = $trackingRepository->findAll();
             }
     
             return $this->render('tracking/index.html.twig', [
-                'trackings' => $sku,
+                'trackings' => $trackings,
                 'form' => $form,
             ]);
         }

@@ -4,120 +4,128 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ parent()}}
-	{{ encore_entry_link_tags('stock') }}
+{{ parent()}}
+{{ encore_entry_link_tags('stock') }}
 {% endblock %}
 
 {% block body %}
-	{% include 'home/index.html.twig' %}
-	<section class="all-stock">
-		<section class="container">
-			<div class="row">
-				<h1 class="title-stock my-5 fw-bold text-primary">Historique</h1>
-			</div>
+{% include 'home/index.html.twig' %}
+<section class="all-stock">
+<section class="container">
+<div class="row">
+<h1 class="title-stock my-5 fw-bold text-primary">Historique</h1>
+</div>
 
-			<ul class="nav nav-tabs mx-5">
-				<li class="nav-item">
-					<a class="nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
-					</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
-				</li>
-			</ul>
+<ul class="nav nav-tabs mx-5">
+<li class="nav-item">
+<a class="nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
+</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
+</li>
+</ul>
 
-			<div class="row mb-4">
-				<div class="col-9">
-					{{ form_start(form) }}
-					<div class="row">
-						<div class="col">
-							{{ form_widget(form) }}
-						</div>
-						<div class="col">
-							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/Search.svg' %}</button>
-						</div>
-					</div>
-					{{ form_end(form) }}
-				</div>
-				<div class="col-3">
+<div class="row mb-4">
+<div class="col-9">
+{{ form_start(form) }}
+<div class="row">
+<div class="col">
+{{ form_widget(form) }}
+</div>
+<div class="col">
+<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/Search.svg' %}</button>
+</div>
+</div>
+{{ form_end(form) }}
+</div>
+<div class="col-3">
 
-					<a type="button" href="/table/export" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1 ml-5">
-						{% include 'icons/Download.svg' %}
-						&nbsp Exporter
-					</a>
+<a type="button" href="/table/export" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1 ml-5">
+{% include 'icons/Download.svg' %}
+&nbsp Exporter
+</a>
 
-				</div>
-			</div>
-			<div class="table-container">
-				<div class="table-scroll">
-					<table class="table">
-						<thead>
-							<tr>
-								<th class="fixed-col border-top-0 border-bottom-0">SKU</th>
-								<th class="border-top-0 border-bottom-0">Description</th>
-								<th class="border-top-0 border-bottom-0">Dimensions</th>
-								<th class="border-top-0 border-bottom-0">Résultat</th>
-								<th class="border-top-0 border-bottom-0">Prix</th>
-								<th class="border-top-0 border-bottom-0">Famille produit</th>
-								<th class="border-top-0 border-bottom-0">Référence</th>
-								<th class="border-top-0 border-bottom-0">Type de mouvement</th>
-								<th class="border-top-0 border-bottom-0">Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for tracking in trackings %}
-								<tr>
-									<td class="fixed-col border-top-0">{{ tracking.SKU }}</td>
-									<td class="border-top-0">{{ tracking.description }}</td>
-									<td class="border-top-0">
-										{{ tracking.size1Name }}&nbsp;:
-										{{ tracking.size1 }}
-										{{ tracking.size1Unit }}
-										x
-										{{ tracking.size2Name }}&nbsp;:
-										{{ tracking.size2 }}
-										{{ tracking.size2Unit }}
-									</td>
-									<td class="border-top-0">
-										{% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "mm"  %}
-											{{ (tracking.size1 / 1000000)  *  tracking.size2 }}
-											m²
-										{% elseif  tracking.size1Unit == 'unité'  and  tracking.size2Unit == 'mL'  %}
-											{{ (tracking.size1 * (tracking.size2 / 1000 )) }}
-											L
-										{% endif %}
-									</td>
-									<td class="border-top-0">{{ tracking.price }}&nbsp;€</td>
-									<td class="border-top-0">{{ tracking.productFamily }}</td>
-									<td class="border-top-0">{{ tracking.reference }}</td>
-									{# <td class="border-top-0">{{ tracking.timestamp ? tracking.timestamp|date('d-m-Y H:i:s') : '' }}</td> #}
-									<td class="border-top-0">{{ tracking.movementType }}</td>
-									<td class="border-top-0">
-										{% if tracking.status == "Inutilisable" %}
-											<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
-										{% else %}
-											<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
-										{% endif %}
-									</td>
+</div>
+</div>
+<div class="table-container">
+<div class="table-scroll">
+<table class="table">
+<thead>
+<tr>
+<th class="fixed-col border-top-0 border-bottom-0">SKU</th>
+<th class="border-top-0 border-bottom-0">Description</th>
+<th class="border-top-0 border-bottom-0">Dimensions</th>
+<th class="border-top-0 border-bottom-0">Résultat</th>
+<th class="border-top-0 border-bottom-0">Prix</th>
+<th class="border-top-0 border-bottom-0">Famille produit</th>
+<th class="border-top-0 border-bottom-0">Référence</th>
+<th class="border-top-0 border-bottom-0">Type de mouvement</th>
+<th class="border-top-0 border-bottom-0">Status</th>
+</tr>
+</thead>
+<tbody>
+{% for tracking in trackings %}
+<tr>
+<td class="fixed-col border-top-0">{{ tracking.SKU }}</td>
+<td class="border-top-0">{{ tracking.description }}</td>
+<td class="border-top-0">
+{{ tracking.size1Name }}&nbsp;:
+{{ tracking.size1 }}
+{{ tracking.size1Unit }}
+x</br>
+{{ tracking.size2Name }}&nbsp;:
+{{ tracking.size2 }}
+{{ tracking.size2Unit }}
+</td>
+<td class="border-top-0">
+                                 {% if tracking.surface == null %}
+                                        {% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "m"  %}
+                                            {{ (tracking.size1 / 1000)  *  tracking.size2 }} m²
+                                        {% elseif  tracking.size1Unit == 'unité'  and  tracking.size2Unit == 'mL'  %}
+                                            {{ (tracking.size1 * (tracking.size2 / 1000 )) }} L
+                                        {% elseif  tracking.size1Unit == 'mm'  and  tracking.size2Unit == 'mm'  %}
+                                            {{ (tracking.size1 * tracking.size2) / 1000000 }} m²
+                                        {% endif %}
+                                    {% else %}
+                                        {% if  tracking.size1unit == "mm"  and  tracking.size2Unit == "mm"  %}
+                                            {{ tracking.surface / 1000000}} m²
+                                        {% elseif  tracking.size1Unit == 'unité'  and  tracking.size2Unit == 'mL'  %}
+                                            {{ tracking.surface }} L
+                                        {% endif %}
+                                    {% endif %}
+</td>
+<td class="border-top-0">{{ tracking.price }}&nbsp;€</td>
+<td class="border-top-0">{{ tracking.productFamily }}</td>
+<td class="border-top-0">{{ tracking.reference }}</td>
+{# <td class="border-top-0">{{ tracking.timestamp ? tracking.timestamp|date('d-m-Y H:i:s') : '' }}</td> #}
+<td class="border-top-0">{{ tracking.movementType }}</td>
+<td class="border-top-0">
+{% if tracking.status == "Inutilisable" %}
+<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+{% else %}
+<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+{% endif %}
+</td>
 
-									<td class="border-top-0">
-										<a type="button" class="text-black" href="{{ path('app_tracking_edit', {'id': tracking.id }) }}">
-											{% include 'icons/edit.svg' %}
-										</a>
-									</td>
+<td class="border-top-0">
+<a type="button" class="text-black" href="{{ path('app_tracking_edit', {'id': tracking.id }) }}">
+{% include 'icons/edit.svg' %}
+</a>
+</td>
 
 
-								</tr>
+</tr>
 
-							{% else %}
-								<tr>
-									<td colspan="17">Aucun ligne de stock récuperée</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</section>
-	</section>
+{% else %}
+<tr>
+<td colspan="17">Aucun ligne de stock récuperée</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</section>
 {% endblock %}
