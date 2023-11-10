@@ -4,14 +4,14 @@
 {% endblock %}
 
 {% block stylesheets %}
-	{{ parent()}}
-	{{ encore_entry_link_tags('gestion') }}
+{{ parent()}}
+{{ encore_entry_link_tags('gestion') }}
 {% endblock %}
 
 {% block body %}
-	{% include 'home/index.html.twig' %}
-	<section class='all-new-product'>
-		<section class="container contain d-flex align-items-center">
+{% include 'home/index.html.twig' %}
+<section class='all-new-product'>
+<section class="container contain d-flex align-items-center">
 
                 <div class="reference-to-impress pt-5">
                     <h1 class="title-no-impression fw-bold text-primary">Référence totalement consommée !</h1>
@@ -39,13 +39,21 @@
                                     <div class="col">
                                         <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
                                         <p class="card-text"><span class="span-text">Aire calculée </span></br> 
-                                            {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-                                                {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-                                            {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-                                                {{ (stock.size1 * (stock.size2 / 1000 )) }} L
-                                            {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
-                                                {{ (stock.size1 * stock.size2) / 1000000 }} m²
-                                            {% endif %}
+                            {% if stock.surface == null %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+                                    {% else %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
+                                            {{ stock.surface  / 1000000}} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ stock.surface / 1000000 }} L
+                                        {% endif %}
+                                    {% endif %}
                                         </p>
                                     </div>
                                     <div class="col">

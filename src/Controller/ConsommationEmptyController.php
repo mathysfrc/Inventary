@@ -72,12 +72,13 @@ class ConsommationEmptyController extends AbstractController
         $newTracking->setSize2Unit($lastTracking->getSize2Unit());
         $newTracking->setSize1Name($lastTracking->getSize1Name());
         $newTracking->setSize2Name($lastTracking->getSize2Name());
-        $newTracking->setResultUnit($lastTracking->getResultUnit());
         $newTracking->setPrice($lastTracking->getPrice());
         $newTracking->setProductFamily($lastTracking->getProductFamily());
         $newTracking->setReference($lastTracking->getReference());
         $newTracking->setFree($lastTracking->getFree());
         $newTracking->setComment($lastTracking->getComment());
+        $newTracking->setSurface($lastTracking->getSurface());
+        $newTracking->setShape($lastTracking->getShape());
         $newTracking->setStatus($lastTracking->getStatus());
         $newTracking->setMovementType("Vide");
         $newTracking->setTimestamp(new DateTime());

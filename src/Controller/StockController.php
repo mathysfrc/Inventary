@@ -112,6 +112,7 @@ class StockController extends AbstractController
         $size1consommation = intval($request->request->get('size1consommation'));
         $size2consommation = intval($request->request->get('size2consommation'));
         $sku = $request->request->get('SKU');
+        $consommationMode = $request->request->get('consommationMode'); // On reçois "external" ou "internal"
 
 
         // Retrieve the object from the database and update it
@@ -132,11 +133,9 @@ class StockController extends AbstractController
         // Check if the new values are greater than or equal to the old values
         if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 < 0 || $size2 < 0) {
             if ($size1 === 0 || $size2 === 0) {
-
-            return $this->render('error/index.html.twig', [
-                'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
-            ]);
-
+                return $this->render('error/index.html.twig', [
+                    'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
+                ]);
             }
 
             return $this->render('error/index.html.twig', [
@@ -145,8 +144,18 @@ class StockController extends AbstractController
         }
 
         // Update the stock object
-        $stock->setSize1($size1);
-        $stock->setSize2($size2);
+        if (($stock->getSize1() != $size1 || $stock->getSize2() != $size2) && $consommationMode == "internal") {
+            // Si on a changé longueur et largeur, on a consommé un morceau de plaque
+            // Le size 1 et 2 de l'objet dans la BDD ne change pas !!!!!!!!!!!!!!!!
+            // Seule la surface change (et on renseigne une forme)
+            $surface = ($stock->getSize1() * $stock->getSize2()) - ($size1consommation * $size2consommation);
+            $stock->setSurface($surface);
+        } else {
+            // Les tailles n'ont pas changé, on met à jour les valeurs de size1 et size2
+            $stock->setSize1($size1);
+            $stock->setSize2($size2);
+        }
+
 
         // Create a DateTime object
         $dateTime = new DateTime();
@@ -277,10 +286,11 @@ class StockController extends AbstractController
             $tracking->setSize2Unit($stock->getSize2Unit());
             $tracking->setSize1Name($stock->getSize1Name());
             $tracking->setSize2Name($stock->getSize2Name());
-            $tracking->setResultUnit($stock->getResultUnit());
             $tracking->setPrice($stock->getPrice());
             $tracking->setProductFamily($stock->getProductFamily());
             $tracking->setReference($stock->getReference());
+            $tracking->setSurface($stock->getSurface());
+            $tracking->setShape($stock->getShape());
             $tracking->setFree($stock->getFree());
             $tracking->setComment($stock->getComment());
             $tracking->setStatus($stock->getStatus());
@@ -318,10 +328,11 @@ class StockController extends AbstractController
             $tracking->setSize2Unit($stock->getSize2Unit());
             $tracking->setSize1Name($stock->getSize1Name());
             $tracking->setSize2Name($stock->getSize2Name());
-            $tracking->setResultUnit($stock->getResultUnit());
             $tracking->setPrice($stock->getPrice());
             $tracking->setProductFamily($stock->getProductFamily());
             $tracking->setReference($stock->getReference());
+            $tracking->setSurface($stock->getSurface());
+            $tracking->setShape($stock->getShape());
             $tracking->setFree($stock->getFree());
             $tracking->setComment($stock->getComment());
             $tracking->setStatus($stock->getStatus());
@@ -346,7 +357,6 @@ class StockController extends AbstractController
 
         $dataArray = [
             $stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit(), $stock->getStatus(),
-            $stock->getResultUnit()
         ];
 
         $dataToEncode = implode("\t", $dataArray);
