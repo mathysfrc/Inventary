@@ -121,7 +121,7 @@ class StockController extends AbstractController
         if ($size1restant != 0 && $size2restant != 0) {
             $size1 = $size1restant;
             $size2 = $size2restant;
-        } else if ($size1consommation != 0 && $size2consommation != 0 && $size1restant === 0 && $size2restant === 0) {
+        } else if ($size1consommation >= 0 && $size2consommation >= 0 && $size1restant === 0 && $size2restant === 0) {
             $size1 =  $stock -> getSize1() - $size1consommation;
             $size2 =  $stock -> getSize2() - $size2consommation;
         } else {
@@ -131,7 +131,7 @@ class StockController extends AbstractController
         }
 
         // Check if the new values are greater than or equal to the old values
-        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 < 0 || $size2 < 0) {
+        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 <= 0 || $size2 <= 0) {
             if ($size1 === 0 || $size2 === 0) {
                 return $this->render('error/index.html.twig', [
                     'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
