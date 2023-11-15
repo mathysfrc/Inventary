@@ -74,6 +74,7 @@ P.card-text {
 
 }
 
+
 .validation {
     position: absolute;
     top: 25rem;
@@ -108,11 +109,12 @@ div.modif-col {
 .image-container {
     margin-top: 0.5rem;
 }
+
 input {
     width: 100%;
     height: 2.5rem;
     border-radius: 7px;
-    border:1px solid #0000002a;
+    border: 1px solid #0000002a;
 }
 
 @media (min-width: 1281px) {
@@ -132,7 +134,7 @@ input {
         left: 5rem;
         width: 16rem;
         height: 2.5rem;
-    
+
     }
 
 
@@ -255,7 +257,7 @@ input {
         left: 15rem;
         width: 16rem;
         height: 2.5rem;
-    
+
     }
 
     input {
@@ -322,7 +324,7 @@ input {
         margin-top: 22rem !important;
     }
 
-    
+
 
     button.bouton-suppr {
         position: absolute !important;

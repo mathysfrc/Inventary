@@ -5,47 +5,47 @@
 
 
 {% block stylesheets %}
-{{ parent()}}
-{{ encore_entry_link_tags('gestion') }}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
 {% endblock %}
 
 {% block body %}
-{% include 'home/index.html.twig' %}
-<section class="all-new-product">
-<section class="container">
-<h1 class="modif-title fw-bold text-primary py-5">Modifier un produit du stock</h1>
+	{% include 'home/index.html.twig' %}
+	<section class="all-new-product">
+		<section class="container">
+			<h1 class="modif-title fw-bold text-primary py-5">Modifier un produit du stock</h1>
 
-{{ form_start(form) }}
-<div class="my-custom-class-for-errors">
-{{ form_errors(form) }}
-</div>
-<div class="row">
-<div class="col">
-<div class="input-marge">
-{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
-</div>
-{{ form_row(form.productFamily, {'attr': {'read_only': true, 'readonly': true}}) }}
-<div class="input-marge">
-{{ form_row(form.price) }}
-</div>
-{{ form_row(form.size1) }}
+			{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="input-marge">
+						{{ form_row(form.SKU, {'attr': {'read_only': true, 'readonly': true}}) }}
+					</div>
+					{{ form_row(form.productFamily, {'attr': {'read_only': true, 'readonly': true}}) }}
+					<div class="input-marge">
+						{{ form_row(form.price) }}
+					</div>
+					{{ form_row(form.size1) }}
 
-                       <div class="form-group">
+					                        <div class="form-group">
                         <input type="checkbox" id="size1Manual" name="size1Manual">
                             <label for="size1Manual">Saisir manuellement</label>
                             <input type="text" id="size1ManualValue" name="size1ManualValue">
                         </div>
 
-</div>
-<div class="col">
-<div class="input-marge">
-{{ form_row(form.description) }}
-</div>
-{{ form_row(form.reference) }}
-<div class="input-marge">
-{{ form_row(form.status) }}
-</div>
-{{ form_row(form.size2) }}
+				</div>
+				<div class="col">
+					<div class="input-marge">
+						{{ form_row(form.description) }}
+					</div>
+					{{ form_row(form.reference) }}
+					<div class="input-marge">
+						{{ form_row(form.status) }}
+					</div>
+					{{ form_row(form.size2) }}
 
 
     <div class="form-group">
@@ -53,47 +53,47 @@
         <label for="size2Manual">Saisir manuellement</label>
         <input type="text" id="size2ManualValue" name="size2ManualValue">
     </div>
-</div>
-</div>
-<div class="row">
-<div class="col">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
 
-{{ form_row(form.size1Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
-</div>
-<div class="col">
+					{{ form_row(form.size1Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
+				</div>
+				<div class="col">
 
-{{ form_row(form.size1Name) }}
-</div>
-<div class="col">
+					{{ form_row(form.size1Name) }}
+				</div>
+				<div class="col">
 
-{{ form_row(form.size2Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
-</div>
-<div class="col">
+					{{ form_row(form.size2Unit, {'attr': {'read_only': true, 'readonly': true}}) }}
+				</div>
+				<div class="col">
 
-{{ form_row(form.size2Name) }}
+					{{ form_row(form.size2Name) }}
 
-</div>
-</div>
+				</div>
+			</div>
 
-<div class="row">
-<div class="col-6">
-<div class="modif-suppr">
-<a href="#">
-<button type="submit" class="bt-return btn bg-primary text-white">Modifier</button>
-</a>
-</div>
-</div>
-<div class="col-6 suppr-modif ">
-{{ form_end(form) }}
-{{ include('stock/_delete_form.html.twig') }}
-</div>
-</div>
+			<div class="row">
+				<div class="col-6">
+					<div class="modif-suppr">
+						<a href="#">
+							<button type="submit" class="bt-return btn bg-primary text-white">Modifier</button>
+						</a>
+					</div>
+				</div>
+				<div class="col-6 suppr-modif ">
+					{{ form_end(form) }}
+					{{ include('stock/_delete_form.html.twig') }}
+				</div>
+			</div>
 
 
-</section>
-</section>
+		</section>
+	</section>
 
-<script>
+	<script>
 document.addEventListener('DOMContentLoaded', function () {
     let productFamilyInput = document.getElementById('stock_productFamily');
     let size1Unit = document.getElementById('stock_size1Unit');
@@ -251,9 +251,9 @@ document.addEventListener('DOMContentLoaded', function () {
             option2000.textContent = '2000';
 
             size1.appendChild(option610);
-size1.appendChild(option1000);
+			size1.appendChild(option1000);
             size1.appendChild(option1050);
-size1.appendChild(option1230);
+			size1.appendChild(option1230);
             size1.appendChild(option1370);
             size1.appendChild(option1520);
             size1.appendChild(option1600);
