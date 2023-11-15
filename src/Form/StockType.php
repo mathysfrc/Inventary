@@ -149,7 +149,7 @@ class StockType extends AbstractType
                 'label' => 'Référence',
                 'attr' => [
                     'class' => 'border-tertiary',
-                    'placeholder' => 'Ex: Produit',
+                    'placeholder' => 'Ex : Produit',
                     'required' => false,
                 ]
             ])

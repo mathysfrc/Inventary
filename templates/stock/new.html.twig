@@ -45,9 +45,17 @@
 
 				</div>
 				<div class="col">
-					<div class="gap"></div>
+
+<div class="input-marge">
+                   {{ form_row(form.reference) }}
+</div>
+
 					<div class="input-marge">
-					{{ form_row(form.reference) }}
+                    <div class="mb-3">
+                           <label for="quantity">Quantitée</label>
+        <input type="text" id="quantity" name="quantity" placeholder="Ex : 10">
+        </div>
+
 					{{ form_row(form.status) }}
 					</div>
 					{{ form_row(form.size2, {'attr': {'id': 'size2'}}) }}
