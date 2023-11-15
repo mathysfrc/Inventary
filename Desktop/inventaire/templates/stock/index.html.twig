@@ -17,6 +17,8 @@
 				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
 			</div>
 			
+<a href="{{ path('delete_all_data') }}" onclick="return confirmDelete('{{ path('delete_all_data') }}')">Supprimer toutes les données</a>
+
 			
 			<ul class="nav nav-tabs mx-5" >
 				<li class="nav-item">
@@ -125,5 +127,21 @@
 			</table>
 		</section>
 	</section>
+
+<script>
+  function confirmDelete(url) {
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer toutes les données ?");
+
+    if (confirmation) {
+      window.location.href = url;
+    } else {
+      // L'utilisateur a annulé la suppression
+      alert("Suppression annulée !");
+      return false; // Annule l'action par défaut du lien
+    }
+  }
+</script>
+
+
 
 {% endblock %}

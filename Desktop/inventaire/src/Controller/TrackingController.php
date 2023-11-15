@@ -33,7 +33,7 @@ class TrackingController extends AbstractController
                 $trackings = $trackingRepository->findLikeName($search);
             } else {
     
-                $trackings = $trackingRepository->findAll();
+                $trackings = $trackingRepository->findBy([], ['SKU' => 'ASC']);
             }
     
             return $this->render('tracking/index.html.twig', [
@@ -41,6 +41,23 @@ class TrackingController extends AbstractController
                 'form' => $form,
             ]);
         }
+    }
+
+    #[Route('/delete-all-data-tracking', name: 'delete_all_data_tracking')]
+    public function deleteAllData(EntityManagerInterface $entityManager): Response
+    {
+        // Récupérer toutes les entrées dans la table Stock
+        $trackings = $entityManager->getRepository(Tracking::class)->findAll();
+
+        foreach ($trackings as $tracking) {
+            // Supprimer chaque entité stock
+            $entityManager->remove($tracking);
+        }
+
+        // Appliquer les suppressions en base de données
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_tracking_index');
     }
     
 

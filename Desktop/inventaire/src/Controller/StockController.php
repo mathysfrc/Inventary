@@ -43,7 +43,7 @@ class StockController extends AbstractController
             $sku = $stockRepository->findLikeName($search);
         } else {
 
-            $sku = $stockRepository->findAll();
+             $sku = $stockRepository->findBy([], ['SKU' => 'ASC']);
         }
 
         return $this->render('stock/index.html.twig', [
@@ -52,55 +52,84 @@ class StockController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_stock_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/delete-all-data', name: 'delete_all_data')]
+    public function deleteAllData(EntityManagerInterface $entityManager): Response
     {
-        $stock = new Stock();
-        $form = $this->createForm(StockType::class, $stock);
-        $form->remove('SKU');
-        $form->handleRequest($request);
+        // Récupérer toutes les entrées dans la table Stock
+        $stocks = $entityManager->getRepository(Stock::class)->findAll();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //on génère le SKU du produit que l'on veut créer
-            $generatedSKU = Stock::generateSKU($stock, $entityManager);
-            $stock->setSKU($generatedSKU);
-            $stock = $form->getData(); // Récupérez l'objet Stock du formulaire
-
-            $size1Manual = $request->request->get('size1Manual'); // Récupérez la valeur de size1Manual depuis la demande
-            $size2Manual = $request->request->get('size2Manual');  // Obtenez l'objet Stock à partir du formulaire
-
-            if ($size1Manual) {
-                // Si la case à cocher "size1Manual" est cochée, mettez à jour la valeur de "size1" avec "size1ManualValue"
-                $stock->setSize1($request->request->get('size1ManualValue'));
-            }
-
-            if ($size2Manual) {
-                // Si la case à cocher "size2Manual" est cochée, mettez à jour la valeur de "size2" avec "size2ManualValue"
-                $stock->setSize2($request->request->get('size2ManualValue'));
-            }
-
-            $dateTime = new DateTime();
-
-            $dateTime->modify('+2 hours');
-            // on prépare la ligne tracking à injecter dans la BDD
-
-            $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
-
-            $entityManager->persist($tracking);
-
-            // on envoie en BDD le stock du formulaire
-            $entityManager->persist($stock);
-            $entityManager->flush();
-            $id = $stock->getId();
-
-            return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
+        foreach ($stocks as $stock) {
+            // Supprimer chaque entité stock
+            $entityManager->remove($stock);
         }
 
-        return $this->render('stock/new.html.twig', [
-            'stock' => $stock,
-            'form' => $form,
-        ]);
+        // Appliquer les suppressions en base de données
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_stock_index');
     }
+
+
+    #[Route('/new', name: 'app_stock_new', methods: ['GET', 'POST'])]
+ public function new(Request $request, EntityManagerInterface $entityManager): Response
+{
+    $dateTime = new DateTime();
+    $dateTime->modify('+2 hours');
+
+    $stock = new Stock();
+    $form = $this->createForm(StockType::class, $stock);
+    $form->remove('SKU');
+    $form->handleRequest($request);
+
+    $createdStocks = [];
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $generatedSKU = Stock::generateSKU($stock, $entityManager);
+        $stock->setSKU($generatedSKU);
+
+        $quantity = $request->request->get('quantity');
+
+        // Persistez l'élément d'origine avant la boucle
+        $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
+        $entityManager->persist($tracking);
+        $entityManager->persist($stock);
+        $entityManager->flush();  // Flush après la persistance initiale
+        
+        // Générez à nouveau le SKU après flush
+        
+        // Dupliquez l'élément en fonction de la quantité
+        for ($i = 1; $i < $quantity; $i++) {
+            $duplicateStock = clone $stock;
+            $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
+            $duplicateStock->setSKU($generatedSKU);
+
+            // Mettez à jour d'autres propriétés si nécessaire
+            $tracking = Tracking::getTrackingFromStock($duplicateStock, 'Duplication', $dateTime);
+            $entityManager->persist($tracking);
+            $entityManager->persist($duplicateStock);  // Flush après chaque duplication
+
+            // Générez à nouveau le SKU après flush
+            $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
+            $duplicateStock->setSKU($generatedSKU);
+            $createdStocks[] = $duplicateStock;
+
+            // Flush à nouveau après la mise à jour du SKU
+            $entityManager->flush();
+        }
+        $entityManager->flush();
+
+        $id = $stock->getId();
+
+          $stocks = $entityManager->getRepository(Stock::class)->findBy([], ['SKU' => 'ASC']);
+
+        return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
+    }
+
+    return $this->render('stock/new.html.twig', [
+        'stock' => $stock,
+        'form' => $form,
+    ]);
+}
 
     #[Route('/update', name: 'app_stock_update', methods: ['GET', 'POST'])]
     public function update(Request $request, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response

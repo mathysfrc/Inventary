@@ -262,33 +262,33 @@ class Stock
     }
 
 
-    public static function generateSKU(Stock $stock, EntityManagerInterface $entityManager)
-    {
-        // Récupérez le dernier SKU de la base de données
-        $latestSKU = $entityManager
-            ->getRepository(Tracking::class)
-            ->createQueryBuilder('s')
-            ->select('MAX(s.SKU)')
-            ->getQuery()
-            ->getSingleScalarResult();
+public static function generateSKU(Stock $stock, EntityManagerInterface $entityManager)
+{
+    // Récupérez le dernier SKU de la base de données
+    $latestSKU = $entityManager
+        ->getRepository(Stock::class)
+        ->createQueryBuilder('s')
+        ->select('MAX(s.SKU)')
+        ->getQuery()
+        ->getSingleScalarResult();
 
-        if ($latestSKU === null) {
-            $latestSKU = 0;
-        }
-
-        // Incrémentez le SKU
-        $nextSKU = intval(substr($latestSKU, 5, strlen($latestSKU) - 1)) + 1;
-
-
-        // Formatez le SKU avec des zéros à gauche
-        $formattedSKU = sprintf("(000)%018d", $nextSKU);
-
-        // Définissez le SKU généré dans l'entité $stock
-        $stock->setSKU($formattedSKU);
-
-        // Retournez le SKU généré
-        return $formattedSKU;
+    if ($latestSKU === null) {
+        $latestSKU = 0;
     }
+
+    // Incrémentez le SKU
+    $nextSKU = intval(substr($latestSKU, 5)) + 1;
+
+    // Formatez le SKU avec des zéros à gauche
+    $formattedSKU = sprintf("(000)%018d", $nextSKU);
+
+    // Définissez le SKU généré dans l'entité $stock
+    $stock->setSKU($formattedSKU);
+
+    // Retournez le SKU généré
+    return $formattedSKU;
+}
+    
 
     public function getSurface(): ?string
     {
