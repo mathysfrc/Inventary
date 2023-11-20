@@ -1,0 +1,404 @@
+@import "variables";
+
+a.btn {
+    width: 30rem;
+    height: 15rem;
+    border-radius: 40px
+}
+
+.btn:hover {
+    color: white;
+
+}
+
+div.col-12 {
+    height: 90vh;
+    margin-left: 2.5rem;
+}
+
+.all-gestion {
+    padding-left: 120px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+input#quantity {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#text {
+    margin-top: 10rem;
+}
+
+.return-to-home {
+    padding-top: 3rem;
+    padding-bottom: 5%;
+}
+
+.three-buttons {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+p {
+    font-size: 2rem;
+    font-family: $font-family-base;
+    text-align: start;
+}
+
+.col-3 {
+    text-align: end;
+}
+
+.return {
+    margin-top: 2rem !important;
+}
+
+.text {
+    color: #191926;
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.reception {
+    position: absolute;
+    left: 19.4rem;
+    top: -0.25rem;
+    z-index: 2;
+    border-radius: 0px 0px 40px 0px;
+}
+
+.arrow-left {
+    position: absolute;
+    left: 1.5rem;
+    top: 11rem;
+}
+
+.all-new-product {
+    padding-left: 120px;
+}
+
+.all-new-product .container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+
+}
+
+
+.input-marge {
+    margin-bottom: 3rem;
+}
+
+.contain {
+    margin-top: 1rem;
+}
+
+
+.card-text {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.span-text {
+    font-weight: bold;
+}
+
+.card-reference {
+    border-radius: 20px;
+}
+
+.reference-to-impress {
+    display: flex;
+    align-items: center;
+}
+
+.gap {
+    margin-top: 7.3rem;
+}
+
+// .inutilisable,
+// .utilisable {
+//     position: absolute;
+//     bottom: 12.5rem;
+//     left: 27rem;
+// }
+
+.inutilisabled,
+.utilisabled {
+    position: absolute;
+    bottom: 10.5rem;
+    left: 27rem;
+}
+
+a.button-impr {
+    height: 2.5rem;
+    width: 15rem;
+    border-radius: 5px;
+}
+
+a.button-no-impr {
+    color: $primary;
+    height: 2.5rem;
+}
+
+input#size1ManualValue {
+    display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+input#size2ManualValue {
+    display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.button-no-impression {
+    height: 2.5rem !important;
+    border-radius: 5px !important;
+}
+
+.button-return-no-impr {
+    height: 4rem !important;
+    border-radius: 5px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.end-button {
+    display: grid;
+    justify-content: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.reference-no-impression {
+    display: grid;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.dont-forget {
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+}
+
+.impression-or-no {
+    display: flex;
+    justify-content: end;
+    width: 35rem;
+}
+
+// .card-reference {
+//     width: 35rem;
+// }
+
+
+.gestion-board {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.first-board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.modif-title {
+    margin: 0 !important;
+}
+
+.suppr-modif {
+    justify-content: end;
+    display: flex;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.modif-suppr {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.bouton-suppr {
+    height: 2.5rem;
+    width: 14rem;
+}
+
+.suivant {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-top: 1rem;
+    margin: 0 !important;
+    display: flex;
+    justify-content: end;
+    text-align: end;
+    height: 2.5rem !important;
+}
+
+.bt-return {
+    height: 2.5rem;
+    width: 14rem;
+}
+
+.stock-form {
+    padding-bottom: 3rem;
+
+}
+
+@media (min-width: 1281px) {
+
+    h1.modif-title {
+        margin-top: 10rem !important;
+    }
+
+    h1.title-no-impression {
+        margin-left: 14% !important;
+        position: absolute !important;
+        top: 12.5% !important;
+    }
+
+    .validation {
+        position: absolute !important;
+        left: 38% !important;
+        top: 7% !important;
+    }
+}
+
+
+@media (min-width: 1921px) {
+
+    .title-enter-stock {
+        margin-top: 18rem;
+    }
+
+    h1.modif-title {
+        margin-top: 22rem !important;
+    }
+
+
+    h1.title-no-impression {
+        margin-left: 14% !important;
+        position: absolute !important;
+        top: 12.5% !important;
+    }
+
+    a.return {
+        position: absolute !important;
+        top: 15rem;
+        z-index: 100;
+    }
+
+    .validation {
+        position: absolute !important;
+        left: 41% !important;
+        top: 12% !important;
+    }
+}
+
+/********CUSTOM*******/
+
+.card-title h3{
+    width: initial;
+}
+
+.card-title .badge{
+    width: initial;
+    margin-bottom:0
+}
+
+img.datamatrix{
+    width: 100%;
+    height: 100%;
+}
+
+
+@media print {
+    .no-print,.DO-NOT-PRINT{display: none!important}
+
+    @page {
+        size: auto;
+        margin:0!important;
+      }
+
+    .card-title h3{
+        font-size:40pt;
+        margin-top:12mm;
+      }
+
+    .print .badge{
+        font-size:24pt!important
+    }
+    .card-text{
+        font-size: 34pt;
+        line-height: 1.2;
+    }
+
+    .card-text .span-text{
+        margin-top:4mm;
+    }
+    .print img.datamatrix{
+        width: 33%!important;
+        height: 33%!important;
+    }
+
+    .print .desc{
+        margin-bottom:12mm!important;
+    }
+ }
+ @media not print {
+    .print { display: none!important }
+ }

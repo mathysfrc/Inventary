@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('home') }}
+{% endblock %}
+
+{% block body %}
+	<section class="main DO-NOT-PRINT">
+		<aside class="sidebar">
+			<nav class="nav">
+				<div class="blue-icon">
+					{% include 'icons/blue-logo.svg'%}
+				</div>
+				<ul class="nav-bar">
+					{% if app.user %}
+						<li class="">
+							<a class="stock" href="/stock" id="stock-link">
+								{% include 'icons/Stock.svg' %}
+								Stock
+							</a>
+						</li>
+
+						<li class="">
+							<a class="gestion" href="/gestion" id="gestion-link">
+								{% include 'icons/Scan.svg' %}
+								Gestion
+							</a>
+						</li>
+
+						<li class="">
+							<a class="eye" href="/scan/read" id="eye-link">
+								{% include 'icons/eye.svg' %}
+								Voir
+							</a>
+						</li>
+
+					</ul>
+					<ul class="logout-link">
+						<li>
+							<a class="logout" href="/logout">
+								{% include 'icons/logout.svg' %}
+							</a>
+						</li>
+					</ul>
+				{% endif %}
+
+			</nav>
+		</aside>
+	</section>
+
+	<script>
+
+let stockLink = document.getElementById("stock-link");
+let gestionLink = document.getElementById("gestion-link");
+let eyeLink = document.getElementById("eye-link");
+
+
+window.onload = function (e) {
+if (window.location.href.includes('/stock')) {
+console.log('stock')
+stockLink.classList.add("active");
+}
+
+if (window.location.href.includes('/gestion')) {
+console.log('gestion')
+gestionLink.classList.add("active");
+}
+
+if (window.location.href.includes('/read')) {
+console.log('eye')
+eyeLink.classList.add("active");
+}
+
+}
+	</script>
+
+
+{% endblock %}

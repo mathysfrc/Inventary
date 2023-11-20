@@ -1,0 +1,51 @@
+@import "variables";
+ 
+body {
+    background-color: $primary;
+}
+
+.modal {
+    width: 43%;
+    position: absolute;
+    top: 20%;
+    left: 28%;
+    position: fixed;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+
+}
+
+p {
+    margin-left:  2rem;
+    margin-top: 0rem;
+    // font-weight: bold;
+    font-size : 1.2rem
+}
+
+a {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}
+
+.correction {
+    margin-left: 15rem;
+    margin-right: 1rem;
+}
+
+.confirmation {
+    margin-right: 2rem;
+}
+
+.text {
+    color: black;
+}
+
+input {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}

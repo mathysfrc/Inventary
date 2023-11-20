@@ -1,0 +1,357 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Réception
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('gestion') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig' %}
+	<section class='all-new-product'>
+		<section class="container">
+			<div class="return-to-home">
+			<a href="/gestion" class="return">
+				< Retour à la gestion du stock
+			</a>
+			<h1 class="title-enter-stock fw-bold text-primary">Nouvelle référence</h1>
+			</div>
+			<div class="stock-form">
+			{{ form_start(form) }}
+			<div class="my-custom-class-for-errors">
+				{{ form_errors(form) }}
+			</div>
+			<div class="row">
+				<div class="col">
+
+					<div class="input-marge">{{ form_row(form.description) }}</div>
+
+					<div class="input-marge">
+					{{ form_row(form.productFamily, {'attr': {'id': 'productFamilyInput'}}) }}
+
+					{{ form_row(form.price) }}
+					</div>
+					
+					{{ form_row(form.size1, {'attr': {'id': 'size1'}}) }}
+
+                        <div class="form-group">
+                        <input type="checkbox" id="size1Manual" name="size1Manual">
+                            <label for="size1Manual">Saisir manuellement</label>
+                            <input type="text" id="size1ManualValue" name="size1ManualValue">
+                        </div>
+                
+
+				</div>
+				<div class="col">
+
+<div class="input-marge">
+                   {{ form_row(form.reference) }}
+</div>
+
+					<div class="input-marge">
+                    <div class="mb-3">
+                           <label for="quantity">Quantitée</label>
+        <input type="number" id="quantity" name="quantity" placeholder="Ex : 10">
+        </div>
+
+					{{ form_row(form.status) }}
+					</div>
+					{{ form_row(form.size2, {'attr': {'id': 'size2'}}) }}
+
+    <div class="form-group">
+     <input type="checkbox" id="size2Manual" name="size2Manual">
+        <label for="size2Manual">Saisir manuellement</label>
+        <input type="text" id="size2ManualValue" name="size2ManualValue">
+    </div>
+                    
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+
+					{{ form_row(form.size1Unit, {'attr': {'id': 'size1UnitInput'}}) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size1Name, {'attr': {'id': 'size1NameInput'}}) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size2Unit, {'attr': {'id': 'size2UnitInput'}}) }}
+				</div>
+				<div class="col">
+
+					{{ form_row(form.size2Name, {'attr': {'id': 'sier2NameInput'}}) }}
+
+				</div>
+			</div>
+
+			<div class="col-12 suivant">
+				<a href="/reference"><button type="submit" class="bt-return btn  bg-primary text-white">Suivant</button></a>
+			</div>
+		
+			{{ form_end(form) }}
+			</div>
+
+		</section>
+	</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    let productFamilyInput = document.getElementById('stock_productFamily');
+    let size1Unit = document.getElementById('stock_size1Unit');
+    let size1Name = document.getElementById('stock_size1Name');
+    let size1 = document.getElementById('stock_size1');
+    let size2Unit = document.getElementById('stock_size2Unit');
+    let size2Name = document.getElementById('stock_size2Name');
+    let size2 = document.getElementById('stock_size2');
+    let size1ManualCheckbox = document.getElementById('size1Manual');
+    let size2ManualCheckbox = document.getElementById('size2Manual');
+    let size1ManualValue = document.getElementById('size1ManualValue');
+    let size2ManualValue = document.getElementById('size2ManualValue');
+
+
+    const DIMENSION1 = [
+        '1','610','1000','1050','1230','1250','1370','1520','1600','2000','3000',
+    ];
+
+    const DIMENSION2 = [
+        '1200','1500','2000','3000','2500','5000','15000','30000','50000',
+    ];
+
+    //Génération des options dans les selects pour les tailles
+
+    DIMENSION1.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size1.add(option);
+    })
+
+    DIMENSION2.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size2.add(option);
+    })
+
+                // Fonction pour gérer la visibilité des champs manuels
+
+    let toggleManualFields = function (checkbox, input, isInverted = false) {
+        if (isInverted) {
+            input.hidden = !checkbox.checked;
+        } else {
+            input.hidden = checkbox.checked;
+        }
+    };
+
+    size1ManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size1ManualCheckbox, size1);
+        toggleManualFields(size1ManualCheckbox, size1ManualValue, isInverted = true)
+    });
+
+    size2ManualCheckbox.addEventListener('change', function () {
+        toggleManualFields(size2ManualCheckbox, size2);
+        toggleManualFields(size2ManualCheckbox, size2ManualValue, isInverted = true)
+    });
+
+    size1ManualValue.addEventListener('input', function () {
+        let option = document.createElement('option');
+        option.textContent = size1ManualValue.value;
+        option.value = size1ManualValue.value;
+        size1.add(option);
+        if (size1.options.length >= DIMENSION1.length + 2){
+            size1.remove(size1.options.length - 2);
+        }
+        console.log(option);
+        size1.selectedIndex = size1.options.length -1;
+        console.log(size1);
+    })
+
+    size2ManualValue.addEventListener('input', function () {
+        let option = document.createElement('option');
+        option.textContent = size2ManualValue.value;
+        option.value = size2ManualValue.value;
+        size2.add(option);
+        if (size2.options.length >= DIMENSION2.length + 2){
+            size2.remove(size2.options.length - 2);
+        }
+        console.log(option);
+        size2.selectedIndex = size2.options.length -1;
+        console.log(size2);
+    })
+
+
+
+    productFamilyInput.addEventListener('change', function (e) {
+        let selectedValue = productFamilyInput.value;
+
+        if (selectedValue === 'Liquide') {
+            size1.innerHTML = '';
+            toggleManualFields(size1ManualCheckbox, size1);
+
+            let option1 = document.createElement('option');
+            option1.value = '1';
+            option1.textContent = '1';
+
+            size1.appendChild(option1);
+
+            size1Unit.value = 'unité';
+            size1Name.value = 'Bidon';
+            size2Unit.value = 'mL';
+            size2Name.value = 'Quantité';
+
+            size2.innerHTML = '';
+            toggleManualFields(size2ManualCheckbox, size2);
+
+            let option1500 = document.createElement('option');
+            option1500.value = '1500';
+            option1500.textContent = '1500';
+
+            let option5000 = document.createElement('option');
+            option5000.value = '5000';
+            option5000.textContent = '5000';
+
+            size2.appendChild(option1500);
+            size2.appendChild(option5000);
+        } else if (selectedValue === 'Support rigide') {
+            size1.innerHTML = '';
+            toggleManualFields(size1ManualCheckbox, size1);
+
+            let option3 = document.createElement('option');
+            option3.value = '3000';
+            option3.textContent = '3000';
+
+            let option160 = document.createElement('option');
+            option160.value = '1600';
+            option160.textContent = '1600';
+
+            let option125 = document.createElement('option');
+            option125.value = '1250';
+            option125.textContent = '1250';
+
+            size1.appendChild(option3);
+            size1.appendChild(option160);
+            size1.appendChild(option125);
+
+            size1Unit.value = 'mm';
+            size1Name.value = 'Largeur';
+
+            size2.innerHTML = '';
+            toggleManualFields(size2ManualCheckbox, size2);
+
+            let option1_20 = document.createElement('option');
+            option1_20.value = '1200';
+            option1_20.textContent = '1200';
+
+            let option1_50 = document.createElement('option');
+            option1_50.value = '1500';
+            option1_50.textContent = '1500';
+
+            let option2 = document.createElement('option');
+            option2.value = '2000';
+            option2.textContent = '2000';
+
+            let option2_50 = document.createElement('option');
+            option2_50.value = '2500';
+            option2_50.textContent = '2500';
+
+            let option3_00 = document.createElement('option');
+            option3_00.value = '3000';
+            option3_00.textContent = '3000';
+
+            size2.appendChild(option1_20);
+            size2.appendChild(option1_50);
+            size2.appendChild(option2);
+            size2.appendChild(option2_50);
+            size2.appendChild(option3_00);
+
+            size2Unit.value = 'mm';
+            size2Name.value = 'Longueur';
+        } else {
+            size1.innerHTML = '';
+            toggleManualFields(size1ManualCheckbox, size1);
+
+            let option610 = document.createElement('option');
+            option610.value = '610';
+            option610.textContent = '610';
+
+            let option1230 = document.createElement('option');
+            option1230.value = '1230';
+            option1230.textContent = '1230';
+
+            let option1050 = document.createElement('option');
+            option1050.value = '1050';
+            option1050.textContent = '1050';
+
+            let option1000 = document.createElement('option');
+            option1000.value = '1000';
+            option1000.textContent = '1000';
+
+            let option1370 = document.createElement('option');
+            option1370.value = '1370';
+            option1370.textContent = '1370';
+
+            let option1520 = document.createElement('option');
+            option1520.value = '1520';
+            option1520.textContent = '1520';
+
+            let option1600 = document.createElement('option');
+            option1600.value = '1600';
+            option1600.textContent = '1600';
+
+            let option2000 = document.createElement('option');
+            option2000.value = '2000';
+            option2000.textContent = '2000';
+
+            size1.appendChild(option610);
+			size1.appendChild(option1000);
+            size1.appendChild(option1050);
+			size1.appendChild(option1230);
+            size1.appendChild(option1370);
+            size1.appendChild(option1520);
+            size1.appendChild(option1600);
+            size1.appendChild(option2000);
+
+            size1Unit.value = 'mm';
+            size1Name.value = 'Laize';
+
+            size2.innerHTML = '';
+            toggleManualFields(size2ManualCheckbox, size2);
+
+            let option15 = document.createElement('option');
+            option15.value = '15000';
+            option15.textContent = '15000';
+
+            let option5 = document.createElement('option');
+            option5.value = '5000';
+            option5.textContent = '5000';
+
+            let option30 = document.createElement('option');
+            option30.value = '30000';
+            option30.textContent = '30000';
+
+            let option50 = document.createElement('option');
+            option50.value = '50000';
+            option50.textContent = '50000';
+
+            size2.appendChild(option5);
+            size2.appendChild(option15);
+            size2.appendChild(option30);
+            size2.appendChild(option50);
+
+            size2Unit.value = 'mm';
+            size2Name.value = 'Longueur';
+
+            
+        }
+
+        
+    });
+
+});
+</script>
+
+{% endblock %}
