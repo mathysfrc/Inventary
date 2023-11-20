@@ -31,4 +31,12 @@ class ScanController extends AbstractController
             'controller_name' => 'ScanController',
         ]);
     }
+
+    #[Route('/scan/read', name: 'app_scan_read')]
+    public function read(): Response
+    {
+        return $this->render('scan/read.html.twig', [
+            'controller_name' => 'ScanController',
+        ]);
+    }
 }

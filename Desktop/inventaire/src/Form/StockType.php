@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -160,6 +162,20 @@ class StockType extends AbstractType
                 ],
                 'choices' => self::STATUS,
             ])
+            ->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){
+                $form = $event->getForm();
+                $size1 = $event->getData()['size1'];
+                if($size1){
+                    $form->add('size1', ChoiceType::class, ['choices' => [$size1 => $size1]]);
+                }
+             })
+             ->addEventListener(FormEvents::PRE_SUBMIT, function(FormEvent $event){
+                $form = $event->getForm();
+                $size2 = $event->getData()['size2'];
+                if($size2){
+                    $form->add('size2', ChoiceType::class, ['choices' => [$size2 => $size2]]);
+                }
+             })
         ;
     }
 
