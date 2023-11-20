@@ -30,8 +30,10 @@
 					</div>
 
 					{# {{ form_row(form.size1, {'attr': {'value': stock.size1 }}) }} #}
-                    <label for="stock_size1" class="form-label required">Dimension 1</label>
-                    <input class="form-control" type="number" name="stock[size1]" id="stock_size1" value={{ stock.size1 }}>
+                    <div class="mb-3">
+                        <label for="stock_size1" class="form-label required">Dimension 1</label>
+                        <input class="form-control" type="number" name="stock[size1]" id="stock_size1" value={{ stock.size1 }}>
+                    </div>
 
 				</div>
 				<div class="col">
@@ -44,8 +46,10 @@
 					</div>
 
 					{# {{ form_row(form.size2, {'attr': {'value': stock.size2 }}) }} #}
-                    <label for="stock_size2" class="form-label required">Dimension 2</label>
-                    <input class="form-control" type="number" name="stock[size2]" id="stock_size2" value={{ stock.size2 }}>
+                    <div class="mb-3">
+                        <label for="stock_size2" class="form-label required">Dimension 2</label>
+                        <input class="form-control" type="number" name="stock[size2]" id="stock_size2" value={{ stock.size2 }}>
+                    </div>
 				</div>
 			</div>
 			<div class="row">
