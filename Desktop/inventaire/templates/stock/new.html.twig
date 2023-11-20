@@ -121,6 +121,22 @@ document.addEventListener('DOMContentLoaded', function () {
         '1200','1500','2000','3000','2500','5000','15000','30000','50000',
     ];
 
+    //Génération des options dans les selects pour les tailles
+
+    DIMENSION1.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size1.add(option);
+    })
+
+    DIMENSION2.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size2.add(option);
+    })
+
                 // Fonction pour gérer la visibilité des champs manuels
 
     let toggleManualFields = function (checkbox, input, isInverted = false) {

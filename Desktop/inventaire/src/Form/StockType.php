@@ -41,33 +41,6 @@ class StockType extends AbstractType
         'Liquide' => 'Liquide',
     ];
 
-    public const DIMENSION1 = [
-        1 => '1',
-        610 => '610',
-        1000 => '1000',
-        1050 => '1050',
-        1230 => '1230',
-        1250 => '1250',
-        1370 => '1370',
-        1520 => '1520',
-        1600 => '1600',
-        2000 => '2000',
-        3000 => '3000',
-    ];
-
-    public const DIMENSION2 = [
-        1200 => '1200',
-        1500 => '1500',
-        2000 => '2000',
-        3000 => '3000',
-        2500 => '2500',
-        5000 => '5000',
-        15000 => '15000',
-        30000 => '30000',
-        50000 => '50000',
-        1500 => '1500',
-        5000 => '5000',
-    ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -97,7 +70,6 @@ class StockType extends AbstractType
             ->add('size1', ChoiceType::class, [
                 'label' => 'Dimension 1',
                 'empty_data' => '',
-                'choices' => self::DIMENSION1,
                 'attr' => [
                     'class' => 'border-tertiary',
                 ]
@@ -105,7 +77,6 @@ class StockType extends AbstractType
             ->add('size2', ChoiceType::class, [
                 'label' => 'Dimension 2',
                 'empty_data' => '',
-                'choices' => self::DIMENSION2,
                 'attr' => [
                     'class' => 'border-tertiary',
                 ]
@@ -183,6 +154,7 @@ class StockType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Stock::class,
+            'csrf_protection' => false,
         ]);
     }
 }

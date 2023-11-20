@@ -443,9 +443,6 @@ class StockController extends AbstractController
             ->setSize(300);
 
         $result = $writer->write($qrCode);
-
-        // Validate the result
-        $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
         $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
@@ -510,8 +507,8 @@ class StockController extends AbstractController
 
         $result = $writer->write($qrCode);
 
-        // Validate the result
-        $writer->validateResult($result, $dataToEncode);
+        
+        // $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
         $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
