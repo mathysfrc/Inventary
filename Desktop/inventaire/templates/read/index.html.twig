@@ -78,15 +78,11 @@
             </div>    
             <div class="row three-buttons">
                 <div class="col">
-                    <div class="modif-reference">
-                        <a href="{{ path('app_stock_edit', {'id': stock.id }) }}" class="DO-NOT-PRINT button-impr btn btn-outline-primary" type="button">Modifier la référence</a>
-                    </div>
                 </div>
             <div class="col">
                 <div class="impression-or-no">
-                    <a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="DO-NOT-PRINT button-no-impr btn">Créer sans imprimer l'étiquette</a>
 
-                    <a href="{{ path('app_stock_print_with_id', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
+                    <a href="{{ path('app_modifications', {'id': stock.SKU}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
                     <script>
                             document.getElementById("imprimerPage").addEventListener("click", function() {
                                 window.print();

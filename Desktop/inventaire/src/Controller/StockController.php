@@ -43,7 +43,7 @@ class StockController extends AbstractController
             $sku = $stockRepository->findLikeName($search);
         } else {
 
-             $sku = $stockRepository->findBy([], ['SKU' => 'ASC']);
+            $sku = $stockRepository->findBy([], ['SKU' => 'ASC']);
         }
 
         return $this->render('stock/index.html.twig', [
@@ -71,65 +71,65 @@ class StockController extends AbstractController
 
 
     #[Route('/new', name: 'app_stock_new', methods: ['GET', 'POST'])]
- public function new(Request $request, EntityManagerInterface $entityManager): Response
-{
-    $dateTime = new DateTime();
-    $dateTime->modify('+2 hours');
+    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $dateTime = new DateTime();
+        $dateTime->modify('+2 hours');
 
-    $stock = new Stock();
-    $form = $this->createForm(StockType::class, $stock);
-    $form->remove('SKU');
-    $form->handleRequest($request);
+        $stock = new Stock();
+        $form = $this->createForm(StockType::class, $stock);
+        $form->remove('SKU');
+        $form->handleRequest($request);
 
-    $createdStocks = [];
+        $createdStocks = [];
 
-    if ($form->isSubmitted() && $form->isValid()) {
-        $generatedSKU = Stock::generateSKU($stock, $entityManager);
-        $stock->setSKU($generatedSKU);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $generatedSKU = Stock::generateSKU($stock, $entityManager);
+            $stock->setSKU($generatedSKU);
 
-        $quantity = $request->request->get('quantity');
+            $quantity = $request->request->get('quantity');
 
-        // Persistez l'élément d'origine avant la boucle
-        $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
-        $entityManager->persist($tracking);
-        $entityManager->persist($stock);
-        $entityManager->flush();  // Flush après la persistance initiale
-        
-        // Générez à nouveau le SKU après flush
-        
-        // Dupliquez l'élément en fonction de la quantité
-        for ($i = 1; $i < $quantity; $i++) {
-            $duplicateStock = clone $stock;
-            $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
-            $duplicateStock->setSKU($generatedSKU);
-
-            // Mettez à jour d'autres propriétés si nécessaire
-            $tracking = Tracking::getTrackingFromStock($duplicateStock, 'Duplication', $dateTime);
+            // Persistez l'élément d'origine avant la boucle
+            $tracking = Tracking::getTrackingFromStock($stock, 'Initialisation', $dateTime);
             $entityManager->persist($tracking);
-            $entityManager->persist($duplicateStock);  // Flush après chaque duplication
+            $entityManager->persist($stock);
+            $entityManager->flush();  // Flush après la persistance initiale
 
             // Générez à nouveau le SKU après flush
-            $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
-            $duplicateStock->setSKU($generatedSKU);
-            $createdStocks[] = $duplicateStock;
 
-            // Flush à nouveau après la mise à jour du SKU
+            // Dupliquez l'élément en fonction de la quantité
+            for ($i = 1; $i < $quantity; $i++) {
+                $duplicateStock = clone $stock;
+                $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
+                $duplicateStock->setSKU($generatedSKU);
+
+                // Mettez à jour d'autres propriétés si nécessaire
+                $tracking = Tracking::getTrackingFromStock($duplicateStock, 'Duplication', $dateTime);
+                $entityManager->persist($tracking);
+                $entityManager->persist($duplicateStock);  // Flush après chaque duplication
+
+                // Générez à nouveau le SKU après flush
+                $generatedSKU = Stock::generateSKU($duplicateStock, $entityManager);
+                $duplicateStock->setSKU($generatedSKU);
+                $createdStocks[] = $duplicateStock;
+
+                // Flush à nouveau après la mise à jour du SKU
+                $entityManager->flush();
+            }
             $entityManager->flush();
+
+            $id = $stock->getId();
+
+            $stocks = $entityManager->getRepository(Stock::class)->findBy([], ['SKU' => 'ASC']);
+
+            return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
-        $entityManager->flush();
 
-        $id = $stock->getId();
-
-          $stocks = $entityManager->getRepository(Stock::class)->findBy([], ['SKU' => 'ASC']);
-
-        return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
+        return $this->render('stock/new.html.twig', [
+            'stock' => $stock,
+            'form' => $form,
+        ]);
     }
-
-    return $this->render('stock/new.html.twig', [
-        'stock' => $stock,
-        'form' => $form,
-    ]);
-}
 
     #[Route('/update', name: 'app_stock_update', methods: ['GET', 'POST'])]
     public function update(Request $request, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
@@ -146,13 +146,14 @@ class StockController extends AbstractController
 
         // Retrieve the object from the database and update it
         $stock = $stockRepository->findOneBy(['SKU' => $sku]);
-        
+
+
         if ($size1restant != 0 && $size2restant != 0) {
             $size1 = $size1restant;
             $size2 = $size2restant;
         } else if ($size1consommation >= 0 && $size2consommation >= 0 && $size1restant === 0 && $size2restant === 0) {
-            $size1 =  $stock -> getSize1() - $size1consommation;
-            $size2 =  $stock -> getSize2() - $size2consommation;
+            $size1 = $stock->getSize1() - $size1consommation;
+            $size2 = $stock->getSize2() - $size2consommation;
         } else {
             return $this->render('error/index.html.twig', [
                 'error' => 'Veuillez rentrer les deux valeurs consommées ou restantes.'
@@ -172,26 +173,59 @@ class StockController extends AbstractController
             ]);
         }
 
+        $oldSize1 = $stock->getSize1();
+        $oldSize2 = $stock->getSize2();
+
         // Update the stock object
-        if (($stock->getSize1() != $size1 || $stock->getSize2() != $size2) && $consommationMode == "internal") {
+        if (($oldSize1 != $size1 || $oldSize2 != $size2) && $consommationMode == "internal") {
             // Si on a changé longueur et largeur, on a consommé un morceau de plaque
-            // Le size 1 et 2 de l'objet dans la BDD ne change pas !!!!!!!!!!!!!!!!
+            // Le size 1 et 2 de l'objet dans la BDD ne changent pas !!!!!!!!!!!!!!!!
             // Seule la surface change (et on renseigne une forme)
-            $surface = ($stock->getSize1() * $stock->getSize2()) - ($size1consommation * $size2consommation);
-            $stock->setSurface($surface);
+
+            // Calcul de la nouvelle surface après consommation interne
+            $surfaceConsommee = $size1consommation * $size2consommation;
+            // var_dump($surfaceConsommee);
+
+            // if ( si jamais surface == 0 alors faire le calcul au sinon reprendre les valeurs du stock)
+            // création $surfaceActuelle = -> getSize1 x getSize2 si jamais surface est nulle au sinon elle est égale a surface
+
+            if ($stock->getSurface() == null) {
+                $surfaceActuelle = $stock->getSize1() * $stock->getSize2();
+            } else {
+                $surfaceActuelle = $stock->getSurface();
+            }
+
+
+            $surfaceRestante = ($surfaceActuelle) - $surfaceConsommee;
+            // var_dump($surfaceRestante);
+            // Mise à jour de la surface de stock
+            $stock->setSurface($surfaceRestante);
+
+            // Mise à jour des valeurs size1 et size2 si nécessaire
+            if ($surfaceRestante != ($oldSize1 * $oldSize2)) {
+                $stock->setSize1($oldSize1);
+                $stock->setSize2($oldSize2);
+            } else {
+                // Les tailles n'ont pas changé, on met à jour les valeurs de size1 et size2
+                $stock->setSize1($size1);
+                $stock->setSize2($size2);
+            }
         } else {
             // Les tailles n'ont pas changé, on met à jour les valeurs de size1 et size2
             $stock->setSize1($size1);
             $stock->setSize2($size2);
         }
 
-
         // Create a DateTime object
         $dateTime = new DateTime();
         $dateTime->modify('+2 hours');
 
         // Create a tracking entry and persist it
-        $tracking = Tracking::getTrackingFromStock($stock, 'Consommation', $dateTime);
+        if ($consommationMode == 'internal') {
+            $tracking = Tracking::getTrackingFromStock($stock, 'Consommation interne', $dateTime);
+        } else {
+            $tracking = Tracking::getTrackingFromStock($stock, 'Consommation externe', $dateTime);
+        }
         $entityManager->persist($tracking);
 
         // Save the changes to the database
@@ -280,31 +314,31 @@ class StockController extends AbstractController
     {
         $form = $this->createForm(StockType::class, $stock);
         $form->handleRequest($request);
-    
+
         if ($form->isSubmitted() && $form->isValid()) {
             // Récupérez l'objet Stock du formulaire
             $stock = $form->getData();
-    
+
             $size1Manual = $request->request->get('size1Manual');
             $size2Manual = $request->request->get('size2Manual');
-    
+
             // Récupérez la valeur de "size1ManualValue" depuis la demande
             $size1ManualValue = $request->request->get('size1ManualValue');
             $size2ManualValue = $request->request->get('size2ManualValue');
-    
+
             // Vérifiez si "size1ManualValue" est un nombre (entier ou float) avant de le mettre à jour
             if ($size1Manual && is_numeric($size1ManualValue)) {
                 $stock->setSize1(floatval($size1ManualValue));
             }
-    
+
             // Vérifiez si "size2ManualValue" est un nombre (entier ou float) avant de le mettre à jour
             if ($size2Manual && is_numeric($size2ManualValue)) {
                 $stock->setSize2(floatval($size2ManualValue));
             }
-    
+
             $dateTime = new DateTime();
             $dateTime->modify('+2 hours');
-    
+
             // Préparez la ligne de tracking à injecter dans la BDD
             $tracking = new Tracking();
             $tracking->setSKU($stock->getSKU());
@@ -325,17 +359,17 @@ class StockController extends AbstractController
             $tracking->setStatus($stock->getStatus());
             $tracking->setMovementType('Édition manuelle');
             $tracking->setTimestamp($dateTime);
-    
+
             $entityManager->persist($tracking);
-    
+
             // Enregistrez les modifications dans la base de données
             $entityManager->flush();
-    
+
             $id = $stock->getId();
-    
+
             return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
-    
+
         return $this->render('stock/edit.html.twig', [
             'stock' => $stock,
             'form' => $form->createView(),
@@ -381,11 +415,21 @@ class StockController extends AbstractController
 
     #[Route('/{id}/reference', name: 'app_stock_reference')]
     public function reference(Request $request, Stock $stock): Response
-
     {
 
         $dataArray = [
-            $stock->getSKU(), $stock->getDescription(), $stock->getProductFamily(), $stock->getReference(), $stock->getPrice(), $stock->getSize1Name(), $stock->getSize1(), $stock->getSize1Unit(), $stock->getSize2Name(), $stock->getSize2(), $stock->getSize2Unit(), $stock->getStatus(),
+            $stock->getSKU(),
+            $stock->getDescription(),
+            $stock->getProductFamily(),
+            $stock->getReference(),
+            $stock->getPrice(),
+            $stock->getSize1Name(),
+            $stock->getSize1(),
+            $stock->getSize1Unit(),
+            $stock->getSize2Name(),
+            $stock->getSize2(),
+            $stock->getSize2Unit(),
+            $stock->getStatus(),
         ];
 
         $dataToEncode = implode("\t", $dataArray);
@@ -399,9 +443,6 @@ class StockController extends AbstractController
             ->setSize(300);
 
         $result = $writer->write($qrCode);
-
-        // Validate the result
-        $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
         $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
@@ -466,8 +507,8 @@ class StockController extends AbstractController
 
         $result = $writer->write($qrCode);
 
-        // Validate the result
-        $writer->validateResult($result, $dataToEncode);
+        
+        // $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!
         $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
