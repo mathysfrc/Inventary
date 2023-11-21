@@ -137,6 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
         size2.add(option);
     })
 
+    size1ManualValue.hidden = !size1ManualCheckbox.checked;
+    size2ManualValue.hidden = !size2ManualCheckbox.checked;
+
                 // Fonction pour gérer la visibilité des champs manuels
 
     let toggleManualFields = function (checkbox, input, isInverted = false) {
