@@ -112,6 +112,34 @@ document.addEventListener('DOMContentLoaded', function () {
     let size1ManualValue = document.getElementById('size1ManualValue');
     let size2ManualValue = document.getElementById('size2ManualValue');
 
+
+    const DIMENSION1 = [
+        '1','610','1000','1050','1230','1250','1370','1520','1600','2000','3000',
+    ];
+
+    const DIMENSION2 = [
+        '1200','1500','2000','3000','2500','5000','15000','30000','50000',
+    ];
+
+    //Génération des options dans les selects pour les tailles
+
+    DIMENSION1.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size1.add(option);
+    })
+
+    DIMENSION2.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size2.add(option);
+    })
+
+    size1ManualValue.hidden = !size1ManualCheckbox.checked;
+    size2ManualValue.hidden = !size2ManualCheckbox.checked;
+
                 // Fonction pour gérer la visibilité des champs manuels
 
     let toggleManualFields = function (checkbox, input, isInverted = false) {
@@ -121,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function () {
             input.hidden = checkbox.checked;
         }
     };
+
     size1ManualCheckbox.addEventListener('change', function () {
         toggleManualFields(size1ManualCheckbox, size1);
         toggleManualFields(size1ManualCheckbox, size1ManualValue, isInverted = true)
@@ -131,6 +160,31 @@ document.addEventListener('DOMContentLoaded', function () {
         toggleManualFields(size2ManualCheckbox, size2ManualValue, isInverted = true)
     });
 
+    size1ManualValue.addEventListener('input', function () {
+        let option = document.createElement('option');
+        option.textContent = size1ManualValue.value;
+        option.value = size1ManualValue.value;
+        size1.add(option);
+        if (size1.options.length >= DIMENSION1.length + 2){
+            size1.remove(size1.options.length - 2);
+        }
+        console.log(option);
+        size1.selectedIndex = size1.options.length -1;
+        console.log(size1);
+    })
+
+    size2ManualValue.addEventListener('input', function () {
+        let option = document.createElement('option');
+        option.textContent = size2ManualValue.value;
+        option.value = size2ManualValue.value;
+        size2.add(option);
+        if (size2.options.length >= DIMENSION2.length + 2){
+            size2.remove(size2.options.length - 2);
+        }
+        console.log(option);
+        size2.selectedIndex = size2.options.length -1;
+        console.log(size2);
+    })
 
 
 

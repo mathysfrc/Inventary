@@ -29,6 +29,14 @@
 								Gestion
 							</a>
 						</li>
+
+						<li class="">
+							<a class="eye" href="/scan/read" id="eye-link">
+								{% include 'icons/eye.svg' %}
+								Voir
+							</a>
+						</li>
+
 					</ul>
 					<ul class="logout-link">
 						<li>
@@ -45,8 +53,10 @@
 
 	<script>
 
-		let stockLink = document.getElementById("stock-link");
+let stockLink = document.getElementById("stock-link");
 let gestionLink = document.getElementById("gestion-link");
+let eyeLink = document.getElementById("eye-link");
+
 
 window.onload = function (e) {
 if (window.location.href.includes('/stock')) {
@@ -58,6 +68,12 @@ if (window.location.href.includes('/gestion')) {
 console.log('gestion')
 gestionLink.classList.add("active");
 }
+
+if (window.location.href.includes('/read')) {
+console.log('eye')
+eyeLink.classList.add("active");
+}
+
 }
 	</script>
 

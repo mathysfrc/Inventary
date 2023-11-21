@@ -42,8 +42,8 @@
                                     <div class="col">
                                         <p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
                                         <p class="card-text"><span class="span-text">Aire calculée </span></br> 
-                                            {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-                                                {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                            {% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
+                                                {{ (stock.size1 / 1000000)  *  stock.size2 }} m²
                                             {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
                                                 {{ (stock.size1 * (stock.size2 / 1000 )) }} L
                                             {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}

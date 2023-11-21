@@ -28,13 +28,12 @@
 					<div class="input-marge">
 						{{ form_row(form.price) }}
 					</div>
-					{{ form_row(form.size1) }}
 
-					                        <div class="form-group">
-                        <input type="checkbox" id="size1Manual" name="size1Manual">
-                            <label for="size1Manual">Saisir manuellement</label>
-                            <input type="text" id="size1ManualValue" name="size1ManualValue">
-                        </div>
+					{# {{ form_row(form.size1, {'attr': {'value': stock.size1 }}) }} #}
+                    <div class="mb-3">
+                        <label for="stock_size1" class="form-label required">Dimension 1</label>
+                        <input class="form-control" type="number" name="stock[size1]" id="stock_size1" value={{ stock.size1 }}>
+                    </div>
 
 				</div>
 				<div class="col">
@@ -45,14 +44,12 @@
 					<div class="input-marge">
 						{{ form_row(form.status) }}
 					</div>
-					{{ form_row(form.size2) }}
 
-
-    <div class="form-group">
-     <input type="checkbox" id="size2Manual" name="size2Manual">
-        <label for="size2Manual">Saisir manuellement</label>
-        <input type="text" id="size2ManualValue" name="size2ManualValue">
-    </div>
+					{# {{ form_row(form.size2, {'attr': {'value': stock.size2 }}) }} #}
+                    <div class="mb-3">
+                        <label for="stock_size2" class="form-label required">Dimension 2</label>
+                        <input class="form-control" type="number" name="stock[size2]" id="stock_size2" value={{ stock.size2 }}>
+                    </div>
 				</div>
 			</div>
 			<div class="row">
@@ -84,7 +81,7 @@
 					</div>
 				</div>
 				<div class="col-6 suppr-modif ">
-					{{ form_end(form) }}
+					{{ form_end(form, {'render_rest': false}) }}
 					{{ include('stock/_delete_form.html.twig') }}
 				</div>
 			</div>
@@ -106,6 +103,31 @@ document.addEventListener('DOMContentLoaded', function () {
     let size2ManualCheckbox = document.getElementById('size2Manual');
     let size1ManualValue = document.getElementById('size1ManualValue');
     let size2ManualValue = document.getElementById('size2ManualValue');
+
+
+    const DIMENSION1 = [
+        '1','610','1000','1050','1230','1250','1370','1520','1600','2000','3000',
+    ];
+
+    const DIMENSION2 = [
+        '1200','1500','2000','3000','2500','5000','15000','30000','50000',
+    ];
+
+    //Génération des options dans les selects pour les tailles
+
+    DIMENSION1.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size1.add(option);
+    })
+
+    DIMENSION2.forEach(element=>{
+        let option = document.createElement('option');
+        option.textContent = element;
+        option.value = element;
+        size2.add(option);
+    })
 
 
                 // Fonction pour gérer la visibilité des champs manuels

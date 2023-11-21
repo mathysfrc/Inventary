@@ -4,120 +4,129 @@
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent()}}
-{{ encore_entry_link_tags('partielle') }}
+	{{ parent()}}
+	{{ encore_entry_link_tags('partielle') }}
 {% endblock %}
 
 {% block body %}
 {% include 'home/index.html.twig' %}
 <section class="all-gestion">
-<div class="container">
-<div class="return-element">
-<a href="/gestion" class="return text-primary">
-< Retour à la gestion du stock
-</a>
-<h1 class=" fw-bold text-primary">Consommation partielle</h1>
-</div>
-<div class="card-body">
-<h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
-<p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
-<div class="row">
-<div class="col">
-<p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
-<p class="card-text"><span class="span-text">Dimensions </span></br> 
-{{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
-{{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
-</p>
-{% if stock.status == "Inutilisable" %}
-<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
-{% else %}
-<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
-{% endif %}
-</div>
-<div class="col">
-<p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
-<p class="card-text"><span class="span-text">Aire calculée </span></br> 
-                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
-                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
-                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
-                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
-                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
-                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
-                                        {% endif %}
-
-</p>
-</div>
-<div class="col">
-<p class="price-card card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
-</div>
-</div>
-</div>
-
-<div class="modif-col col-4">
-<form action="{{ path('app_stock_update') }}" method="POST" class="p-0">
+	<div class="container">
+		<div class="return-element">
+			<a href="/gestion" class="return text-primary">
+					< Retour à la gestion du stock
+			</a>
+			<h1 class=" fw-bold text-primary">Consommation partielle</h1>
+		</div>
+		<div class="card-body">
 
 
-
-<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
-<div class="row restant-mode">
-<div class="col-auto">
-<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" />
-</div>
-<div class="size1Unit col-auto">
-{{ stock.size1Unit }}
-</div>
-</div>
-<label class="size2rest restant-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
-<div class="row restant-mode">
-<div class="col-auto">
-<input class='size2' name="size2restant" type="text" placeholder="Ex : Produit" />  
-</div>
-<div class="size2Unit col-auto">
-{{ stock.size2Unit }}
-</div>
-</div>
+			<h3 class="card-title text-primary ml-3 mb-4">SKU : {{ stock.SKU }}</h3>
+			<p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
+				<div class="row">
+					<div class="col">
+						<p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+						<p class="card-text"><span class="span-text">Dimensions </span></br> 
+							{{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
+							{{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
+						</p>
+						{% if stock.status == "Inutilisable" %}
+							<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+						{% else %}
+							<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+						{% endif %}
+					</div>
+					<div class="col">
+						<p class="card-text"><span class="span-text">Ref. </span></br> {{stock.reference}} </p>
+						<p class="card-text"><span class="span-text">Aire calculée </span></br> 
+                        	{% if stock.surface == null %}
+                                {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                    {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                    {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                    {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                {% endif %}
+                            {% else %}
+                                {% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
+                                    {{ stock.surface / 1000000 }} m²
+                                {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                    {{ stock.surface / 1000000}} L
+                                {% endif %}
+                            {% endif %}
+						</p>
+					</div>
+					<div class="col">
+						<p class="price-card card-text"><span class="span-text">Prix</span> </br> {{stock.price}} €</p>
+					</div>
+				</div>
+		</div>
+	
+		<div class="modif-col col-4">
+			<form action="{{ path('app_stock_update') }}" method="POST" class="p-0">
 
 
 
+				<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
+				<div class="row restant-mode">
+					<div class="col-auto">
+						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" />
+					</div>
+					<div class="size1Unit col-auto">
+					{{ stock.size1Unit }}
+					</div>
+				</div>
+				<label class="size2rest restant-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} restante</label>
+				<div class="row restant-mode">
+					<div class="col-auto">
+						<input class='size2' name="size2restant" type="text" placeholder="Ex : Produit" />  
+					</div>
+					<div class="size2Unit col-auto">
+						{{ stock.size2Unit }}
+					</div>
+				</div>
 
-<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
-<div class="row consommation-mode">
-<div class="col-auto">
-<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
-</div>
-<div class="size1Unit col-1">
-{{ stock.size1Unit }}
-</div>
-</div>
-<label class="size2rest consommation-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} consommée</label>
-<div class="row consommation-mode">
-<div class="col-auto">
-<input class='size2' name="size2consommation" type="text" placeholder="Ex : Produit" />  
-</div>
-<div class="size2Unit col-1">
-{{ stock.size2Unit }}
-</div>
-</div>
 
-<div class="d-flex row">
-<div class="col-6 form-check">
-<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeExternal" value="external" checked>
-<label class="form-check-label" for="consommationModeExternal">Consommation externe</label>
-<div class="image-container">
-<img src= "{{ asset('build/images/external.svg')}}" class="w-25" alt="Image Consommation Externe" id="imageExterne" style="display: none;">
-</div>
-</div>
 
-<div class="col-6 form-check">
-<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeInternal" value="internal">
-<label class="form-check-label" for="consommationModeInternal">
-Consommation interne
-</label>
-<div class="image-container">
-<img src="{{ asset('build/images/internal.svg')}}" class="w-25" alt="Image Consommation Interne" id="imageInterne" style="display: none;">
-</div>
-</div>
-</div>
+
+				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
+				<div class="row consommation-mode">
+					<div class="col-auto">
+						<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
+					</div>
+					<div class="size1Unit col-1">
+					{{ stock.size1Unit }}
+					</div>
+				</div>
+				<label class="size2rest consommation-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} consommée</label>
+				<div class="row consommation-mode">
+					<div class="col-auto">
+						<input class='size2' name="size2consommation" type="text" placeholder="Ex : Produit" />  
+					</div>
+					<div class="size2Unit col-1">
+						{{ stock.size2Unit }}
+					</div>
+				</div>
+
+				<div class="d-flex row">
+				<div class="col-6 form-check">
+					<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeExternal" value="external" checked>
+					<label class="form-check-label" for="consommationModeExternal">Consommation externe</label>
+				<div class="image-container">
+				<img src= "{{ asset('build/images/external.svg')}}" class="w-25" alt="Image Consommation Externe" id="imageExterne" style="display: none;">
+				</div>
+				</div>
+
+				<div class="col-6 form-check">
+					<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeInternal" value="internal">
+					<label class="form-check-label" for="consommationModeInternal">
+						Consommation interne
+					</label>
+				<div class="image-container">
+				<img src="{{ asset('build/images/internal.svg')}}" class="w-25" alt="Image Consommation Interne" id="imageInterne" style="display: none;">
+				</div>
+				</div>
+				</div>
 
 <div class="mt-5">
 
@@ -126,16 +135,16 @@ Consommation interne
 </div>
 
 
-<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
-<input type="submit" class="valid-button validation btn-primary " />
-</form>
-</div>
-<div class="row">
-<div class="col-4">
-<a href="/scan/entry" class="re-scan button-impr btn btn-outline-primary" type="button">Scanner à nouveau</a>
-</div>
-</div>
-</div>
+				<input name="SKU" type="hidden" value="{{ stock.SKU }}"/>
+				<input type="submit" class="valid-button validation btn-primary " />
+			</form>
+		</div>
+		<div class="row">
+			<div class="col-4">
+				<a href="/scan/entry" class="re-scan button-impr btn btn-outline-primary" type="button">Scanner à nouveau</a>
+			</div>
+		</div>
+	</div>
 </section>
 
 <script>

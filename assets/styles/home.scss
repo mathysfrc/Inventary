@@ -31,7 +31,13 @@
   margin: auto;
 }
 
-.stock-svg, svg.scan {
+#eye-link {
+  display: grid;
+  margin: auto;
+  padding-top: 2rem;
+}
+
+.stock-svg, svg.scan, .eye-svg {
   margin: auto;
 }
 
