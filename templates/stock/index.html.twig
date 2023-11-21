@@ -17,6 +17,8 @@
 				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
 			</div>
 			
+
+			
 			<ul class="nav nav-tabs mx-5" >
 				<li class="nav-item">
 					<a class="tabs nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
@@ -122,7 +124,8 @@
 					{% endfor %}
 				</tbody>
 			</table>
-            <a href="{{ path('delete_all_data') }}" class="py-5" onclick="return confirmDelete('{{ path('delete_all_data') }}')">Supprimer toutes les données</a>
+
+			<a href="{{ path('delete_all_data') }}" class="delete-all-data py-5" onclick="return confirmDelete('{{ path('delete_all_data') }}')">Supprimer toutes les données</a>
 		</section>
 	</section>
 
@@ -138,6 +141,7 @@
       return false; // Annule l'action par défaut du lien
     }
   }
+
 </script>
 
 

@@ -4,29 +4,29 @@
 {% endblock %}
 
 {% block stylesheets %}
-{{ parent()}}
-{{ encore_entry_link_tags('empty') }}
+	{{ parent()}}
+	{{ encore_entry_link_tags('empty') }}
 {% endblock %}
 
 {% block body %}
-<div class="modal" id="myModal" style="display: block;">
-<div class="modal-content">
-<h1 class="text-primary">Voulez-vous consommer cette
-</br>
-référence</h1>
-<p class="text-primary"><span class="text">SKU :</span>
-{{ stock.SKU }}</p>
-            <p class="text-primary"><span class="text">Description :</span>
-{{ stock.description }}</p>
+	<div class="modal" id="myModal" style="display: block;">
+		<div class="modal-content">
+			<h1 class="text-primary">Voulez-vous consommer cette
+			</br>
+			référence</h1>
+		<p class="text-primary"><span class="text">SKU :</span>
+			{{ stock.SKU }}</p>
+            		<p class="text-primary"><span class="text">Description :</span>
+			{{ stock.description }}</p>
 
             <p class="text-primary"><span class="text">Ref :</span>
           {{ stock.reference }}
             </p>
-            <p class="text-primary"><span class="text">Dimensions :</span>
-{{ stock.size1Name }} : {{ stock.size1 }} {{ stock.size1Unit }} /
+            		<p class="text-primary"><span class="text">Dimensions :</span>
+			{{ stock.size1Name }} : {{ stock.size1 }} {{ stock.size1Unit }} /
             {{ stock.size2Name }} : {{ stock.size2 }} {{ stock.size2Unit }}</p>
 
-<p class="card-text"><span class="span-text">Aire calculée </span></br> 
+						<p class="card-text"><span class="span-text">Aire calculée </span></br> 
                                         {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
                                             {{ (stock.size1 / 1000)  *  stock.size2 }} m²
                                         {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
@@ -35,24 +35,24 @@ référence</h1>
                                             {{ (stock.size1 * stock.size2) / 1000000 }} m²
                                         {% endif %}
 
-</p>
-<div class="row">
-<div class="col">
+						</p>
+		<div class="row">
+			<div class="col">
                 <a href="/scan/empty" class="correction btn text-primary">Corriger</a>
             </div>
-<div class="col">
+			<div class="col">
                 <form action="/empty/template" method="POST">
                     <input type="hidden" name="SKU" value="{{ stock.SKU }}" />
                     <input type="submit" class="confirmation btn btn-primary text-light" value="Je confirme"/>
                 </form>
             </div>
-</div>
-</div>
+		</div>
+	</div>
 </div>
 
 
 <script>
-var modal = document.getElementById("myModal");
+	var modal = document.getElementById("myModal");
 var closeModal = document.getElementById("closeModal");
 
 // Fonction pour ouvrir la modal
