@@ -1,0 +1,86 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-c832f0.js",
+        "/build/app.js"
+      ],
+      "css": [
+        "/build/app.css"
+      ]
+    },
+    "home": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/home.css"
+      ]
+    },
+    "gestion": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/gestion.css"
+      ]
+    },
+    "login": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/login.css"
+      ]
+    },
+    "stock": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/stock.css"
+      ]
+    },
+    "print": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/print.css"
+      ]
+    },
+    "scan": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/scan.css"
+      ]
+    },
+    "partielle": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/partielle.css"
+      ]
+    },
+    "empty": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/empty.css"
+      ]
+    },
+    "error": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/error.css"
+      ]
+    }
+  }
+}
