@@ -67,7 +67,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							{% for tracking in trackings %}
+							{% for tracking in trackings|reverse %}
 								<tr>
 									<td class="fixed-col border-top-0">{{ tracking.SKU }}</td>
 									<td class="border-top-0">{{ tracking.description }}</td>

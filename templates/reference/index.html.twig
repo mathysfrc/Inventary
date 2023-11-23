@@ -77,7 +77,25 @@
                 <div class="impression-or-no">
                     <a href="{{ path('app_stock_create', {'id': stock.id}) }}" class="DO-NOT-PRINT button-no-impr btn">Créer sans imprimer l'étiquette</a>
 
-                    <a href="{{ path('app_stock_print_with_id', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
+
+
+                    {% if index < max %}
+                        <form method="GET" action="{{ path('app_stock_reference' , { 'id' : incremented_id })}}">
+                            <input type="hidden" name="id" value="{{ incremented_id  }}">
+                            <input type="hidden" name="index" value="{{ (index + 1)|number_format }}"> {# on effectue l'adition de l'index + 1 #}
+                            <input type="hidden" name="max" value="{{ max }}">
+                            <input type="submit" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" value="Imprimer l'étiquette">
+                        </form>  
+                    {% else %}
+                        <a href="{{ path('app_stock_print_with_id', {'id': stock.id}) }}" id="imprimerPage" class="DO-NOT-PRINT button-impr btn btn-primary" type="button">Imprimer l'étiquette</a>
+                    {% endif %}
+
+
+
+
+
+
+
                     <script>
                             document.getElementById("imprimerPage").addEventListener("click", function() {
                                 window.print();
@@ -139,4 +157,18 @@
             </div>    
 </div>
 </section>
+
+<script>
+    function incrementAndSubmit(path) {
+        var idInput = document.getElementsByName('id')[0];
+
+        // Incrémentez l'ID
+        idInput.value = parseInt(idInput.value) + 1;
+
+        // Soumettez le formulaire ou naviguez vers le lien
+        window.location.href = path + '&id=' + idInput.value + '&index=' + '&max=' + document.getElementsByName('max')[0].value;
+    }
+</script>
+
+
 {% endblock %}

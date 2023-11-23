@@ -120,9 +120,9 @@ class StockController extends AbstractController
 
             $id = $stock->getId();
 
-            $stocks = $entityManager->getRepository(Stock::class)->findBy([], ['SKU' => 'ASC']);
 
-            return $this->redirectToRoute('app_stock_reference', ['id' => $id], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_stock_reference', ['id' => $id, 'index' => 1, 'max' => $quantity], Response::HTTP_SEE_OTHER);
+
         }
 
         return $this->render('stock/new.html.twig', [
@@ -417,6 +417,17 @@ class StockController extends AbstractController
     public function reference(Request $request, Stock $stock): Response
     {
 
+        $index = $request->query->get('index');
+        $max = $request->query->get('max');
+        $idIncrement = $stock->getId();
+
+        $idIncrement += 1;
+
+
+
+
+
+
         $dataArray = [
             $stock->getSKU(),
             $stock->getDescription(),
@@ -454,6 +465,9 @@ class StockController extends AbstractController
             'controller_name' => 'StockController',
             'stock' => $stock,
             'dataUri' => $dataUri,
+            'index' => $index,
+            'max' => $max,
+            'incremented_id' => $idIncrement,
 
         ]);
     }
@@ -507,7 +521,7 @@ class StockController extends AbstractController
 
         $result = $writer->write($qrCode);
 
-        
+
         // $writer->validateResult($result, $dataToEncode);
         // Save it to a file
         // $result->saveToFile(__DIR__ . '/datamatrix-'. $id . '.png'); objectif !!

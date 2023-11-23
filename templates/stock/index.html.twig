@@ -68,7 +68,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for stock in stocks %}
+					{% for stock in stocks|reverse %}
 						<tr>
 							<td class="border-top-0">{{ stock.SKU }}</td>
 
