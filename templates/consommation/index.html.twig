@@ -78,7 +78,7 @@
 				<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
 				<div class="row restant-mode">
 					<div class="col-auto">
-						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" id="size1Input"/>
+						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" id="size1Input" {% if stock.productFamily == 'Support souple' %} disabled readonly {% endif %}/>
 					</div>
 					<div class="size1Unit col-auto">
 					{{ stock.size1Unit }}
