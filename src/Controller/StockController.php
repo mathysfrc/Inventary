@@ -147,6 +147,7 @@ class StockController extends AbstractController
         // Retrieve the object from the database and update it
         $stock = $stockRepository->findOneBy(['SKU' => $sku]);
 
+        $productFamily = $stock->getProductFamily();
 
         if ($size1restant != 0 && $size2restant != 0) {
             $size1 = $size1restant;
@@ -175,6 +176,7 @@ class StockController extends AbstractController
 
         $oldSize1 = $stock->getSize1();
         $oldSize2 = $stock->getSize2();
+
 
         // Update the stock object
         if (($oldSize1 != $size1 || $oldSize2 != $size2) && $consommationMode == "internal") {
@@ -272,6 +274,7 @@ class StockController extends AbstractController
         $result->saveToFile(__DIR__ . '/../data-matrix/datamatrix-' . 'id' . '.png');
 
         $dataUri = $result->getDataUri();
+
 
 
         return $this->render('partial_conso_imprim/index.html.twig', [
