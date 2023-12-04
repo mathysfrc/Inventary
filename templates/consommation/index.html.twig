@@ -25,7 +25,18 @@
 			<p class="card-text"><span class="span-text">Description </span> </br> {{ stock.description }}</p>
 				<div class="row">
 					<div class="col">
-						<p class="card-text"><span class="span-text">Famille </span></br> {{stock.productFamily}} </p>
+						<p class="card-text"><span class="span-text" id="productFamilyInput">Famille </span></br> {{stock.productFamily}}</p>
+						
+
+						{% if stock.productFamily == 'Support Souple' %}
+							<!-- If product family is 'Support Souple', disable the input for size1 -->
+							<script>
+								document.addEventListener('DOMContentLoaded', function() {
+									document.querySelector('.size1').disabled = true;
+								});
+							</script>
+						{% endif %}
+						
 						<p class="card-text"><span class="span-text">Dimensions </span></br> 
 							{{stock.size1Name}} - {{ stock.size1 }}{{ stock.size1Unit}} </br>
 							{{stock.size2Name}} - {{ stock.size2 }}{{ stock.size2Unit}}
@@ -64,13 +75,10 @@
 	
 		<div class="modif-col col-4">
 			<form action="{{ path('app_stock_update') }}" method="POST" class="p-0">
-
-
-
 				<label class="size1rest restant-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} restante</label>
 				<div class="row restant-mode">
 					<div class="col-auto">
-						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" />
+						<input class="size1" name="size1restant" type="text" placeholder="Ex : Produit" id="size1Input" {% if stock.productFamily == 'Support souple' %} disabled readonly {% endif %}/>
 					</div>
 					<div class="size1Unit col-auto">
 					{{ stock.size1Unit }}
@@ -86,13 +94,10 @@
 					</div>
 				</div>
 
-
-
-
 				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
 				<div class="row consommation-mode">
 					<div class="col-auto">
-						<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
+						<input class="size1 form-control" name="size1consommation" type="text" placeholder="Ex : Produit" {% if stock.productFamily == 'Support souple' %} disabled readonly{% endif %}/>
 					</div>
 					<div class="size1Unit col-1">
 					{{ stock.size1Unit }}
