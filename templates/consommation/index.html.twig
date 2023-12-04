@@ -94,14 +94,10 @@
 					</div>
 				</div>
 
-
-
-					<p class="small red">Si la famille de produit est 'Support souple', veuillez laisser le champ de Laize consommée vide.</p>
-
 				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
 				<div class="row consommation-mode">
 					<div class="col-auto">
-						<input class="size1" name="size1consommation" type="text" placeholder="Ex : Produit" />
+						<input class="size1 form-control" name="size1consommation" type="text" placeholder="Ex : Produit" {% if stock.productFamily == 'Support souple' %} disabled readonly{% endif %}/>
 					</div>
 					<div class="size1Unit col-1">
 					{{ stock.size1Unit }}
