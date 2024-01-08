@@ -27,7 +27,7 @@ class TrackingRepository extends ServiceEntityRepository
 
     $queryBuilder = $this->createQueryBuilder('p')
 
-        ->where('p.SKU LIKE :name')
+        ->where('p.description LIKE :name')
 
         ->setParameter('name', '%' . $name . '%')
 

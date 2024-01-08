@@ -97,7 +97,7 @@
 				<label class="size1rest consommation-mode text mb-1 mt-3 text-capitalize">{{ stock.size1Name }} consommée</label>
 				<div class="row consommation-mode">
 					<div class="col-auto">
-						<input class="size1 form-control" name="size1consommation" type="text" placeholder="Ex : Produit" {% if stock.productFamily == 'Support souple' %} disabled readonly{% endif %}/>
+						<input class="size1 form-control" name="size1consommation" type="number" placeholder="Ex : Produit" {% if stock.productFamily == 'Support souple' %} disabled readonly{% endif %}/>
 					</div>
 					<div class="size1Unit col-1">
 					{{ stock.size1Unit }}
@@ -106,13 +106,14 @@
 				<label class="size2rest consommation-mode text mb-1 mt-3 p-0 text-capitalize">{{ stock.size2Name }} consommée</label>
 				<div class="row consommation-mode">
 					<div class="col-auto">
-						<input class='size2' name="size2consommation" type="text" placeholder="Ex : Produit" />  
+						<input class='size2' name="size2consommation" type="number" placeholder="Ex : Produit" />  
 					</div>
 					<div class="size2Unit col-1">
 						{{ stock.size2Unit }}
 					</div>
 				</div>
 
+				{% if  stock.productFamily != 'Support souple' %}
 				<div class="d-flex row">
 				<div class="col-6 form-check">
 					<input class="form-check-input" type="radio" name="consommationMode" id="consommationModeExternal" value="external" checked>
@@ -132,6 +133,7 @@
 				</div>
 				</div>
 				</div>
+				{% endif %}
 
 <div class="mt-5">
 
