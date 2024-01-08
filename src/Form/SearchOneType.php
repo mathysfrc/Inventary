@@ -17,9 +17,8 @@ class SearchOneType extends AbstractType
                 'label' => ' ',
                 'attr' => [
                     'class' => 'border-primary',
-                    'placeholder' => 'SKU',
+                    'placeholder' => 'Nom',
                 ],
-
             ])
 
         ;
