@@ -49,6 +49,7 @@ class ImportCsvHistoryController extends AbstractController
                     $entity->setReference($columns[11]);
                     $entity->setStatus($columns[12]);
                     $entity->setShape($columns[13]);
+                    $entity->setMovementType($columns[14]);
 
                     // Add other properties as needed
 
