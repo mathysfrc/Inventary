@@ -2,84 +2,84 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-c832f0.js",
-        "/build/app.js"
+        "/build/runtime.188fa053.js",
+        "/build/625.fad335ce.js",
+        "/build/app.41598e90.js"
       ],
       "css": [
-        "/build/app.css"
+        "/build/app.63586db7.css"
       ]
     },
     "home": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/home.css"
+        "/build/home.502b190d.css"
       ]
     },
     "gestion": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/gestion.css"
+        "/build/gestion.b18cbfa6.css"
       ]
     },
     "login": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/login.css"
+        "/build/login.343b9ff0.css"
       ]
     },
     "stock": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/stock.css"
+        "/build/stock.1fcf9358.css"
       ]
     },
     "print": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/print.css"
+        "/build/print.22723067.css"
       ]
     },
     "scan": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/scan.css"
+        "/build/scan.0d8dc06f.css"
       ]
     },
     "partielle": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/partielle.css"
+        "/build/partielle.3cb22153.css"
       ]
     },
     "empty": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/empty.css"
+        "/build/empty.878b6f21.css"
       ]
     },
     "error": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.188fa053.js"
       ],
       "css": [
-        "/build/error.css"
+        "/build/error.72ce58ab.css"
       ]
     }
   }
