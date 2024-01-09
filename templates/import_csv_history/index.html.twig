@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Importation CSV History</h1>
+
+    {% if app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ app.flashes('success')[0] }}
+        </div>
+    {% endif %}
+
+    {% if app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ app.flashes('error')[0] }}
+        </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        <label for="csv_file">Sélectionnez un fichier CSV :</label>
+        <input type="file" name="csv_file" accept=".csv">
+        <button type="submit">Importer</button>
+    </form>
+{% endblock %}
