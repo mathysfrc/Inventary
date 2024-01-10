@@ -67,19 +67,19 @@
 @media (max-height: 500px) {
     
   svg.blue-icon {
-    width: 25px !important;
-    height: 25px !important;
+    width: 35px !important;
+    height: 35px !important;
   }
 
   .gestion, .eye, .stock {
-    padding-top: 0.3rem !important;
-    font-size: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    font-size: 0.8rem !important;
 
   }
 
   svg.stock-svg, svg.scan, svg.eye-svg {
-    width: 20px !important;
-    height: 20px !important;
+    width: 30px !important;
+    height: 30px !important;
   }
 
  svg.svg-logout {
@@ -87,8 +87,8 @@
  }
 
  nav.nav {
-    padding-top: 0;
-    padding-bottom: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   ul.nav-bar {
