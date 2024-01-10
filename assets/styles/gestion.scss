@@ -165,40 +165,40 @@ a.button-no-impr {
 
 input#size1ManualValue {
     display: block;
-  width: 100%;
-  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--bs-body-color);
-  appearance: none;
-  background-color: var(--bs-body-bg);
-  background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 16px 12px;
-  border: var(--bs-border-width) solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 input#size2ManualValue {
     display: block;
-  width: 100%;
-  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--bs-body-color);
-  appearance: none;
-  background-color: var(--bs-body-bg);
-  background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 16px 12px;
-  border: var(--bs-border-width) solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    width: 100%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .button-no-impression {
@@ -297,6 +297,7 @@ input#size2ManualValue {
 
 .stock-form {
     padding-bottom: 3rem;
+    margin: auto;
 
 }
 
@@ -306,17 +307,6 @@ input#size2ManualValue {
         margin-top: 10rem !important;
     }
 
-    h1.title-no-impression {
-        margin-left: 14% !important;
-        position: absolute !important;
-        top: 12.5% !important;
-    }
-
-    .validation {
-        position: absolute !important;
-        left: 38% !important;
-        top: 7% !important;
-    }
 }
 
 
@@ -331,75 +321,73 @@ input#size2ManualValue {
     }
 
 
-    h1.title-no-impression {
-        margin-left: 14% !important;
-        position: absolute !important;
-        top: 12.5% !important;
-    }
-
     a.return {
         position: absolute !important;
         top: 15rem;
         z-index: 100;
     }
 
-    .validation {
-        position: absolute !important;
-        left: 41% !important;
-        top: 12% !important;
-    }
 }
 
 /********CUSTOM*******/
 
-.card-title h3{
+.card-title h3 {
     width: initial;
 }
 
-.card-title .badge{
+.card-title .badge {
     width: initial;
-    margin-bottom:0
+    margin-bottom: 0
 }
 
-img.datamatrix{
+img.datamatrix {
     width: 100%;
     height: 100%;
 }
 
 
 @media print {
-    .no-print,.DO-NOT-PRINT{display: none!important}
+
+    .no-print,
+    .DO-NOT-PRINT {
+        display: none !important
+    }
 
     @page {
         size: auto;
-        margin:0!important;
-      }
-
-    .card-title h3{
-        font-size:40pt;
-        margin-top:12mm;
-      }
-
-    .print .badge{
-        font-size:24pt!important
+        margin: 0 !important;
     }
-    .card-text{
+
+    .card-title h3 {
+        font-size: 40pt;
+        margin-top: 12mm;
+    }
+
+    .print .badge {
+        font-size: 24pt !important
+    }
+
+    .card-text {
         font-size: 34pt;
         line-height: 1.2;
     }
 
-    .card-text .span-text{
-        margin-top:4mm;
-    }
-    .print img.datamatrix{
-        width: 33%!important;
-        height: 33%!important;
+    .card-text .span-text {
+        margin-top: 4mm;
     }
 
-    .print .desc{
-        margin-bottom:12mm!important;
+    .print img.datamatrix {
+        width: 33% !important;
+        height: 33% !important;
     }
- }
- @media not print {
-    .print { display: none!important }
- }
+
+    .print .desc {
+        margin-bottom: 12mm !important;
+    }
+}
+
+@media not print {
+    .print {
+        display: none !important
+    }
+}
