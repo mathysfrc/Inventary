@@ -63,3 +63,35 @@
   }
 
 }
+
+@media (max-height: 500px) {
+    
+  svg.blue-icon {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .gestion, .eye, .stock {
+    padding-top: 0.3rem !important;
+    font-size: 0.5rem !important;
+
+  }
+
+  svg.stock-svg, svg.scan, svg.eye-svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+ svg.svg-logout {
+    display: none;
+ }
+
+ nav.nav {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  ul.nav-bar {
+    margin: 0 !important;
+  }
+}
