@@ -7594,7 +7594,7 @@
                 "web-token/jwt-signature-algorithm-ecdsa": "^3.1",
                 "web-token/jwt-signature-algorithm-eddsa": "^3.1",
                 "web-token/jwt-signature-algorithm-hmac": "^3.1",
-                "web-token/jwt-signature-algorithm-none": "^3.1",
+                "web-token/jwt-signature-algorithm-none": "^3.1"
             },
             "type": "symfony-bundle",
             "autoload": {
