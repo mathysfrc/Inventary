@@ -44,20 +44,40 @@
 						</div>
 					</div>
 
-					<div class="row gestion-board">
-						<div class="col first-board">
-							<a href="/scan/empty" type="button" class="bouton btn btn-primary btn-lg bg-white border-primary  fw-bold text-primary">
-								<div class="col">
-									<p>Consommation totale</p>
-									<p class="text">
-										Retrouver les produits totalement consommés.</p>
-									{% include 'icons/arrow_left.svg'%}
-								</div>
-								<div class="col">
-									{% include 'icons/group.svg' %}
-								</div>
-							</a>
+					<div class="row d-flex">
+
+						<div class="col gestion-board">
+							<div class="col first-board">
+								<a href="/scan/empty" type="button" class="bouton btn btn-primary btn-lg bg-white border-primary  fw-bold text-primary">
+									<div class="col">
+										<p>Consommation totale</p>
+										<p class="text">
+											Retrouver les produits totalement consommés.</p>
+										{% include 'icons/arrow_left.svg'%}
+									</div>
+									<div class="col">
+										{% include 'icons/group.svg' %}
+									</div>
+								</a>
+							</div>
 						</div>
+
+						<div class="col gestion-board">
+							<div class="col first-board">
+								<a href="/scan/checkout" type="button" class="bouton btn btn-primary btn-lg bg-white border-primary  fw-bold text-primary">
+									<div class="col">
+										<p>Check-out</p>
+										<p class="text">
+											Vérifier l'ensemble de votre inventaire.</p>
+										{% include 'icons/arrow_left.svg'%}
+									</div>
+									<div class="col">
+										{% include 'icons/group.svg' %}
+									</div>
+								</a>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
