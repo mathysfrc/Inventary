@@ -58,6 +58,14 @@
         "/build/scan.css"
       ]
     },
+    "scan-checkout": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/scan-checkout.css"
+      ]
+    },
     "partielle": {
       "js": [
         "/build/runtime.js"

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('scan-checkout') }}
+{% endblock %}
+
+{% block body %}
+
+    <section class="container">
+        <a href="/gestion" class="return text-light">
+            < Retour à la gestion du stock
+        </a>
+
+        <h1 class="title-enter-stock fw-bold text-light">Check-out</h1>
+        <div class="row d-flex">
+            <div class="col-6 svg-check">
+                {% include 'icons/scanconso.svg' %}
+                <h1 class="text-scanner text-light fw-bold">Scanner la référence
+                    </br>
+                    a vérifier avec le boitier</h1>
+
+                <form id="formScan" action="/consommation" method="POST">
+                    <input id="input" type="text" class="hidden" name="SKU" autofocus tabindex="-1" />
+                </form>
+            </div>
+            <div class="col-6 suivi-check">
+                <div id="scannedSKUs" class="checkout-sku">
+                    <!-- Le contenu sera mis à jour dynamiquement ici -->
+                </div>
+            </div>
+            <a href="#" class="button-checkout">
+                <button type="submit" class="button-return-no-impr btn d-flex  bg-white text-primary">Suivant</button>
+            </a>
+        </div> 
+
+        <div class="linear-bar"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var formScan = document.getElementById('formScan');
+            var input = document.getElementById('input');
+            var scannedSKUs = document.getElementById('scannedSKUs');
+
+            formScan.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var scannedSKU = input.value;
+
+                // Ajouter le SKU à la liste
+                scannedSKUs.innerHTML += scannedSKU + '<br/>';
+                
+                // Effacer le champ de saisie après le scan
+                input.value = '';
+            });
+        });
+    </script>
+
+{% endblock %}

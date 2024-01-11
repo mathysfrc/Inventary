@@ -39,4 +39,12 @@ class ScanController extends AbstractController
             'controller_name' => 'ScanController',
         ]);
     }
+
+    #[Route('/scan/checkout', name: 'app_scan_checkout')]
+    public function checkout(): Response
+    {
+        return $this->render('scan/checkout.html.twig', [
+            'controller_name' => 'ScanController',
+        ]);
+    }
 }

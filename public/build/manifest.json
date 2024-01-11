@@ -7,6 +7,7 @@
   "build/stock.css": "/build/stock.css",
   "build/print.css": "/build/print.css",
   "build/scan.css": "/build/scan.css",
+  "build/scan-checkout.css": "/build/scan-checkout.css",
   "build/partielle.css": "/build/partielle.css",
   "build/empty.css": "/build/empty.css",
   "build/error.css": "/build/error.css",
