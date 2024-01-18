@@ -357,6 +357,45 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
 
+            var label2Element = document.querySelector('label[for="stock_size2Name"]');
+            var label1Element = document.querySelector('label[for="stock_size1Name"]');
+            var label2ElementSize = document.querySelector('label[for="stock_size2"]');
+            var label1ElementSize = document.querySelector('label[for="stock_size1"]');
+            var label2ElementUnit = document.querySelector('label[for="stock_size2Unit"]');
+            var label1ElementUnit = document.querySelector('label[for="stock_size1Unit"]');
+            var label2SizeManual = document.querySelector('label[for="size2Manual"]');
+            var label1SizeManual = document.querySelector('label[for="size1Manual"]');
+
+            if (selectedValue === 'Structure') {
+
+            size1.innerHTML = '';
+            toggleManualFields(size1ManualCheckbox, size1);
+
+            let option1_11 = document.createElement('option');
+            option1_11.value = '1';
+            option1_11.textContent = '1';
+
+            size1.appendChild(option1_11);
+
+            size2.innerHTML = '';
+            toggleManualFields(size2ManualCheckbox, size2);
+
+            let option1_1 = document.createElement('option');
+            option1_1.value = '1';
+            option1_1.textContent = '1';
+
+            size2.appendChild(option1_1);
+
+            if (size1ManualValue.value === '') {
+                size1ManualValue.value = '1'; // Assurez-vous que size1Input existe
+            }
+
+            if (size2ManualValue.value === '') {
+                size2ManualValue.value = '1'; // Assurez-vous que size2Input existe
+            }
+
+            }
+
         
     });
 

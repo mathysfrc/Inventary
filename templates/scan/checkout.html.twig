@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block body %}
-
     <section class="container">
         <a href="/gestion" class="return text-light">
             < Retour à la gestion du stock
@@ -18,44 +17,69 @@
         <div class="row d-flex">
             <div class="col-6 svg-check">
                 {% include 'icons/scanconso.svg' %}
-                <h1 class="text-scanner text-light fw-bold">Scanner la référence
-                    </br>
-                    a vérifier avec le boitier</h1>
+                <h1 class="text-scanner text-light fw-bold">Scanner la référence<br/>a vérifier avec le boitier</h1>
 
-                <form id="formScan" action="/consommation" method="POST">
-                    <input id="input" type="text" class="hidden" name="SKU" autofocus tabindex="-1" />
-                </form>
+ 
+                {{ form_start(form) }}
+
+                {{ form_row(form.SKU, {'attr': {'id': 'sku-input', 'autofocus': true, 'tabindex': -1}}) }}
+                {{ form_row(form.description, {'attr': {'id': 'description-input'}}) }}
+                {{ form_row(form.productFamily, {'attr': {'id': 'productFamily-input'}}) }}
+                {{ form_row(form.reference, {'attr': {'id': 'reference-input'}}) }}
+                {{ form_row(form.price, {'attr': {'id': 'price-input'}}) }}
+                {{ form_row(form.size1Name, {'attr': {'id': 'size1Name-input'}}) }}
+                {{ form_row(form.size1, {'attr': {'id': 'size1-input'}}) }}
+                {{ form_row(form.size1Unit, {'attr': {'id': 'size1Unit-input'}}) }}
+                {{ form_row(form.size2Name, {'attr': {'id': 'size2Name-input'}}) }}
+                {{ form_row(form.size2, {'attr': {'id': 'size2-input'}}) }}
+                {{ form_row(form.size2Unit, {'attr': {'id': 'size2Unit-input'}}) }}
+
+                <input id="form-input" type="submit" class="hidden"/>
+                {{ form_end(form) }}
             </div>
             <div class="col-6 suivi-check">
-                <div id="scannedSKUs" class="checkout-sku">
+                <div id="scannedSKUsContainer" class="checkout-sku">
                     <!-- Le contenu sera mis à jour dynamiquement ici -->
+                    {% for element in stockDataMatrixs %}
+                        <div class="sku-item" id="sku-item">
+                            <p>{{ element.SKU }}</p>
+                            <a href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}">Supprimer</a>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
-            <a href="#" class="button-checkout">
-                <button type="submit" class="button-return-no-impr btn d-flex  bg-white text-primary">Suivant</button>
-            </a>
         </div> 
-
         <div class="linear-bar"></div>
     </section>
+    <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
+    <a href="#" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
 
+
+
+<script>
+    function error() {
+        alert('{{ error | default("Aucune erreur") }}');
+    }
+
+    function confirmDelete(url) {
+    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer toutes les données ?");
+
+    if (confirmation) {
+      window.location.href = url;
+    } else {
+      // L'utilisateur a annulé la suppression
+      alert("Suppression annulée !");
+      return false; // Annule l'action par défaut du lien
+    }
+  }
+</script>
+
+{% if error is not null %}
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var formScan = document.getElementById('formScan');
-            var input = document.getElementById('input');
-            var scannedSKUs = document.getElementById('scannedSKUs');
-
-            formScan.addEventListener('submit', function (e) {
-                e.preventDefault();
-                var scannedSKU = input.value;
-
-                // Ajouter le SKU à la liste
-                scannedSKUs.innerHTML += scannedSKU + '<br/>';
-                
-                // Effacer le champ de saisie après le scan
-                input.value = '';
-            });
-        });
+        error();
     </script>
+
+
+{% endif %}
 
 {% endblock %}

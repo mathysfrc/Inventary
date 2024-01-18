@@ -18,7 +18,7 @@ form {
     height: 100vh;
     position: absolute;
     top: 0;
-    left: 40rem;
+    left: 37rem;
 }
 
 a.return {
@@ -81,6 +81,27 @@ a {
 .button-checkout {
     display: flex;
     justify-content: flex-end;
+    position: absolute;
+    top: 43rem;
+    left: 58rem;
+
+}
+
+.button-check {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: 43rem;
+    left: 42rem;
+    background-color: rgba(214, 235, 255, 0.15) !important;
+    color: white !important;
+
+}
+
+.sku-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
 }
 
 
@@ -102,11 +123,24 @@ input.hidden {
     scrollbar-color: grey;
 }
 
+.delete-button {
+    font-size: smaller;
+    color: white;
+    background-color: transparent;
+    font-weight: bold;
+    border: none;
+    margin-right: 1rem !important;
+    margin-left: 3rem;
+}
+
 @media (min-width: 1281px) {
     a.return {
         position: absolute;
         top: 3rem;
         left: 4rem;
+    }
+    .delete-button {
+        margin-left: 10rem;
     }
 
     .title-enter-stock {
@@ -123,7 +157,7 @@ input.hidden {
 
     .linear-bar {
         position: absolute;
-        left: 60rem;
+        left: 56rem;
     }
 
     svg {
@@ -133,6 +167,22 @@ input.hidden {
     h1.text-scanner {
         text-align: center;
         margin-top: 5rem;
+    }
+
+    .button-checkout {
+        top: 50rem;
+        left: 83rem;
+    }
+
+    .button-check {
+        top: 50rem;
+        left: 63rem;
+    
+    }
+
+    #stock_data_matrix {
+        display: grid;
+        grid-template-columns: 2fr repeat(1, 2fr); 
     }
 }
 
