@@ -89,6 +89,22 @@
       "css": [
         "/build/error.css"
       ]
+    },
+    "checkout": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/checkout.css"
+      ]
+    },
+    "loader": {
+      "js": [
+        "/build/runtime.js"
+      ],
+      "css": [
+        "/build/loader.css"
+      ]
     }
   }
 }

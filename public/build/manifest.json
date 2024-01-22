@@ -11,6 +11,8 @@
   "build/partielle.css": "/build/partielle.css",
   "build/empty.css": "/build/empty.css",
   "build/error.css": "/build/error.css",
+  "build/checkout.css": "/build/checkout.css",
+  "build/loader.css": "/build/loader.css",
   "build/runtime.js": "/build/runtime.js",
   "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-c832f0.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-c832f0.js",
   "build/images/imprinova-accueil.svg": "/build/images/imprinova-accueil.92e59769.svg",
