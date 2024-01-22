@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chargement
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('loader') }}
+{% endblock %}
+
+{% block body %}
+	<meta http-equiv="refresh" content="5;url={{ path('app_checkout_final')}}">
+    <div class="height">
+<div class="terminal-loader">
+  <div class="terminal-header">
+    <div class="terminal-title">Analyse</div>
+    <div class="terminal-controls">
+      <div class="control closer"></div>
+      <div class="control minimize"></div>
+      <div class="control maximize"></div>
+    </div>
+  </div>
+  <div class="text">En cours...</div>
+</div>
+</div>
+{% endblock %}

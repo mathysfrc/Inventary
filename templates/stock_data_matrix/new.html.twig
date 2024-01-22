@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New StockDataMatrix{% endblock %}
+
+{% block body %}
+    <h1>Create new StockDataMatrix</h1>
+
+    {{ include('stock_data_matrix/_form.html.twig') }}
+
+    <a href="{{ path('app_stock_data_matrix_index') }}">back to list</a>
+{% endblock %}

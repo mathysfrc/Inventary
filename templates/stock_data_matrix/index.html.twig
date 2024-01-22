@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Check-out
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig' %}
+	<section class="all-stock">
+		<section class="container">
+
+			<div class="row">
+				<h1 class="title-stock my-5 fw-bold text-primary">Check-out</h1>
+			</div>
+
+            			<div class="row mb-4">
+				<div class="col-9">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form) }}
+						</div>
+						<div class="col">
+							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/Search.svg' %}</button>
+						</div>
+					</div>
+					{{ form_end(form) }}
+				</div>
+
+			</div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="border-top-0 border-bottom-0">SKU</th>
+                <th class="border-top-0 border-bottom-0">Description</th>
+                <th class="border-top-0 border-bottom-0">Dimensions</th>
+                <th class="border-top-0 border-bottom-0">Résultat</th>
+                <th class="border-top-0 border-bottom-0">Prix</th>
+                <th class="border-top-0 border-bottom-0">Famille produit</th>
+                <th class="border-top-0 border-bottom-0">Référence</th>
+                <th class="border-top-0 border-bottom-0">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stock_data_matrix in stock_data_matrices %}
+            <tr>
+                <td class="border-top-0">{{ stock_data_matrix.SKU }}</td>
+                <td class="border-top-0">{{ stock_data_matrix.description }}</td>
+						<td class="border-top-0">
+								{{ stock_data_matrix.size1Name }}&nbsp;:
+								{{ stock_data_matrix.size1 }}
+								{{ stock_data_matrix.size1Unit }}
+								x
+								{{ stock_data_matrix.size2Name }}&nbsp;:
+								{{ stock_data_matrix.size2 }}
+								{{ stock_data_matrix.size2Unit }}
+							</td>
+							<td class="border-top-0">
+                                    {% if stock_data_matrix.surface == null %}
+                                        {% if  stock_data_matrix.size1unit == "mm"  and  stock_data_matrix.size2Unit == "m"  %}
+                                            {{ (stock_data_matrix.size1 / 1000)  *  stock_data_matrix.size2 }} m²
+                                        {% elseif  stock_data_matrix.size1Unit == 'unité'  and  stock_data_matrix.size2Unit == 'mL'  %}
+                                            {{ (stock_data_matrix.size1 * (stock_data_matrix.size2 / 1000 )) }} L
+                                        {% elseif  stock_data_matrix.size1Unit == 'mm'  and  stock_data_matrix.size2Unit == 'mm'  %}
+                                            {{ (stock_data_matrix.size1 * stock_data_matrix.size2) / 1000000 }} m²
+                                        {% endif %}
+                                    {% else %}
+                                        {% if  stock_data_matrix.size1unit == "mm"  and  stock_data_matrix.size2Unit == "mm"  %}
+                                            {{ stock_data_matrix.surface / 1000000 }} m²
+                                        {% elseif  stock_data_matrix.size1Unit == 'unité'  and  stock_data_matrix.size2Unit == 'mL'  %}
+                                            {{ stock_data_matrix.surface }} L
+                                        {% endif %}
+                                    {% endif %}
+							</td>
+							<td class="border-top-0">{{ stock_data_matrix.price }}&nbsp;€</td>
+							<td class="border-top-0">{{ stock_data_matrix.productFamily }}</td>
+							<td class="border-top-0">{{ stock_data_matrix.reference }}</td>
+							<td class="border-top-0">
+								{% if stock_data_matrix.status == "Inutilisable" %}
+									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+								{% else %}
+									<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+								{% endif %}
+							</td>
+            </tr>
+					{% else %}
+						<tr>
+							<td colspan="17">Aucun ligne de stock récuperée</td>
+						</tr>
+					{% endfor %}
+
+                    <a href="{{ path('app_loader')}}" class="button-return-no-impr button-checkout  btn d-flex  bg-primary text-white">Analyser</a>
+        </tbody>
+    </table>
+{% endblock %}
