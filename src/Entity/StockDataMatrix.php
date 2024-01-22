@@ -46,6 +46,12 @@ class StockDataMatrix
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $size2Unit = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $surface = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -179,6 +185,30 @@ class StockDataMatrix
     public function setSize2Unit(?string $size2Unit): static
     {
         $this->size2Unit = $size2Unit;
+
+        return $this;
+    }
+
+    public function getSurface(): ?string
+    {
+        return $this->surface;
+    }
+
+    public function setSurface(?string $surface): static
+    {
+        $this->surface = $surface;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

@@ -30,6 +30,10 @@ Encore
     .addStyleEntry('partielle', './assets/styles/partielle.scss')
     .addStyleEntry('empty', './assets/styles/empty.scss')
     .addStyleEntry('error', './assets/styles/error.scss')
+    .addStyleEntry('checkout', './assets/styles/checkout.scss')
+    .addStyleEntry('loader', './assets/styles/loader.scss')
+
+
 
 
 

@@ -33,6 +33,7 @@
                 {{ form_row(form.size2Name, {'attr': {'id': 'size2Name-input'}}) }}
                 {{ form_row(form.size2, {'attr': {'id': 'size2-input'}}) }}
                 {{ form_row(form.size2Unit, {'attr': {'id': 'size2Unit-input'}}) }}
+                
 
                 <input id="form-input" type="submit" class="hidden"/>
                 {{ form_end(form) }}
@@ -52,7 +53,7 @@
         <div class="linear-bar"></div>
     </section>
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
-    <a href="#" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
+    <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
 
 
 

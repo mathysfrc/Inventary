@@ -12,6 +12,10 @@ form {
     position: absolute;
 }
 
+label.form-label {
+    display: none;
+}
+
 .linear-bar {
     background-color: rgba(217, 217, 217, 0.28);
     width: 4px;
@@ -73,6 +77,8 @@ svg {
     align-items: center !important;
     font-weight: bold;
 }
+
+
 
 a {
     text-decoration: none !important;

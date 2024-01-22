@@ -21,6 +21,23 @@ class StockDataMatrixRepository extends ServiceEntityRepository
         parent::__construct($registry, StockDataMatrix::class);
     }
 
+    public function findLikeName(string $name)
+
+{
+
+    $queryBuilder = $this->createQueryBuilder('p')
+
+        ->where('p.SKU LIKE :name')
+
+        ->setParameter('name', '%' . $name . '%')
+
+        ->getQuery();
+
+
+    return $queryBuilder->getResult();
+
+}
+
 //    /**
 //     * @return StockDataMatrix[] Returns an array of StockDataMatrix objects
 //     */
