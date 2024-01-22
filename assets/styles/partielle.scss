@@ -57,32 +57,19 @@ P.card-text {
 }
 
 
-.inutilisable,
-.utilisable {
-    position: absolute;
-    bottom: 24rem;
-    left: 2rem;
-}
-
-
 .card-reference {
     width: 35rem;
 }
 
 .re-scan {
-    position: absolute;
-    top: 4.5rem;
-    left: 2rem;
     width: 16rem;
     height: 2.5rem;
+    margin-left: 9rem;
 
 }
 
 
 .validation {
-    position: absolute;
-    top: 25rem;
-    left: 14rem;
     width: 16rem;
     height: 2.5rem;
     justify-self: center;
@@ -104,9 +91,21 @@ P.card-text {
 }
 
 div.modif-col {
-    position: absolute;
-    left: 43rem;
-    top: 15rem !important;
+    margin-top: 10rem;
+    display: flex;
+    justify-content: center;
+}
+
+.form-control, .size1, .size2 {
+    width: 30rem !important;
+}
+
+.input-valeur {
+    margin: auto;
+}
+
+.card-element {
+    display: flex;
 }
 
 
@@ -133,62 +132,13 @@ input {
     }
 
     .re-scan {
-        position: absolute;
-        top: 15rem;
-        left: 5rem;
         width: 16rem;
         height: 2.5rem;
+        margin-left: 9rem;
 
     }
 
 
-    input {
-        position: absolute;
-        left: 20rem;
-        height: 3rem;
-    }
-
-    .size1 {
-        position: absolute;
-        top: 2.5rem;
-        width: 90%;
-    }
-
-    .size1Unit {
-        position: absolute;
-        top: 3.5rem;
-        left: 16.5rem;
-    }
-
-    .size2Unit {
-        position: absolute;
-        top: 8rem;
-        left: 16.5rem;
-    }
-
-    .size2 {
-        position: absolute;
-        top: 7rem;
-        width: 90%;
-
-    }
-
-
-    .size2rest {
-        position: absolute;
-        top: 6rem;
-    }
-
-    input.validation {
-        position: absolute;
-        top: 33rem !important;
-        left: 40rem !important;
-    }
-
-    label.text {
-        position: absolute;
-        left: 40rem;
-    }
 
     a.bout-recep {
         margin-top: 21rem;
@@ -225,21 +175,6 @@ input {
         top: 15rem;
     }
 
-    .validation {
-        position: absolute !important;
-        left: 38% !important;
-        top: 10% !important;
-    }
-
-    label.size1rest {
-        position: absolute;
-        left: 20rem;
-    }
-
-    label.size2rest {
-        position: absolute;
-        left: 20rem;
-    }
 
 }
 
@@ -256,58 +191,12 @@ input {
     }
 
     .re-scan {
-        position: absolute;
-        top: 27rem;
-        left: 15rem;
         width: 16rem;
         height: 2.5rem;
+        margin-left: 9rem;
 
     }
 
-    input {
-        position: absolute;
-        left: 40rem;
-        height: 3rem;
-    }
-
-    .size1 {
-        position: absolute;
-        top: 2.5rem;
-    }
-
-    .size1Unit {
-        position: absolute;
-        top: 3.5rem;
-        left: 40rem;
-    }
-
-    .size2Unit {
-        position: absolute;
-        top: 8rem;
-        left: 40rem;
-    }
-
-    .size2 {
-        position: absolute;
-        top: 7rem;
-    }
-
-
-    .size2rest {
-        position: absolute;
-        top: 6rem;
-    }
-
-    input.validation {
-        position: absolute;
-        top: 45rem !important;
-        left: 85rem !important;
-    }
-
-    label.text {
-        position: absolute;
-        left: 40rem;
-    }
 
     a.bout-recep {
         margin-top: 21rem;
@@ -346,11 +235,6 @@ input {
         top: 15rem;
     }
 
-    .validation {
-        position: absolute !important;
-        left: 41% !important;
-        top: 12% !important;
-    }
 
 
 

@@ -5,11 +5,31 @@ body {
 }
 
 .modal {
-    width: 43%;
-    position: absolute;
-    top: 20%;
-    left: 28%;
-    position: fixed;
+    display: flex !important;
+    height: 50%;
+    justify-content: center !important;
+    align-content: center !important;
+    margin: auto !important;
+    height: inherit;
+}
+
+.modal-content {
+    display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+  justify-content: center;
+  align-content: center;
+  align-items: unset;
+  margin: auto;
+  align-items: unset;
+  width: initial;
 }
 
 h1 {

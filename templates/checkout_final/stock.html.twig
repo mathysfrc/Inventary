@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste du stock
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent()}}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig' %}
+	<section class="all-stock">
+		<section class="container">
+
+			<div class="row">
+				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
+			</div>
+			
+            <ul class="nav nav-tabs mx-5" >
+				<li class="nav-item">
+					<a class="tabs nav-link" aria-current="page" href="{{ path('app_checkout_final')}}">Check-out
+					</a>
+				</li>
+                /
+				<li class="nav-item">
+					<a class="tabs nav-link" href="{{ path('app_checkout_final_stock')}}">Stock</a>
+				</li>
+                /
+                <li class="nav-item">
+					<a class="tabs nav-link" href="{{ path('app_checkout_final_difference')}}">Instructions</a>
+				</li>
+			</ul>
+			
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="border-top-0 border-bottom-0">SKU</th>
+						<th class="border-top-0 border-bottom-0">Description</th>
+						<th class="border-top-0 border-bottom-0">Dimensions</th>
+						<th class="border-top-0 border-bottom-0">Résultat</th>
+						<th class="border-top-0 border-bottom-0">Prix</th>
+						<th class="border-top-0 border-bottom-0">Famille produit</th>
+						<th class="border-top-0 border-bottom-0">Référence</th>
+						<th class="border-top-0 border-bottom-0">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{% for stock in stocks|reverse %}
+						<tr>
+							<td class="border-top-0">{{ stock.SKU }}</td>
+
+							<td class="border-top-0">{{ stock.description }}</td>
+							<td class="border-top-0">
+								{{ stock.size1Name }}&nbsp;:
+								{{ stock.size1 }}
+								{{ stock.size1Unit }}
+								x
+								{{ stock.size2Name }}&nbsp;:
+								{{ stock.size2 }}
+								{{ stock.size2Unit }}
+							</td>
+							<td class="border-top-0">
+                                    {% if stock.surface == null %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+                                            {{ (stock.size1 / 1000)  *  stock.size2 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ (stock.size1 * (stock.size2 / 1000 )) }} L
+                                        {% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
+                                            {{ (stock.size1 * stock.size2) / 1000000 }} m²
+                                        {% endif %}
+                                    {% else %}
+                                        {% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
+                                            {{ stock.surface / 1000000 }} m²
+                                        {% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
+                                            {{ stock.surface }} L
+                                        {% endif %}
+                                    {% endif %}
+							</td>
+							<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
+							<td class="border-top-0">{{ stock.productFamily }}</td>
+							<td class="border-top-0">{{ stock.reference }}</td>
+							<td class="border-top-0">
+								{% if stock.status == "Inutilisable" %}
+									<span class="badge custom-w p-2 px-3 text-bg-danger text-white">Inutilisable</span>
+								{% else %}
+									<span class="badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
+								{% endif %}
+							</td>
+
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="17">Aucun ligne de stock récuperée</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+	</section>
+
+
+
+
+{% endblock %}
