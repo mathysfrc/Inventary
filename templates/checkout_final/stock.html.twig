@@ -17,42 +17,21 @@
 				<h1 class="title-stock my-5 fw-bold text-primary">Stock</h1>
 			</div>
 			
-
-			
-			<ul class="nav nav-tabs mx-5" >
+            <ul class="nav nav-tabs mx-5" >
 				<li class="nav-item">
-					<a class="tabs nav-link" aria-current="page" href="{{ path('app_stock_index')}}">En stock
+					<a class="tabs nav-link" aria-current="page" href="{{ path('app_checkout_final')}}">Check-out
 					</a>
 				</li>
-				/
+                /
 				<li class="nav-item">
-					<a class="tabs nav-link" href="{{ path('app_tracking_index')}}">Historique</a>
+					<a class="tabs nav-link" href="{{ path('app_checkout_final_stock')}}">Stock</a>
+				</li>
+                /
+                <li class="nav-item">
+					<a class="tabs nav-link" href="{{ path('app_checkout_final_difference')}}">Instructions</a>
 				</li>
 			</ul>
-
-
-			<div class="row mb-4">
-				<div class="col-9">
-					{{ form_start(form) }}
-					<div class="row">
-						<div class="col">
-							{{ form_widget(form) }}
-						</div>
-						<div class="col">
-							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/Search.svg' %}</button>
-						</div>
-					</div>
-					{{ form_end(form) }}
-				</div>
-				<div class="col-3">
-
-					<a type="button" href="/export/table" class="btn btn-lg mt-4 btn-outline-primary text-primary py-1 ml-5">
-						{% include 'icons/Download.svg' %}
-						&nbsp Exporter
-					</a>
-
-				</div>
-			</div>
+			
 
 			<table class="table">
 				<thead>
@@ -111,12 +90,6 @@
 								{% endif %}
 							</td>
 
-							<td class="border-top-0">
-								<a type="button" class="text-black" href="{{ path('app_stock_edit', {'id': stock.id }) }}">
-									{% include 'icons/edit.svg' %}
-								</a>
-							</td>
-
 						</tr>
 					{% else %}
 						<tr>
@@ -125,25 +98,9 @@
 					{% endfor %}
 				</tbody>
 			</table>
-
-			<a href="{{ path('delete_all_data') }}" class="delete-all-data py-5" onclick="return confirmDelete('{{ path('delete_all_data') }}')">Supprimer toutes les données</a>
 		</section>
 	</section>
 
-<script>
-  function confirmDelete(url) {
-    var confirmation = confirm("Êtes-vous sûr de vouloir supprimer toutes les données ?");
-
-    if (confirmation) {
-      window.location.href = url;
-    } else {
-      // L'utilisateur a annulé la suppression
-      alert("Suppression annulée !");
-      return false; // Annule l'action par défaut du lien
-    }
-  }
-
-</script>
 
 
 

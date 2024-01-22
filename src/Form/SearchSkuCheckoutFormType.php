@@ -2,12 +2,13 @@
 
 namespace App\Form;
 
+use App\Entity\StockDataMatrix;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SearchOneType extends AbstractType
+class SearchSkuCheckoutFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -17,8 +18,9 @@ class SearchOneType extends AbstractType
                 'label' => ' ',
                 'attr' => [
                     'class' => 'border-primary',
-                    'placeholder' => 'Nom',
+                    'placeholder' => 'SKU',
                 ],
+
             ])
 
         ;

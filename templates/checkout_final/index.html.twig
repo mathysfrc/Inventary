@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Check-out
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('stock') }}
+{% endblock %}
+
+{% block body %}
+	{% include 'home/index.html.twig' %}
+	<section class="all-stock">
+		<section class="container">
+
+			<div class="row">
+				<h1 class="title-stock my-5 fw-bold text-primary">Check-out</h1>
+			</div>
+
+			<ul class="nav nav-tabs mx-5">
+				<li class="nav-item">
+					<a class="tabs nav-link" aria-current="page" href="{{ path('app_checkout_final')}}">Check-out</a>
+				</li>
+				/
+				<li class="nav-item">
+					<a class="tabs nav-link" href="{{ path('app_checkout_final_difference')}}">Instructions</a>
+				</li>
+			</ul>
+			<table class="table">
+				<thead>
+					<tr>
+						<th class="border-top-0 border-bottom-0"></th>
+						<th class="border-top-0 border-bottom-0">SKU</th>
+						<th class="border-top-0 border-bottom-0">Description</th>
+						<th class="border-top-0 border-bottom-0">Dimensions</th>
+						<th class="border-top-0 border-bottom-0">Résultat</th>
+						<th class="border-top-0 border-bottom-0">Prix</th>
+						<th class="border-top-0 border-bottom-0">Famille produit</th>
+						<th class="border-top-0 border-bottom-0">Référence</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for stock in stocks %}
+						{% set matching_checkout = stock_data_matrices|filter(matrice => matrice.SKU == stock.SKU)|first %}
+						{% if matching_checkout is not same as(false) %}
+							<tr>
+								<td class="border-top-0 text-primary">STOCK</td>
+								<td class="border-top-0">{{ stock.SKU }}</td>
+								<td class="border-top-0">{{ stock.description }}</td>
+								<td class="border-top-0">
+									{{ stock.size1Name }}&nbsp;:
+									{{ stock.size1 }}
+									{{ stock.size1Unit }}
+									x
+									{{ stock.size2Name }}&nbsp;:
+									{{ stock.size2 }}
+									{{ stock.size2Unit }}
+								</td>
+								<td class="border-top-0">
+									{% if stock.surface == null %}
+										{% if stock.size1unit == "mm" and stock.size2Unit == "m" %}
+											{{ (stock.size1 / 1000) * stock.size2 }}
+											m²
+										{% elseif stock.size1Unit == 'unité' and stock.size2Unit == 'mL' %}
+											{{ (stock.size1 * (stock.size2 / 1000 )) }}
+											L
+										{% elseif stock.size1Unit == 'mm' and stock.size2Unit == 'mm' %}
+											{{ (stock.size1 * stock.size2) / 1000000 }}
+											m²
+										{% endif %}
+									{% else %}
+										{% if stock.size1unit == "mm" and stock.size2Unit == "mm" %}
+											{{ stock.surface / 1000000 }}
+											m²
+										{% elseif stock.size1Unit == 'unité' and stock.size2Unit == 'mL' %}
+											{{ stock.surface }}
+											L
+										{% endif %}
+									{% endif %}
+								</td>
+								<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
+								<td class="border-top-0">{{ stock.productFamily }}</td>
+								<td class="border-top-0">{{ stock.reference }}</td>
+							</tr>
+
+							<tr>
+								<td class="border-top-0 text-primary">CHECKOUT</td>
+								<td class="border-top-0">{{ matching_checkout.SKU }}</td>
+								<td class="border-top-0">{{ matching_checkout.description }}</td>
+								<td class="border-top-0">
+									{{ matching_checkout.size1Name }}&nbsp;:
+									{{ matching_checkout.size1 }}
+									{{ matching_checkout.size1Unit }}
+									x
+									{{ matching_checkout.size2Name }}&nbsp;:
+									{{ matching_checkout.size2 }}
+									{{ matching_checkout.size2Unit }}
+								</td>
+								<td class="border-top-0">
+									{% if matching_checkout.surface == null %}
+										{% if matching_checkout.size1unit == "mm" and matching_checkout.size2Unit == "m" %}
+											{{ (matching_checkout.size1 / 1000) * matching_checkout.size2 }}
+											m²
+										{% elseif matching_checkout.size1Unit == 'unité' and matching_checkout.size2Unit == 'mL' %}
+											{{ (matching_checkout.size1 * (matching_checkout.size2 / 1000 )) }}
+											L
+										{% elseif matching_checkout.size1Unit == 'mm' and matching_checkout.size2Unit == 'mm' %}
+											{{ (matching_checkout.size1 * matching_checkout.size2) / 1000000 }}
+											m²
+										{% endif %}
+									{% else %}
+										{% if matching_checkout.size1unit == "mm" and matching_checkout.size2Unit == "mm" %}
+											{{ matching_checkout.surface / 1000000 }}
+											m²
+										{% elseif matching_checkout.size1Unit == 'unité' and matching_checkout.size2Unit == 'mL' %}
+											{{ matching_checkout.surface }}
+											L
+										{% endif %}
+									{% endif %}
+								</td>
+								<td class="border-top-0">{{ matching_checkout.price }}&nbsp;€</td>
+								<td class="border-top-0">{{ matching_checkout.productFamily }}</td>
+								<td class="border-top-0">{{ matching_checkout.reference }}</td>
+							</tr>
+
+							<!-- Add an empty row after each checkout row -->
+							<tr>
+								<td colspan="8" class="space-background">&nbsp;</td>
+							</tr>
+						{% else %}
+							<tr class="d-none">
+								<td colspan="8" class"d-none"></td>
+							</tr>
+						{% endif %}
+					{% endfor %}
+				</tbody>
+			</table>
+		</section>
+	</section>
+{% endblock %}
