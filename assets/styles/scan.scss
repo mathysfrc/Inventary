@@ -23,18 +23,20 @@ a.return {
 }
 
 svg {
-    position: absolute;
-    left: 28rem;
-    margin-top: 11rem;
+    display: flex;
+    margin: auto;
+}
 
+.center {
+    display: grid;
+    align-items: center;
+    align-content: center;
+    height: 100vh;
 }
 
 h1.text-scan {
     text-align: center;
-    position: absolute;
-    top: 32rem;
-    left: 24.8rem;
-    margin-top: 5rem;
+    margin-top: 1rem;
 }
 
 input.hidden {
@@ -60,21 +62,6 @@ input.hidden {
         left: 4rem;
     }
     
-    svg {
-        position: absolute;
-        left: 45rem;
-        margin-top: 22rem;
-        transform: scale(1.2);
-    
-    }
-    
-    h1.text-scan {
-        text-align: center;
-        position: absolute;
-        top: 48rem;
-        left: 42rem;
-        margin-top: 5rem;
-    }
 }
 
 
@@ -91,19 +78,5 @@ input.hidden {
         left: 4rem;
     }
     
-    svg {
-        position: absolute;
-        left: 65rem;
-        margin-top: 22rem;
-        transform: scale(1.5);
-    
-    }
-    
-    h1.text-scan {
-        text-align: center;
-        position: absolute;
-        top: 51rem;
-        left: 62.8rem;
-        margin-top: 5rem;
-    }
+
 }
