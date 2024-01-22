@@ -3,7 +3,7 @@ const Encore = require('@symfony/webpack-encore');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'prod');
 }
 
 Encore
@@ -26,9 +26,14 @@ Encore
     .addStyleEntry('stock', './assets/styles/stock.scss')
     .addStyleEntry('print', './assets/styles/print.scss')
     .addStyleEntry('scan', './assets/styles/scan.scss')
+    .addStyleEntry('scan-checkout', './assets/styles/scan-checkout.scss')
     .addStyleEntry('partielle', './assets/styles/partielle.scss')
     .addStyleEntry('empty', './assets/styles/empty.scss')
     .addStyleEntry('error', './assets/styles/error.scss')
+    .addStyleEntry('checkout', './assets/styles/checkout.scss')
+    .addStyleEntry('loader', './assets/styles/loader.scss')
+
+
 
 
 
