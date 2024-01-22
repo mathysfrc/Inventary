@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}StockDataMatrix{% endblock %}
+
+{% block body %}
+    <h1>StockDataMatrix</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stock_data_matrix.id }}</td>
+            </tr>
+            <tr>
+                <th>SKU</th>
+                <td>{{ stock_data_matrix.SKU }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ stock_data_matrix.description }}</td>
+            </tr>
+            <tr>
+                <th>ProductFamily</th>
+                <td>{{ stock_data_matrix.productFamily }}</td>
+            </tr>
+            <tr>
+                <th>Reference</th>
+                <td>{{ stock_data_matrix.reference }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ stock_data_matrix.price }}</td>
+            </tr>
+            <tr>
+                <th>Size1Name</th>
+                <td>{{ stock_data_matrix.size1Name }}</td>
+            </tr>
+            <tr>
+                <th>Size1</th>
+                <td>{{ stock_data_matrix.size1 }}</td>
+            </tr>
+            <tr>
+                <th>Size1Unit</th>
+                <td>{{ stock_data_matrix.size1Unit }}</td>
+            </tr>
+            <tr>
+                <th>Size2Name</th>
+                <td>{{ stock_data_matrix.size2Name }}</td>
+            </tr>
+            <tr>
+                <th>Size2</th>
+                <td>{{ stock_data_matrix.size2 }}</td>
+            </tr>
+            <tr>
+                <th>Size2Unit</th>
+                <td>{{ stock_data_matrix.size2Unit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stock_data_matrix_index') }}">back to list</a>
+
+    <a href="{{ path('app_stock_data_matrix_edit', {'id': stock_data_matrix.id}) }}">edit</a>
+
+    {{ include('stock_data_matrix/_delete_form.html.twig') }}
+{% endblock %}

@@ -26,9 +26,14 @@ Encore
     .addStyleEntry('stock', './assets/styles/stock.scss')
     .addStyleEntry('print', './assets/styles/print.scss')
     .addStyleEntry('scan', './assets/styles/scan.scss')
+    .addStyleEntry('scan-checkout', './assets/styles/scan-checkout.scss')
     .addStyleEntry('partielle', './assets/styles/partielle.scss')
     .addStyleEntry('empty', './assets/styles/empty.scss')
     .addStyleEntry('error', './assets/styles/error.scss')
+    .addStyleEntry('checkout', './assets/styles/checkout.scss')
+    .addStyleEntry('loader', './assets/styles/loader.scss')
+
+
 
 
 

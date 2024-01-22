@@ -39,6 +39,7 @@ class StockType extends AbstractType
         'Adhésif impression' => 'Adhésif impression',
         'Film de lamination' => 'Film de lamination',
         'Liquide' => 'Liquide',
+        'Structure' => 'Structure',
     ];
 
 
@@ -69,6 +70,7 @@ class StockType extends AbstractType
             ])
             ->add('size1', ChoiceType::class, [
                 'label' => 'Dimension 1',
+                'required' => false,
                 'empty_data' => '',
                 'attr' => [
                     'class' => 'border-tertiary',
@@ -76,6 +78,7 @@ class StockType extends AbstractType
             ])
             ->add('size2', ChoiceType::class, [
                 'label' => 'Dimension 2',
+                'required' => false,
                 'empty_data' => '',
                 'attr' => [
                     'class' => 'border-tertiary',
@@ -83,6 +86,7 @@ class StockType extends AbstractType
             ])
             ->add('size1Unit', ChoiceType::class, [
                 'label' => 'Unité de la dimension 1',
+                'required' => false,
                 'empty_data' => '',
                 'choices' => self::UNIT1,
                 'attr' => [
@@ -91,6 +95,7 @@ class StockType extends AbstractType
             ])
             ->add('size2Unit', ChoiceType::class, [
                 'label' => 'Unité de la dimension 2',
+                'required' => false,
                 'empty_data' => '',
                 'choices' => self::UNIT2,
                 'attr' => [
@@ -99,12 +104,14 @@ class StockType extends AbstractType
             ])
             ->add('size1Name', TextType::class, [
                 'label' => 'Nom de la dimension 1',
+                'required' => false,
                 'attr' => [
                     'class' => 'border-tertiary',
                 ]
             ])
             ->add('size2Name', TextType::class, [
                 'label' => 'Nom de la dimension 2',
+                'required' => false,
                 'attr' => [
                     'class' => 'border-tertiary',
                 ]
