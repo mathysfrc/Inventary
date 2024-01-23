@@ -1,5 +1,0 @@
-
-<form method="post" action="{{ path('app_stock_delete', {'id': stock.id}) }}" onsubmit="return confirm('Êtes vous sûrs de vouloir supprimer ce produit du stock ?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ stock.id) }}">
-    <button class="bouton-suppr btn btn-outline-danger">Supprimer ce produit &nbsp {% include 'icons/delete.svg' %}</button>
-</form>

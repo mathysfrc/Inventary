@@ -1,9 +1,0 @@
-controllers:
-    resource:
-        path: ../src/Controller/
-        namespace: App\Controller
-    type: attribute
-
-export_table:
-    path: /export/table
-    controller: App\Controller\TableExportController::exportTable
