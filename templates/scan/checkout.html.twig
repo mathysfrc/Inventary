@@ -21,7 +21,7 @@
                 <h1 class="text-scanner text-light fw-bold">Scanner la référence<br/>a vérifier avec le boitier</h1>
 
  
-                {{ form_start(form) }}
+                {{ form_start(form, {'attr': {'id': 'your-form-id'}}) }}
 
                 {{ form_row(form.SKU, {'attr': {'id': 'sku-input', 'autofocus': true, 'tabindex': -1}}) }}
                 {{ form_row(form.description, {'attr': {'id': 'description-input'}}) }}
@@ -36,7 +36,7 @@
                 {{ form_row(form.size2Unit, {'attr': {'id': 'size2Unit-input'}}) }}
                 
 
-                <input id="form-input" type="submit" class="hidden"/>
+                <input onclick="jouerSonScan()" id="form-input" type="submit" class="hidden"/>
                 {{ form_end(form) }}
             </div>
             <div class="col-6 suivi-check">
@@ -45,7 +45,7 @@
                     {% for element in stockDataMatrixs %}
                         <div class="sku-item" id="sku-item">
                             <p>{{ element.SKU }}</p>
-                            <a href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}">Supprimer</a>
+                            <a id="delete-sound" onclick="jouerSonDelete()" href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}">Supprimer</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -56,9 +56,24 @@
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
     <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
 
-
-
 <script>
+    function jouerSonScan() {
+        console.log("Fonction jouerSonScan appelée");
+        // En supposant que vous ayez un fichier audio nommé 'scan-sound.mp3'
+        var audio = new Audio('/assets/sounds/success1.mp3');
+        audio.play();
+         console.log("Fonction jouerSonScan joué");
+
+    }
+
+    function jouerSonDelete() {
+        console.log("Fonction jouerSonDelete appelée");
+    // En supposant que vous ayez un fichier audio nommé 'scan-sound.mp3'
+    var audio = new Audio('/assets/sounds/delete.mp3');
+    audio.play();
+        console.log("Fonction jouerSonDelete joué");
+    }
+
     function error() {
         alert('{{ error | default("Aucune erreur") }}');
     }
