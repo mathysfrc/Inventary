@@ -52,6 +52,9 @@ class StockDataMatrix
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $reference_month = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -209,6 +212,18 @@ class StockDataMatrix
     public function setStatus(?string $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getReferenceMonth(): ?string
+    {
+        return $this->reference_month;
+    }
+
+    public function setReferenceMonth(?string $reference_month): static
+    {
+        $this->reference_month = $reference_month;
 
         return $this;
     }

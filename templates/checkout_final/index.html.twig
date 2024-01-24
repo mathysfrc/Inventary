@@ -27,6 +27,23 @@
 					<a class="tabs nav-link" href="{{ path('app_checkout_final_difference')}}">Instructions</a>
 				</li>
 			</ul>
+
+			<div class="row mb-4">
+				<div class="col-9">
+					{{ form_start(form) }}
+					<div class="row">
+						<div class="col">
+							{{ form_widget(form) }}
+						</div>
+						<div class="col">
+							<button class="bout-search btn btn-tertiary mt-4">{% include 'icons/Search.svg' %}</button>
+						</div>
+					</div>
+					{{ form_end(form) }}
+				</div>
+			</div>
+
+
 			<table class="table">
 				<thead>
 					<tr>

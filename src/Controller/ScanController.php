@@ -58,6 +58,7 @@ class ScanController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $stockDataMatrix = $form->getData();
+
             // Vérifier si le SKU a déjà été scanné
             $newSKU = $stockDataMatrix->getSKU();
             foreach ($stockDataMatrixs as $exstingDataMatrix) {
@@ -66,6 +67,10 @@ class ScanController extends AbstractController
                 }
             }
             if (!$error ) {
+                setlocale(LC_TIME, 'fr_FR');
+                $currentMonth = strftime('%B %Y');
+                $stockDataMatrix->setReferenceMonth($currentMonth);
+
                 $entityManager->persist($stockDataMatrix);
                 $entityManager->flush();
             }
