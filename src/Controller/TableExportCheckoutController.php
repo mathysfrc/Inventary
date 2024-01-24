@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Doctrine\ORM\EntityManagerInterface;
 
-class TableExportController extends AbstractController
+class TableExportCheckoutController extends AbstractController
 {
     #[Route('/table/export/checkout', name: 'app_table_export_checkout')]
     public function exportTableCheckout(EntityManagerInterface $entityManager): Response
