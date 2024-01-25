@@ -64,8 +64,10 @@
 					{% for matrice in sorted_matrices %}
 						{% set skuTrouve = false %}
 						{% for stock in stocks %}
-							{% if matrice.SKU == stock.SKU and matrice.description == stock.description and 
+							{% if matrice.SKU == stock.SKU and
 								matrice.productFamily == stock.productFamily
+								and matrice.description == stock.description
+								and matrice.reference == stock.reference
 							 %}
 								{% set skuTrouve = true %}
 								<tr class="valid">
