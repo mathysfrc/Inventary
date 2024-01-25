@@ -64,9 +64,7 @@
 					{% for matrice in sorted_matrices %}
 						{% set skuTrouve = false %}
 						{% for stock in stocks %}
-							{% if matrice.SKU == stock.SKU and matrice.description == stock.description and matrice.size1Name == stock.size1Name
-								and matrice.size1Unit == stock.size1Unit and matrice.size2Name == stock.size2Name
-							 and matrice.size2Unit == stock.size2Unit and
+							{% if matrice.SKU == stock.SKU and matrice.description == stock.description and 
 								matrice.productFamily == stock.productFamily
 							 %}
 								{% set skuTrouve = true %}
