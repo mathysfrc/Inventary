@@ -56,19 +56,25 @@
 						<th class="border-top-0 border-bottom-0">Prix</th>
 						<th class="border-top-0 border-bottom-0">Famille produit</th>
 						<th class="border-top-0 border-bottom-0">Référence</th>
+						<th class="border-top-0 border-bottom-0"></th>
+
 					</tr>
 				</thead>
 				<tbody>
 					{% for matrice in sorted_matrices %}
 						{% set skuTrouve = false %}
 						{% for stock in stocks %}
-							{% if matrice.SKU == stock.SKU %}
+							{% if matrice.SKU == stock.SKU and matrice.description == stock.description and matrice.size1Name == stock.size1Name
+								and matrice.size1Unit == stock.size1Unit and matrice.size2Name == stock.size2Name
+							 and matrice.size2Unit == stock.size2Unit and
+								matrice.productFamily == stock.productFamily
+							 %}
 								{% set skuTrouve = true %}
-								<tr>
-									<td class="border-top-0 text-primary">STOCK</td>
-									<td class="border-top-0">{{ stock.SKU }}</td>
-									<td class="border-top-0">{{ stock.description }}</td>
-									<td class="border-top-0">
+								<tr class="valid">
+									<td class="valid border-top-0 text-primary">STOCK</td>
+									<td class="valid border-top-0">...{{ stock.SKU|slice(-8) }}</td>
+									<td class="valid border-top-0">{{ stock.description }}</td>
+									<td class="valid border-top-0">
 										{{ stock.size1Name }}&nbsp;:
 										{{ stock.size1 }}
 										{{ stock.size1Unit }}
@@ -77,37 +83,38 @@
 										{{ stock.size2 }}
 										{{ stock.size2Unit }}
 									</td>
-									<td class="border-top-0">
-										{% if stock.surface is not null %}
-											{% if stock.size1unit == "mm" and stock.size2Unit == "m" %}
-												{{ (stock.size1 / 1000) * stock.size2 }}
+									<td class="valid border-top-0">
+										{% if stock.surface == null %}
+											{% if  stock.size1unit == "mm"  and  stock.size2Unit == "m"  %}
+												{{ (stock.size1 / 1000)  *  stock.size2 }}
 												m²
-											{% elseif stock.size1Unit == 'unité' and stock.size2Unit == 'mL' %}
+											{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
 												{{ (stock.size1 * (stock.size2 / 1000 )) }}
 												L
-											{% elseif stock.size1Unit == 'mm' and stock.size2Unit == 'mm' %}
+											{% elseif  stock.size1Unit == 'mm'  and  stock.size2Unit == 'mm'  %}
 												{{ (stock.size1 * stock.size2) / 1000000 }}
 												m²
 											{% endif %}
 										{% else %}
-											{% if stock.size1unit == "mm" and stock.size2Unit == "mm" %}
+											{% if  stock.size1unit == "mm"  and  stock.size2Unit == "mm"  %}
 												{{ stock.surface / 1000000 }}
 												m²
-											{% elseif stock.size1Unit == 'unité' and stock.size2Unit == 'mL' %}
+											{% elseif  stock.size1Unit == 'unité'  and  stock.size2Unit == 'mL'  %}
 												{{ stock.surface }}
 												L
 											{% endif %}
 										{% endif %}
 									</td>
-									<td class="border-top-0">{{ stock.price }}&nbsp;€</td>
-									<td class="border-top-0">{{ stock.productFamily }}</td>
-									<td class="border-top-0">{{ stock.reference }}</td>
+									<td class="valid border-top-0">{{ stock.price }}&nbsp;€</td>
+									<td class="valid border-top-0">{{ stock.productFamily }}</td>
+									<td class="valid border-top-0">{{ stock.reference }}</td>
+									<td class="valid border-top-0 badge text-bg-success mt-4">Valide</td>
 								</tr>
-								<tr>
-									<td class="border-top-0 text-primary">CHECKOUT</td>
-									<td class="border-top-0">{{ matrice.SKU }}</td>
-									<td class="border-top-0">{{ matrice.description }}</td>
-									<td class="border-top-0">
+								<tr class="valid">
+									<td class="valid border-top-0 text-primary">CHECKOUT</td>
+									<td class="valid border-top-0">...{{ matrice.SKU|slice(-8) }}</td>
+									<td class="valid border-top-0">{{ matrice.description }}</td>
+									<td class="valid border-top-0">
 										{{ matrice.size1Name }}&nbsp;:
 										{{ matrice.size1 }}
 										{{ matrice.size1Unit }}
@@ -116,59 +123,63 @@
 										{{ matrice.size2 }}
 										{{ matrice.size2Unit }}
 									</td>
-									<td class="border-top-0">
-										{% if matrice.surface is not null %}
-											{% if matrice.size1unit == "mm" and matrice.size2Unit == "m" %}
-												{{ (matrice.size1 / 1000) * matrice.size2 }}
+									<td class="valid border-top-0">
+										{% if matrice.surface == null %}
+											{% if  matrice.size1unit == "mm"  and  matrice.size2Unit == "m"  %}
+												{{ (matrice.size1 / 1000)  *  matrice.size2 }}
 												m²
-											{% elseif matrice.size1Unit == 'unité' and matrice.size2Unit == 'mL' %}
+											{% elseif  matrice.size1Unit == 'unité'  and  matrice.size2Unit == 'mL'  %}
 												{{ (matrice.size1 * (matrice.size2 / 1000 )) }}
 												L
-											{% elseif matrice.size1Unit == 'mm' and matrice.size2Unit == 'mm' %}
+											{% elseif  matrice.size1Unit == 'mm'  and  matrice.size2Unit == 'mm'  %}
 												{{ (matrice.size1 * matrice.size2) / 1000000 }}
 												m²
 											{% endif %}
 										{% else %}
-											{% if matrice.size1unit == "mm" and matrice.size2Unit == "mm" %}
+											{% if  matrice.size1unit == "mm"  and  matrice.size2Unit == "mm"  %}
 												{{ matrice.surface / 1000000 }}
 												m²
-											{% elseif matrice.size1Unit == 'unité' and matrice.size2Unit == 'mL' %}
+											{% elseif  matrice.size1Unit == 'unité'  and  matrice.size2Unit == 'mL'  %}
 												{{ matrice.surface }}
 												L
 											{% endif %}
 										{% endif %}
 									</td>
-									<td class="border-top-0">{{ matrice.price }}&nbsp;€</td>
-									<td class="border-top-0">{{ matrice.productFamily }}</td>
-									<td class="border-top-0">{{ matrice.reference }}</td>
+									<td class="valid border-top-0">{{ matrice.price }}&nbsp;€</td>
+									<td class="valid border-top-0">{{ matrice.productFamily }}</td>
+									<td class="valid border-top-0">{{ matrice.reference }}</td>
+									<td class="valid border-top-0 badge text-bg-success mt-4">Valide</td>
+
 								</tr>
 
 								<!-- Ajouter une ligne vide après chaque ligne de matrice -->
 								<tr>
-									<td colspan="8" class="space-background">&nbsp;</td>
+									<td colspan="9" class="valid space-background">&nbsp;</td>
 								</tr>
 							{% endif %}
 						{% endfor %}
 						{% if not skuTrouve %}
 							<!-- Afficher le message d'erreur 'Erreur' pour les SKUs non trouvés -->
-<tr>
-									<td class="border-top-0 text-danger fw-bold">ERREUR</td>
-									<td class="border-top-0 text-danger text-uppercase fw-bold">Le numéro SKU n'a pas été trouvé dans le stock</td>
-									<td class="border-top-0 text-danger"></td>
-									<td class="border-top-0 text-danger"></td>
-									<td class="border-top-0 text-danger"></td>
-									<td class="border-top-0 text-danger"></td>
-									<td class="border-top-0 text-danger"></td>
-									<td class="border-top-0 text-danger"></td>
+							<tr class="invalid">
+								<td class="invalid border-top-0 text-danger fw-bold">ERREUR</td>
+								<td class="invalid border-top-0 text-danger text-uppercase fw-bold">Une erreur est présente</td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-danger"></td>
+								<td class="invalid border-top-0 text-white badge text-bg-danger mt-4">Invalide</td>
 
-								</tr>
+
+							</tr>
 							<!-- Ajouter une ligne vide après le message d'erreur 'Erreur' -->
 							<!-- Afficher les informations sur la matrice qui n'a pas de correspondance -->
 							<tr>
-								<td class="border-top-0 text-danger fw-bold">CHECKOUT</td>
-								<td class="border-top-0 fw-bold">{{ matrice.SKU }}</td>
-								<td class="border-top-0">{{ matrice.description }}</td>
-								<td class="border-top-0">
+								<td class="invalid border-top-0 text-danger fw-bold">CHECKOUT</td>
+								<td class="invalid border-top-0 fw-bold">...{{ matrice.SKU|slice(-8) }}</td>
+								<td class="invalid border-top-0">{{ matrice.description }}</td>
+								<td class="invalid border-top-0">
 									{{ matrice.size1Name }}&nbsp;:
 									{{ matrice.size1 }}
 									{{ matrice.size1Unit }}
@@ -177,35 +188,36 @@
 									{{ matrice.size2 }}
 									{{ matrice.size2Unit }}
 								</td>
-								<td class="border-top-0">
-									{% if matrice.surface is not null %}
-										{% if matrice.size1unit == "mm" and matrice.size2Unit == "m" %}
-											{{ (matrice.size1 / 1000) * matrice.size2 }}
-											m²
-										{% elseif matrice.size1Unit == 'unité' and matrice.size2Unit == 'mL' %}
-											{{ (matrice.size1 * (matrice.size2 / 1000 )) }}
-											L
-										{% elseif matrice.size1Unit == 'mm' and matrice.size2Unit == 'mm' %}
-											{{ (matrice.size1 * matrice.size2) / 1000000 }}
-											m²
+								<td class="invalid border-top-0">
+										{% if matrice.surface == null %}
+											{% if  matrice.size1unit == "mm"  and  matrice.size2Unit == "m"  %}
+												{{ (matrice.size1 / 1000)  *  matrice.size2 }}
+												m²
+											{% elseif  matrice.size1Unit == 'unité'  and  matrice.size2Unit == 'mL'  %}
+												{{ (matrice.size1 * (matrice.size2 / 1000 )) }}
+												L
+											{% elseif  matrice.size1Unit == 'mm'  and  matrice.size2Unit == 'mm'  %}
+												{{ (matrice.size1 * matrice.size2) / 1000000 }}
+												m²
+											{% endif %}
+										{% else %}
+											{% if  matrice.size1unit == "mm"  and  matrice.size2Unit == "mm"  %}
+												{{ matrice.surface / 1000000 }}
+												m²
+											{% elseif  matrice.size1Unit == 'unité'  and  matrice.size2Unit == 'mL'  %}
+												{{ matrice.surface }}
+												L
+											{% endif %}
 										{% endif %}
-									{% else %}
-										{% if matrice.size1unit == "mm" and matrice.size2Unit == "mm" %}
-											{{ matrice.surface / 1000000 }}
-											m²
-										{% elseif matrice.size1Unit == 'unité' and matrice.size2Unit == 'mL' %}
-											{{ matrice.surface }}
-											L
-										{% endif %}
-									{% endif %}
 								</td>
-								<td class="border-top-0">{{ matrice.price }}&nbsp;€</td>
-								<td class="border-top-0">{{ matrice.productFamily }}</td>
-								<td class="border-top-0">{{ matrice.reference }}</td>
+								<td class="invalid border-top-0">{{ matrice.price }}&nbsp;€</td>
+								<td class="invalid border-top-0">{{ matrice.productFamily }}</td>
+								<td class="invalid border-top-0">{{ matrice.reference }}</td>
+								<td class="invalid border-top-0 text-white badge text-bg-danger mt-4">Invalide</td>
 							</tr>
 							<!-- Ajouter une ligne vide après chaque ligne de matrice sans correspondance -->
-							<tr>
-								<td colspan="8" class="space-background">&nbsp;</td>
+							<tr class="invalid">
+								<td colspan="9" class="invalid space-background">&nbsp;</td>
 							</tr>
 						{% endif %}
 					{% endfor %}
