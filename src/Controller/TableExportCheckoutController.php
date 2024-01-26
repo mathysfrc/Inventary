@@ -27,18 +27,10 @@ class TableExportCheckoutController extends AbstractController
             // Récupérez les données de la table que vous souhaitez exporter (par exemple, à partir d'une entité Doctrine).
         
             // Formattez les données dans une chaîne de caractères txt.
-            $txtContent = "SKU\tDescription\tDimension\tRésultat\tPrix\tFamille produit\tRéférence\tStatus\tAire\tMois\n"; 
+            $txtContent = "SKU\tRéférence\tMois\n"; 
             
             foreach ($donnees as $item) {
-                $txtContent .= $item->getSKU() . "\t" . $item->getDescription() . "\t" . $item->getSize1Name() . ' : ' . $item->getSize1() . ' ' .  $item->getSize1Unit() . ' x '  . $item->getSize2Name() . ' : ' . $item->getSize2() . ' ' . $item->getSize2Unit()  . "\t";
-            
-                if ($item->getSize1Unit() == "mm"  && $item->getSize2Unit() == "mm") {
-                    $txtContent .= ($item->getSurface() === null ? $item->getSurface() : ($item->getSize1() * $item->getSize2() / 1000000 )) . ' m² ';
-                } elseif ($item->getSize1Unit() == 'unité'  && $item->getSize2Unit() == 'L') {
-                    $txtContent .= ($item->getSurface() === null ? $item->getSurface() : ($item->getSize1() * $item->getSize2() / 1000000 )) . ' L ';
-                }
-            
-                $txtContent .= "\t" . $item->getPrice() .  ' € '  .  "\t" . $item->getProductFamily() .  "\t" . $item->getReference() . "\t" . $item->getStatus() . "\t" . $item->getSurface() . "\t" . $item->getReferenceMonth() . "\n";
+                $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceMonth() . "\n";
             }
         
             // Créez une réponse Symfony avec le contenu du fichier txt.

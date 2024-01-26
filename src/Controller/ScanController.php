@@ -49,42 +49,50 @@ class ScanController extends AbstractController
     public function checkout(Request $request, StockDataMatrixRepository $stockDataMatrixRepository, EntityManagerInterface $entityManager, String $error = null): Response
     {
         $stockDataMatrix = new StockDataMatrix();
-
+    
         $form = $this->createForm(StockDataMatrixType::class, $stockDataMatrix);
-
+    
         $form->handleRequest($request);
-
+    
         $stockDataMatrixs = $stockDataMatrixRepository->findAll();
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $stockDataMatrix = $form->getData();
+    
+            // Remplacer les '§' par des '-' dans le champ pertinent
+            $description = $stockDataMatrix->getDescription();
+            $description = str_replace('§', '-', $description);
+            $stockDataMatrix->setDescription($description);
 
+            $reference = $stockDataMatrix->getReference();
+            $reference = str_replace('§', '-', $reference);
+            $stockDataMatrix->setReference($reference);
+    
             // Vérifier si le SKU a déjà été scanné
             $newSKU = $stockDataMatrix->getSKU();
-            foreach ($stockDataMatrixs as $exstingDataMatrix) {
-                if ( $exstingDataMatrix->getSKU() === $newSKU ) {
+            foreach ($stockDataMatrixs as $existingDataMatrix) {
+                if ($existingDataMatrix->getSKU() === $newSKU) {
                     $error = 'Ce SKU a déjà été scanné';
                 }
             }
-            if (!$error ) {
+            if (!$error) {
                 setlocale(LC_TIME, 'fr_FR');
                 $currentMonth = strftime('%B %Y');
                 $stockDataMatrix->setReferenceMonth($currentMonth);
-
+    
                 $entityManager->persist($stockDataMatrix);
                 $entityManager->flush();
             }
             return $this->redirectToRoute('app_scan_checkout', [
                 'error' => $error,
             ]);
-        } 
-                
+        }
+    
         return $this->render('scan/checkout.html.twig', [
             'controller_name' => 'ScanController',
             'stockDataMatrixs' => $stockDataMatrixs,
             'form' => $form,
             'error' => $error,
-            
         ]);
     }
 
