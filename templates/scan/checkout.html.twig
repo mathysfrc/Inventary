@@ -57,6 +57,8 @@
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
     <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
 
+    <button onclick="reset()" class="">Vider les champs si bug</button>
+
 <script>
 
 document.getElementById('form-input').addEventListener('keydown', function(e) {
@@ -64,6 +66,15 @@ document.getElementById('form-input').addEventListener('keydown', function(e) {
         e.preventDefault(); 
       }
     });
+
+function reset() {
+
+        let skuInput = document.getElementById('stock_data_matrix_SKU');
+        let formInputs = document.getElementById('form-id');
+
+    formInputs.reset();
+    skuInput.focus();
+}
 
 function jouerSonScan() {
     // Récupérer la valeur du champ SKU
