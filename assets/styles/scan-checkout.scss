@@ -12,6 +12,18 @@ form {
     position: absolute;
 }
 
+.reset-inputs {
+    text-decoration: underline !important;
+}
+
+.reset-inputs:hover {
+    color: var(--primary) !important;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+}
+
 label.form-label {
     display: none;
 }

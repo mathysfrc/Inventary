@@ -27,10 +27,11 @@ class TableExportCheckoutController extends AbstractController
             // Récupérez les données de la table que vous souhaitez exporter (par exemple, à partir d'une entité Doctrine).
         
             // Formattez les données dans une chaîne de caractères txt.
-            $txtContent = "SKU\tRéférence\tMois\n"; 
+            $txtContent = "SKU\tRéférence\tMois\tHeure\n"; 
             
             foreach ($donnees as $item) {
-                $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceMonth() . "\n";
+                $dateTimeString = $item->getDateTime()->format('Y-m-d H:i:s');
+                $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceMonth() .  "\t" . $dateTimeString . "\n";
             }
         
             // Créez une réponse Symfony avec le contenu du fichier txt.

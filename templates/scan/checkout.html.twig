@@ -19,6 +19,8 @@
             
                 {% include 'icons/scanconso.svg' %}
                 <h1 class="text-scanner text-light fw-bold">Scanner la référence<br/>a vérifier avec le boitier</h1>
+                    <a onclick="reset()" href="" class="reset-inputs text-white">Vider les champs si bug</a>
+
 
  
                 {{ form_start(form, {'attr': {'id': 'form-id'}}) }}
@@ -56,8 +58,6 @@
     
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
     <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
-
-    <button onclick="reset()" class="">Vider les champs si bug</button>
 
 <script>
 

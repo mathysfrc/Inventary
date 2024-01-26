@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\StockDataMatrixRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StockDataMatrixRepository::class)]
@@ -54,6 +55,9 @@ class StockDataMatrix
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $reference_month = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $datetime = null;
 
 
     public function getId(): ?int
@@ -225,6 +229,18 @@ class StockDataMatrix
     public function setReferenceMonth(?string $reference_month): static
     {
         $this->reference_month = $reference_month;
+
+        return $this;
+    }
+
+    public function getDatetime(): ?\DateTimeInterface
+    {
+        return $this->datetime;
+    }
+
+    public function setDatetime(?\DateTimeInterface $datetime): static
+    {
+        $this->datetime = $datetime;
 
         return $this;
     }

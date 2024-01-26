@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\StockDataMatrix;
 use App\Form\StockDataMatrixType;
 use App\Repository\StockDataMatrixRepository;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -77,8 +78,11 @@ class ScanController extends AbstractController
             }
             if (!$error) {
                 setlocale(LC_TIME, 'fr_FR');
+                $currentDateTime = new DateTime(); // Crée un nouvel objet DateTime pour l'heure actuelle
                 $currentMonth = strftime('%B %Y');
                 $stockDataMatrix->setReferenceMonth($currentMonth);
+                $stockDataMatrix->setDateTime($currentDateTime); // Passer l'objet DateTime
+
     
                 $entityManager->persist($stockDataMatrix);
                 $entityManager->flush();
