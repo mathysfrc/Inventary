@@ -74,10 +74,6 @@
 				{% for matrice in invalid_matrices %}
 					
                         <p class="fw-bold text-danger text-uppercase pt-5">
-						{% if matrice.description != stock.description and matrice.reference != stock.reference and matrice.productFamily != stock.productFamily %}
-							Pour l'élément numéro :
-							<span class="fs-5 text-black">{{ matrice.SKU }}</span>, l'élément ne correspond pas entre le stock et le checkout, il a sûrement été déclaré vide dans le stock, veuillez vérifier !
-						{% else %}
 							Pour l'élément numéro :
 							<span class="fs-5 text-black">{{ matrice.SKU }}</span>,
 							{% if matrice.description != stock.description %}
@@ -89,7 +85,6 @@
 							{% if matrice.productFamily != stock.productFamily %}
 								 la famille de produit ne correspond pas entre le stock et le checkout, , veuillez vérifier ! 
 							{% endif %}
-						{% endif %}
 					</p>
 
 			{% endfor %}
