@@ -162,17 +162,20 @@ class StockController extends AbstractController
         }
 
         // Check if the new values are greater than or equal to the old values
-        if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 <= 0 || $size2 <= 0) {
-            if ($size1 === 0 || $size2 === 0) {
-                return $this->render('error/index.html.twig', [
-                    'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
-                ]);
-            }
 
-            return $this->render('error/index.html.twig', [
-                'error' => 'Les nouvelles valeurs sont supérieures aux anciennes, merci de ressaisir une valeur.'
-            ]);
-        }
+
+        
+        // if ($size1 > $stock->getSize1() || $size2 > $stock->getSize2() || $size1 <= 0 || $size2 <= 0) {
+        //     if ($size1 === 0 || $size2 === 0) {
+        //         return $this->render('error/index.html.twig', [
+        //             'error' => 'Merci de scanner la référence dans la section "Consommation totale".'
+        //         ]);
+        //     }
+
+        //     return $this->render('error/index.html.twig', [
+        //         'error' => 'Les nouvelles valeurs sont supérieures aux anciennes, merci de ressaisir une valeur.'
+        //     ]);
+        // }
 
         $oldSize1 = $stock->getSize1();
         $oldSize2 = $stock->getSize2();

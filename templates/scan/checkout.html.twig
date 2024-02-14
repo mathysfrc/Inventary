@@ -46,7 +46,7 @@
                     {% for element in stockDataMatrixs %}
                         <div class="sku-item" id="sku-item">
                             <p>{{ element.SKU }}</p>
-                            <a id="delete-sound" onclick="jouerSonDelete()" href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}">Supprimer</a>
+                            <a id="delete-sound" onclick="jouerSonDelete()" href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}" class="text-danger">Supprimer</a>
                         </div>
                     {% endfor %}
                 </div>
@@ -57,8 +57,11 @@
     </section>
     
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
-    <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a>
-
+            {# <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a> #}
+    <a type="button" href="/table/export/checkout" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary">
+        {% include 'icons/Download.svg' %}
+        &nbsp; Exporter
+    </a>
 <script>
 
 document.getElementById('form-input').addEventListener('keydown', function(e) {

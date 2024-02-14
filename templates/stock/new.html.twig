@@ -26,7 +26,9 @@
 			<div class="row">
 				<div class="col">
 
-					<div class="input-marge">{{ form_row(form.description) }}</div>
+					<div class="input-marge">
+                        {{ form_row(form.description, {'attr': {'class': 'autocomplete'}}) }}
+                    </div>
 
 					<div class="input-marge">
 					{{ form_row(form.productFamily, {'attr': {'id': 'productFamilyInput'}}) }}
@@ -97,6 +99,30 @@
 
 		</section>
 	</section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+        <script>
+        $(document).ready(function () {
+            // Initialiser l'autocomplétion sur le champ description
+            $('.autocomplete').autocomplete({
+                source: ['PVC 3mm', 'Lamination anti graffitis', 'Signa 510g', 'Dilite 3mm', 'Adhésif rétro-réfléchissant', 
+                'Adhésif', 'Bâche 610g Recto Verso', 'Magnétique 0.6mm', 'PVC 3', 'Plaque Dilite 3mm', 'Plaque Dibon', 'Dibond ral 7016', 
+                'Akylux', 'Alu brossé', 'Akylux 8mm', 'Adhésif Tack Fort', 'Pmma 3mm', 'Teinté masse', 'ORAGUARD', 'ORAJET Blanc', 'Papier Satin', 
+                'Itermediate Vinyl Gloss', 'Adhésif Sol', 'Adhésif découpe', 'Gloss Wrap Overlaminate', 'ORAFOL', 'INK VUTEK GS LX UD XP', 
+                'INK VUTEK GS LX UD XP V2', 'Solvant', 'Vinyle monomère', 'Lamination anti-dérapante grainée', 'Décolite', 'Magnétique 850 microns', 
+                'Microperforé 180m semi-permanent 3ans', 'Tape', 'Bâche 510g', 'Film perdu', 'Vinyle adhésif', 'Lamination', 'Forex', 'Akilux', 
+                'Lamination ritrama mate', 'Lamination anti dérapante', 'Lamination covering', 'Lamination satinée', 'Lamination brillante', 'Lamination mate', 
+                'TAPE', 'PVC300m', 'Adhesif Apolaire', 'Adhésif grand froid', 'Lexan', 'Easy dot', 'Adhésif de sol', 'Adhésif dépoli', 'Adhésif diffusant', 
+                'Papier', 'Papier 220g', 'Adhésif covring', 'Adhésif covering', 'Adhésif de bâche', 'Décolite', 'Adhésif high tak', 'Adhésif dos blanc', 
+                'Adhésif polymère', 'Linoléum', 'Canvas', 'Film polyester', 'Intissé blanc mat', 'Ardoisine', 'Lamination nanoprime', 'Lmination anti graffiti', 
+                'Easy dot transparent', 'Papier peint', 'Adhésif repositionnable', 'Adhésif DAO', 'Adhésif Dao', 'Adhésif DAI', 'Adhésif DAO - BEAUVAL', 
+                'PVC 700m', 'Adhésif microprforé', 'Laminatin', 'PVC Crystal', 'Decolit', 'PVC 30m', 'Adhésif translucide turquoise', 'PVC noir', 'Veleda', 
+                'Dépoli C-A UCPA', 'AT adhésif transfert', 'Oracal 8500', 'Micro perforé', 'PVC dur', 'Adhesif ultra clear']
+            });
+        });
+    </script>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {

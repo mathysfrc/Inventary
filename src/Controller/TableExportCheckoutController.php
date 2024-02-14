@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Stock;
 use App\Entity\StockDataMatrix;
+use DateTimeZone;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,7 +31,8 @@ class TableExportCheckoutController extends AbstractController
             $txtContent = "SKU\tRéférence\tMois\tHeure\n"; 
             
             foreach ($donnees as $item) {
-                $dateTimeString = $item->getDateTime()->format('Y-m-d H:i:s');
+                $timezone = new DateTimeZone('Europe/Paris');
+                $dateTimeString = $item->getDateTime()->setTimezone($timezone)->format('Y-m-d H:i:s');
                 $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceMonth() .  "\t" . $dateTimeString . "\n";
             }
         

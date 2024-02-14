@@ -6,6 +6,20 @@ a.btn {
     border-radius: 40px
 }
 
+.ui-autocomplete {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    text-decoration: none;
+    background-color: white;
+    /* Fond blanc */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 7rem;
+    margin-top: 1rem;
+    z-index: 1000;
+}
+
 .btn:hover {
     color: white;
 
