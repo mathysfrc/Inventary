@@ -33,7 +33,7 @@ class TableExportCheckoutController extends AbstractController
             foreach ($donnees as $item) {
                 $timezone = new DateTimeZone('Europe/Paris');
                 $dateTimeString = $item->getDateTime()->setTimezone($timezone)->format('Y-m-d H:i:s');
-                $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceMonth() .  "\t" . $dateTimeString . "\n";
+                $txtContent .= $item->getSKU() . "\t" . $item->getReference() . "\t" . $item->getReferenceCheckout() .  "\t" . $dateTimeString . "\n";
             }
         
             // Créez une réponse Symfony avec le contenu du fichier txt.

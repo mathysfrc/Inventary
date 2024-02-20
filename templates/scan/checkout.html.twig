@@ -54,6 +54,16 @@
         
         </div> 
         <div class="linear-bar"></div>
+
+        
+        <form action="{{ path('app_scan_checkout')}}" method="GET" class="select-month" id="checkoutForm">
+            <select class="form-select" name="ref" id="refSelect">
+                {% for ref in reference_checkouts %}
+                <option value="{{ ref }}" {% if ref == active_ref %} selected="selected" {% endif %}>{{ ref }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
     </section>
     
     <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
@@ -62,6 +72,15 @@
         {% include 'icons/Download.svg' %}
         &nbsp; Exporter
     </a>
+
+    <script>
+    // Récupérer l'élément select et ajouter un écouteur d'événements de changement
+    document.getElementById('refSelect').addEventListener('change', function() {
+        // Soumettre automatiquement le formulaire lorsqu'une option est sélectionnée
+        document.getElementById('checkoutForm').submit();
+    });
+</script>
+
 <script>
 
 document.getElementById('form-input').addEventListener('keydown', function(e) {
@@ -69,6 +88,7 @@ document.getElementById('form-input').addEventListener('keydown', function(e) {
         e.preventDefault(); 
       }
     });
+    
 
 function reset() {
 

@@ -155,6 +155,25 @@ input.hidden {
     margin-left: 3rem;
 }
 
+
+.select-month {
+    display: flex;
+    top: 17%;
+    width: 25rem;
+    left: 60%;
+}
+
+.submit-select-month {
+    background-color: rgba(214, 235, 255, 0.15);
+    color: white;
+    font-weight: bold;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 1rem;
+}
+
 @media (min-width: 1281px) {
     a.return {
         position: absolute;

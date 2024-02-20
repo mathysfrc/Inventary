@@ -53,11 +53,11 @@ class StockDataMatrix
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $reference_month = null;
-
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $datetime = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $reference_checkout = null;
 
 
     public function getId(): ?int
@@ -221,17 +221,6 @@ class StockDataMatrix
         return $this;
     }
 
-    public function getReferenceMonth(): ?string
-    {
-        return $this->reference_month;
-    }
-
-    public function setReferenceMonth(?string $reference_month): static
-    {
-        $this->reference_month = $reference_month;
-
-        return $this;
-    }
 
     public function getDatetime(): ?\DateTimeInterface
     {
@@ -241,6 +230,18 @@ class StockDataMatrix
     public function setDatetime(?\DateTimeInterface $datetime): static
     {
         $this->datetime = $datetime;
+
+        return $this;
+    }
+
+    public function getReferenceCheckout(): ?string
+    {
+        return $this->reference_checkout;
+    }
+
+    public function setReferenceCheckout(string $reference_checkout): static
+    {
+        $this->reference_checkout = $reference_checkout;
 
         return $this;
     }

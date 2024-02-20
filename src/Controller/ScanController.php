@@ -50,13 +50,24 @@ class ScanController extends AbstractController
     public function checkout(Request $request, StockDataMatrixRepository $stockDataMatrixRepository, EntityManagerInterface $entityManager, String $error = null): Response
     {
         $stockDataMatrix = new StockDataMatrix();
-    
         $form = $this->createForm(StockDataMatrixType::class, $stockDataMatrix);
-    
         $form->handleRequest($request);
-    
-        $stockDataMatrixs = $stockDataMatrixRepository->findAll();
-    
+
+        // On récupère dans le param GET de l'url la référence qu'il faut afficher. SI jamais on ne l'a pas => array vide
+        $session = $request->getSession();
+        $ref = $request->query->get('ref') ?? $session->get('reference_checkout'); // On récupère le paramètre GET (...?ref=février+2024) OU la valeur stockée dans la session
+        $stockDataMatrixs = [];
+        if ($ref) {
+            $session->set('reference_checkout', $ref); // Ici, on rentre la valeur dans la session
+            $stockDataMatrixs = $stockDataMatrixRepository->findBy(['reference_checkout' => $ref]);
+        }
+        // On récupère toutes les différentes références de la table.
+        $conn = $entityManager->getConnection();
+        $sql = 'SELECT DISTINCT reference_checkout FROM stock_data_matrix';
+        $resultSet = $conn->executeQuery($sql, ['ref' => $ref]);
+        $reference_checkouts = $resultSet->fetchFirstColumn();
+
+        // Formulaire quand une entité est scannée et que l'on veut la rajouter dans la table avec sa réf.
         if ($form->isSubmitted() && $form->isValid()) {
             $stockDataMatrix = $form->getData();
     
@@ -80,7 +91,7 @@ class ScanController extends AbstractController
                 setlocale(LC_TIME, 'fr_FR');
                 $currentDateTime = new DateTime(); // Crée un nouvel objet DateTime pour l'heure actuelle
                 $currentMonth = strftime('%B %Y');
-                $stockDataMatrix->setReferenceMonth($currentMonth);
+                $stockDataMatrix->setReferenceCheckout($currentMonth);
                 $stockDataMatrix->setDateTime($currentDateTime); // Passer l'objet DateTime
 
     
@@ -97,6 +108,8 @@ class ScanController extends AbstractController
             'stockDataMatrixs' => $stockDataMatrixs,
             'form' => $form,
             'error' => $error,
+            'reference_checkouts' => $reference_checkouts,
+            'active_ref' => $ref,
         ]);
     }
 
