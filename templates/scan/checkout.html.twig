@@ -83,6 +83,24 @@
 
 <script>
 
+const textInput = document.getElementByClassname('hidden');
+
+// Gestionnaire d'événement pour la touche pressée
+document.addEventListener('keydown', (event) => {
+    // Récupération de la touche pressée
+    const keyPressed = event.key;
+
+    // Vérification si la touche est une touche spéciale (comme les flèches ou la touche de suppression)
+    const specialKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Backspace', 'Delete'];
+    if (specialKeys.includes(keyPressed)) {
+        // Empêcher le comportement par défaut des touches spéciales
+        event.preventDefault();
+    }
+
+    // Ajout de la lettre correspondante à l'élément textarea
+    textInput.value += keyPressed;
+});
+
 document.getElementById('form-input').addEventListener('keydown', function(e) {
       if (e.key === 'Tab') {
         e.preventDefault(); 
