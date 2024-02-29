@@ -88,11 +88,15 @@ class ScanController extends AbstractController
                 }
             }
             if (!$error) {
-                setlocale(LC_TIME, 'fr_FR');
+                setlocale(LC_TIME, 'en_US'); // Définir la localisation en anglais
                 $currentDateTime = new DateTime(); // Crée un nouvel objet DateTime pour l'heure actuelle
-                $currentMonth = strftime('%B %Y');
-                $stockDataMatrix->setReferenceCheckout($currentMonth);
+                $currentTimestamp = $currentDateTime->getTimestamp(); // Obtenez le timestamp UNIX actuel
+                $formattedMonth = ucfirst(strftime('%B %Y', $currentTimestamp)); // Utiliser le timestamp pour obtenir le mois formaté avec la première lettre en majuscule
+                $stockDataMatrix->setReferenceCheckout($formattedMonth);
                 $stockDataMatrix->setDateTime($currentDateTime); // Passer l'objet DateTime
+                
+            
+                
 
     
                 $entityManager->persist($stockDataMatrix);
