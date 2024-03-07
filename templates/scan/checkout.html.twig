@@ -145,6 +145,18 @@ function jouerSonScan() {
 
 
     function jouerSonDelete() {
+            // Empêcher le comportement par défaut du lien
+        event.preventDefault();
+
+        // Afficher une boîte de dialogue de confirmation
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
+            // Si l'utilisateur clique sur OK, poursuivre avec la suppression
+            window.location.href = event.target.href;
+        } else {
+            // Sinon, ne rien faire
+            return false;
+        }
+    
     console.log('Audio préparé')
     let jouerSonDelete = new Audio()
     jouerSonDelete.src = "/assets/sounds/delete.mp3";
