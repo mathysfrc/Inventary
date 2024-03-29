@@ -1,192 +1,193 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Checkout{% endblock %}
+{% block title %}Checkout
+{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags('scan-checkout') }}
+	{{ parent() }}
+	{{ encore_entry_link_tags('scan-checkout') }}
 {% endblock %}
 
 {% block body %}
-    <section class="container">
-        <a href="/gestion" class="return text-light">
-            < Retour à la gestion du stock
-        </a>
+	<section class="container">
+		<a href="/gestion" class="return text-light">
+			Retour à la gestion du stock
+		</a>
+		<h1 class="title-enter-stock fw-bold text-light">
+			Check-out
+		</h1>
+		<div class="row d-flex">
+			<div class="col-6 svg-check">
 
-        <h1 class="title-enter-stock fw-bold text-light">Check-out</h1>
-        <div class="row d-flex">
-            <div class="col-6 svg-check">
-            
-                {% include 'icons/scanconso.svg' %}
-                <h1 class="text-scanner text-light fw-bold">Scanner la référence<br/>a vérifier avec le boitier</h1>
-                    <a onclick="reset()" href="" class="reset-inputs text-white">Vider les champs si bug</a>
+				{% include 'icons/scanconso.svg' %}
+				<h1 class="text-scanner text-light fw-bold">Scanner la référence<br/>a vérifier avec le boitier</h1>
+				<a onclick="reset()" href="" class="reset-inputs text-white">Vider les champs si bug</a>
 
 
- 
-                {{ form_start(form, {'attr': {'id': 'form-id'}}) }}
+				{{ form_start(form, {'attr': {'id': 'form-id'}}) }}
 
-                {{ form_row(form.SKU, {'attr': {'class': 'hidden', 'id': 'sku-input', 'autofocus': true, 'tabindex': -1}}) }}
-                {{ form_row(form.description, {'attr': {'class': 'hidden', 'id': 'description-input'}}) }}
-                {{ form_row(form.productFamily, {'attr': {'class': 'hidden', 'id': 'productFamily-input'}}) }}
-                {{ form_row(form.reference, {'attr': {'class': 'hidden', 'id': 'reference-input'}}) }}
-                {{ form_row(form.price, {'attr': {'class': 'hidden', 'id': 'price-input'}}) }}
-                {{ form_row(form.size1Name, {'attr': {'class': 'hidden', 'id': 'size1Name-input'}}) }}
-                {{ form_row(form.size1, {'attr': {'class': 'hidden', 'id': 'size1-input'}}) }}
-                {{ form_row(form.size1Unit, {'attr': {'class': 'hidden', 'id': 'size1Unit-input'}}) }}
-                {{ form_row(form.size2Name, {'attr': {'class': 'hidden', 'id': 'size2Name-input'}}) }}
-                {{ form_row(form.size2, {'attr': {'class': 'hidden', 'id': 'size2-input'}}) }}
-                {{ form_row(form.size2Unit, {'attr': {'class': 'hidden', 'id': 'size2Unit-input'}}) }}
-                
-                <input id="form-input" onclick="jouerSonScan()" type="submit" class="hidden"/>
-                {{ form_end(form) }}
-            </div>
-            <div class="col-6 suivi-check">
-                <div id="scannedSKUsContainer" class="checkout-sku">
-                    <!-- Le contenu sera mis à jour dynamiquement ici -->
-                    {% for element in stockDataMatrixs %}
-                        <div class="sku-item" id="sku-item">
-                            <p>{{ element.SKU }}</p>
-                            <a id="delete-sound" onclick="jouerSonDelete()" href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}" class="text-danger">Supprimer</a>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        
-        </div> 
-        <div class="linear-bar"></div>
+				{{ form_row(form.SKU, {'attr': {'class': 'hidden', 'id': 'sku-input', 'autofocus': true, 'tabindex': -1}}) }}
+				{{ form_row(form.description, {'attr': {'class': 'hidden', 'id': 'description-input'}}) }}
+				{{ form_row(form.productFamily, {'attr': {'class': 'hidden', 'id': 'productFamily-input'}}) }}
+				{{ form_row(form.reference, {'attr': {'class': 'hidden', 'id': 'reference-input'}}) }}
+				{{ form_row(form.price, {'attr': {'class': 'hidden', 'id': 'price-input'}}) }}
+				{{ form_row(form.size1Name, {'attr': {'class': 'hidden', 'id': 'size1Name-input'}}) }}
+				{{ form_row(form.size1, {'attr': {'class': 'hidden', 'id': 'size1-input'}}) }}
+				{{ form_row(form.size1Unit, {'attr': {'class': 'hidden', 'id': 'size1Unit-input'}}) }}
+				{{ form_row(form.size2Name, {'attr': {'class': 'hidden', 'id': 'size2Name-input'}}) }}
+				{{ form_row(form.size2, {'attr': {'class': 'hidden', 'id': 'size2-input'}}) }}
+				{{ form_row(form.size2Unit, {'attr': {'class': 'hidden', 'id': 'size2Unit-input'}}) }}
 
-        
-        <form action="{{ path('app_scan_checkout')}}" method="GET" class="select-month" id="checkoutForm">
-            <select class="form-select" name="ref" id="refSelect">
-                {% for ref in reference_checkouts %}
-                <option value="{{ ref }}" {% if ref == active_ref %} selected="selected" {% endif %}>{{ ref }}</option>
-                {% endfor %}
-            </select>
-        </form>
+				<input id="form-input" onclick="jouerSonScan()" type="submit" class="hidden"/>
+				{{ form_end(form) }}
+			</div>
+			<div class="col-6 suivi-check">
+				<div
+					id="scannedSKUsContainer" class="checkout-sku">
+					<!-- Le contenu sera mis à jour dynamiquement ici -->
+					{% for element in stockDataMatrixs %}
+						<div class="sku-item" id="sku-item">
+							<p>{{ element.SKU }}</p>
+							<a id="delete-sound" onclick="jouerSonDelete()" href="{{ path('app_scan_checkout_delete', {'id': element.id}) }}" class="text-danger">Supprimer</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
 
-    </section>
-    
-    <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button>
-            {# <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a> #}
-    <a type="button" href="/table/export/checkout" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary">
-        {% include 'icons/Download.svg' %}
-        &nbsp; Exporter
-    </a>
+		</div>
+		<div class="linear-bar"></div>
 
-    <script>
-    // Récupérer l'élément select et ajouter un écouteur d'événements de changement
-    document.getElementById('refSelect').addEventListener('change', function() {
-        // Soumettre automatiquement le formulaire lorsqu'une option est sélectionnée
-        document.getElementById('checkoutForm').submit();
-    });
-</script>
 
-<script>
+		<form action="{{ path('app_scan_checkout')}}" method="GET" class="select-month" id="checkoutForm">
+			<select class="form-select" name="ref" id="refSelect">
+				{% for ref in reference_checkouts %}
+					<option value="{{ ref }}" {% if ref == active_ref %} selected="selected" {% endif %}>{{ ref }}</option>
+				{% endfor %}
+			</select>
+		</form>
 
-const textInput = document.getElementsByClassName('hidden');
+	</section>
+
+	{# <button onclick="return confirmDelete('{{ path('app_scan_checkout_deleteAll') }}')" id="deleteAll" class="button-return-no-impr button-check btn d-flex  bg-white text-primary">Tout Effacer</button> #}
+	{# <a href="{{ path('app_stock_data_matrix_index') }}" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary" id="submit-form">Suivant</a> #}
+	<a type="button" href="/table/export/checkout" class="button-return-no-impr button-checkout  btn d-flex  bg-white text-primary">
+		{% include 'icons/Download.svg' %}
+		&nbsp; Exporter
+	</a>
+
+	<script>
+		// Récupérer l'élément select et ajouter un écouteur d'événements de changement
+document.getElementById('refSelect').addEventListener('change', function () { // Soumettre automatiquement le formulaire lorsqu'une option est sélectionnée
+document.getElementById('checkoutForm').submit();
+});
+	</script>
+
+	<script>
+
+		const textInput = document.getElementsByClassName('hidden');
 
 // Gestionnaire d'événement pour la touche pressée
-document.addEventListener('keydown', (event) => {
-    // Récupération de la touche pressée
-    const keyPressed = event.key;
+document.addEventListener('keydown', (event) => { // Récupération de la touche pressée
+const keyPressed = event.key;
 
-    // Vérification si la touche est une touche spéciale (comme les flèches ou la touche de suppression)
-    const specialKeys = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Backspace', 'Delete'];
-    if (specialKeys.includes(keyPressed)) {
-        // Empêcher le comportement par défaut des touches spéciales
-        event.preventDefault();
-    }
+// Vérification si la touche est une touche spéciale (comme les flèches ou la touche de suppression)
+const specialKeys = [
+'ArrowLeft',
+'ArrowRight',
+'ArrowUp',
+'ArrowDown',
+'Backspace',
+'Delete'
+];
+if (specialKeys.includes(keyPressed)) { // Empêcher le comportement par défaut des touches spéciales
+event.preventDefault();
+}
 
-    // Ajout de la lettre correspondante à l'élément textarea
-    textInput.value += keyPressed;
+// Ajout de la lettre correspondante à l'élément textarea
+textInput.value += keyPressed;
 });
 
-document.getElementById('form-input').addEventListener('keydown', function(e) {
-      if (e.key === 'Tab') {
-        e.preventDefault(); 
-      }
-    });
-    
+document.getElementById('form-input').addEventListener('keydown', function (e) {
+if (e.key === 'Tab') {
+e.preventDefault();
+}
+});
+
 
 function reset() {
 
-        let skuInput = document.getElementById('stock_data_matrix_SKU');
-        let formInputs = document.getElementById('form-id');
+let skuInput = document.getElementById('stock_data_matrix_SKU');
+let formInputs = document.getElementById('form-id');
 
-    formInputs.reset();
-    skuInput.focus();
+formInputs.reset();
+skuInput.focus();
 }
 
-function jouerSonScan() {
-    // Récupérer la valeur du champ SKU
-    let skuInput = document.getElementById('stock_data_matrix_SKU');
-    
+function jouerSonScan() { // Récupérer la valeur du champ SKU
+let skuInput = document.getElementById('stock_data_matrix_SKU');
 
-    console.log(skuInput);
-    // Vérifier si le SKU est valide (commence par "(000)" et est suivi de 18 chiffres)
-    let isValid = skuInput.value.startsWith('(000)') && skuInput.value.length === 23;
 
-    let formInputs = document.getElementById('form-id');
+console.log(skuInput);
+// Vérifier si le SKU est valide (commence par "(000)" et est suivi de 18 chiffres)
+let isValid = skuInput.value.startsWith('(000)') && skuInput.value.length === 23;
 
-    
-    if (isValid) {
-        let jouerSonScan = new Audio();
-        jouerSonScan.src = "/assets/sounds/success.mp3";
-        jouerSonScan.play();
-    } else {
-        let jouerSonErreur = new Audio();
-        jouerSonErreur.src = "/assets/sounds/erreur.mp3";
-        jouerSonErreur.play();
-        event.preventDefault();
-        formInputs.reset();
-        skuInput.focus();
-    }
+let formInputs = document.getElementById('form-id');
+
+
+if (isValid) {
+let jouerSonScan = new Audio();
+jouerSonScan.src = "/assets/sounds/success.mp3";
+jouerSonScan.play();
+} else {
+let jouerSonErreur = new Audio();
+jouerSonErreur.src = "/assets/sounds/erreur.mp3";
+jouerSonErreur.play();
+event.preventDefault();
+formInputs.reset();
+skuInput.focus();
+}
 }
 
 
-    function jouerSonDelete() {
-            // Empêcher le comportement par défaut du lien
-        event.preventDefault();
+function jouerSonDelete() { // Empêcher le comportement par défaut du lien
+event.preventDefault();
 
-        // Afficher une boîte de dialogue de confirmation
-        if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
-            // Si l'utilisateur clique sur OK, poursuivre avec la suppression
-            window.location.href = event.target.href;
-        } else {
-            // Sinon, ne rien faire
-            return false;
-        }
-    
-    console.log('Audio préparé')
-    let jouerSonDelete = new Audio()
-    jouerSonDelete.src = "/assets/sounds/delete.mp3";
-    jouerSonDelete.play();
-    console.log('Audio joué')
-    }
+// Afficher une boîte de dialogue de confirmation
+if (confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) { // Si l'utilisateur clique sur OK, poursuivre avec la suppression
+window.location.href = event.target.href;
+} else { // Sinon, ne rien faire
+return false;
+}
 
-    function error() {
-        alert('{{ error | default("Aucune erreur") }}');
-    }
+console.log('Audio préparé')
+let jouerSonDelete = new Audio()
+jouerSonDelete.src = "/assets/sounds/delete.mp3";
+jouerSonDelete.play();
+console.log('Audio joué')
+}
 
-    function confirmDelete(url) {
-    let confirmation = confirm("Êtes-vous sûr de vouloir supprimer toutes les données ?");
+function error() {
+alert('{{ error | default("Aucune erreur") }}');
+}
 
-    if (confirmation) {
-      window.location.href = url;
-    } else {
-      // L'utilisateur a annulé la suppression
-      alert("Suppression annulée !");
-      return false; // Annule l'action par défaut du lien
-    }
-  }
-</script>
+function confirmDelete(url) {
+let confirmation = confirm("Êtes-vous sûr de vouloir supprimer toutes les données ?");
 
-{% if error is not null %}
-    <script>
-        error();
-    </script>
+if (confirmation) {
+window.location.href = url;
+} else { // L'utilisateur a annulé la suppression
+alert("Suppression annulée !");
+return false; // Annule l'action par défaut du lien
+}
+}
+	</script>
+
+	{% if error is not null %}
+		<script>
+			error();
+		</script>
 
 
-{% endif %}
+	{% endif %}
 
 {% endblock %}
