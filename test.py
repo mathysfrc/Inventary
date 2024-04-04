@@ -1,4 +1,0 @@
-Script started on Tue Apr  2 10:38:21 2024
-[1m[7m%[27m[1m[0m                                                                                                                                                                      [0m[27m[24m[Jmathysfrc@Mathyss-MacBook-Pro inventaire % [K[?2004hccd ..[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                                      [0m[27m[24m[Jmathysfrc@Mathyss-MacBook-Pro Alternance % [K[?2004hvvf ` v  ccd ..[?2004l
-[1m[7m%[27m[1m[0m                                                                                                                                                                      [0m[27m[24m[Jmathysfrc@Mathyss-MacBook-Pro Desktop % [K[?2004h``v` `cd .;
