@@ -2,108 +2,108 @@
   "entrypoints": {
     "app": {
       "js": [
-        "/build/runtime.188fa053.js",
-        "/build/1.3613ed1b.js",
-        "/build/app.a16bdedf.js"
+        "/build/runtime.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_bootstrap_dist_js_boo-c832f0.js",
+        "/build/app.js"
       ],
       "css": [
-        "/build/app.63586db7.css"
+        "/build/app.css"
       ]
     },
     "home": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/home.d166a3ef.css"
+        "/build/home.css"
       ]
     },
     "gestion": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/gestion.8c42f013.css"
+        "/build/gestion.css"
       ]
     },
     "login": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/login.343b9ff0.css"
+        "/build/login.css"
       ]
     },
     "stock": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/stock.7b0b5bea.css"
+        "/build/stock.css"
       ]
     },
     "print": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/print.22723067.css"
+        "/build/print.css"
       ]
     },
     "scan": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/scan.98f091ce.css"
+        "/build/scan.css"
       ]
     },
     "scan-checkout": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/scan-checkout.a8d92d0d.css"
+        "/build/scan-checkout.css"
       ]
     },
     "partielle": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/partielle.4824d716.css"
+        "/build/partielle.css"
       ]
     },
     "empty": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/empty.1aaa2dc5.css"
+        "/build/empty.css"
       ]
     },
     "error": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/error.72ce58ab.css"
+        "/build/error.css"
       ]
     },
     "checkout": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/checkout.31d6cfe0.css"
+        "/build/checkout.css"
       ]
     },
     "loader": {
       "js": [
-        "/build/runtime.188fa053.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/loader.a60b1583.css"
+        "/build/loader.css"
       ]
     }
   }

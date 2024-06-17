@@ -63,6 +63,9 @@ class Stock
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $shape = null;
 
+    #[ORM\Column(Types::BOOLEAN, nullable: true)]
+    private $consumed;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -237,6 +240,18 @@ class Stock
         return $this;
     }
 
+    public function isConsumed(): ?bool
+    {
+        return $this->consumed;
+    }
+
+    public function setConsumed(bool $consumed): self
+    {
+        $this->consumed = $consumed;
+
+        return $this;
+    }
+
     public static function getStockFromTracking(Tracking $tracking): Stock
     {
 
@@ -262,33 +277,33 @@ class Stock
     }
 
 
-public static function generateSKU(Stock $stock, EntityManagerInterface $entityManager)
-{
-    // Récupérez le dernier SKU de la base de données
-    $latestSKU = $entityManager
-        ->getRepository(Stock::class)
-        ->createQueryBuilder('s')
-        ->select('MAX(s.SKU)')
-        ->getQuery()
-        ->getSingleScalarResult();
+    public static function generateSKU(Stock $stock, EntityManagerInterface $entityManager)
+    {
+        // Récupérez le dernier SKU de la base de données
+        $latestSKU = $entityManager
+            ->getRepository(Stock::class)
+            ->createQueryBuilder('s')
+            ->select('MAX(s.SKU)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
-    if ($latestSKU === null) {
-        $latestSKU = 0;
+        if ($latestSKU === null) {
+            $latestSKU = 0;
+        }
+
+        // Incrémentez le SKU
+        $nextSKU = intval(substr($latestSKU, 5)) + 1;
+
+        // Formatez le SKU avec des zéros à gauche
+        $formattedSKU = sprintf("(000)%018d", $nextSKU);
+
+        // Définissez le SKU généré dans l'entité $stock
+        $stock->setSKU($formattedSKU);
+
+        // Retournez le SKU généré
+        return $formattedSKU;
     }
 
-    // Incrémentez le SKU
-    $nextSKU = intval(substr($latestSKU, 5)) + 1;
-
-    // Formatez le SKU avec des zéros à gauche
-    $formattedSKU = sprintf("(000)%018d", $nextSKU);
-
-    // Définissez le SKU généré dans l'entité $stock
-    $stock->setSKU($formattedSKU);
-
-    // Retournez le SKU généré
-    return $formattedSKU;
-}
-    
 
     public function getSurface(): ?string
     {

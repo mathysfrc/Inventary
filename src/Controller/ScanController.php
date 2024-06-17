@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Stock;
 use App\Entity\StockDataMatrix;
 use App\Form\StockDataMatrixType;
 use App\Repository\StockDataMatrixRepository;
@@ -30,12 +31,34 @@ class ScanController extends AbstractController
         ]);
     }
 
-    #[Route('/scan/empty', name: 'app_scan_empty')]
-    public function empty(): Response
+    public function __construct(EntityManagerInterface $entityManager)
     {
+        $this->entityManager = $entityManager;
+    }
+
+    #[Route('/scan/empty', name: 'app_scan_empty')]
+    public function empty(Request $request): Response
+    {
+        $sku = $request->query->get('SKU');
+        $produitDejaConsume = $this->checkIfProductAlreadyConsumed($sku);
+
+        if ($produitDejaConsume) {
+            $this->addFlash('error', 'Le produit a déjà été consommé.');
+        }
+
         return $this->render('scan/empty.html.twig', [
             'controller_name' => 'ScanController',
+            'SKU' => $sku,
+            'produitDejaConsume' => $produitDejaConsume,
         ]);
+    }
+
+    private function checkIfProductAlreadyConsumed($sku)
+    {
+        $productRepository = $this->entityManager->getRepository(Stock::class);
+        $product = $productRepository->findOneBy(['SKU' => $sku]);
+
+        return $product && $product->isConsumed();
     }
 
     #[Route('/scan/read', name: 'app_scan_read')]
@@ -47,7 +70,7 @@ class ScanController extends AbstractController
     }
 
     #[Route('/scan/checkout', name: 'app_scan_checkout')]
-    public function checkout(Request $request, StockDataMatrixRepository $stockDataMatrixRepository, EntityManagerInterface $entityManager, String $error = null): Response
+    public function checkout(Request $request, StockDataMatrixRepository $stockDataMatrixRepository, EntityManagerInterface $entityManager, string $error = null): Response
     {
         $stockDataMatrix = new StockDataMatrix();
         $form = $this->createForm(StockDataMatrixType::class, $stockDataMatrix);
@@ -70,7 +93,7 @@ class ScanController extends AbstractController
         // Formulaire quand une entité est scannée et que l'on veut la rajouter dans la table avec sa réf.
         if ($form->isSubmitted() && $form->isValid()) {
             $stockDataMatrix = $form->getData();
-    
+
             // Remplacer les '§' par des '-' dans le champ pertinent
             $description = $stockDataMatrix->getDescription();
             $description = str_replace('§', '-', $description);
@@ -79,7 +102,7 @@ class ScanController extends AbstractController
             $reference = $stockDataMatrix->getReference();
             $reference = str_replace('§', '-', $reference);
             $stockDataMatrix->setReference($reference);
-    
+
             // Vérifier si le SKU a déjà été scanné
             $newSKU = $stockDataMatrix->getSKU();
             foreach ($stockDataMatrixs as $existingDataMatrix) {
@@ -94,11 +117,11 @@ class ScanController extends AbstractController
                 $formattedMonth = ucfirst(strftime('%B %Y', $currentTimestamp)); // Utiliser le timestamp pour obtenir le mois formaté avec la première lettre en majuscule
                 $stockDataMatrix->setReferenceCheckout($formattedMonth);
                 $stockDataMatrix->setDateTime($currentDateTime); // Passer l'objet DateTime
-                
-            
-                
 
-    
+
+
+
+
                 $entityManager->persist($stockDataMatrix);
                 $entityManager->flush();
             }
@@ -106,7 +129,7 @@ class ScanController extends AbstractController
                 'error' => $error,
             ]);
         }
-    
+
         return $this->render('scan/checkout.html.twig', [
             'controller_name' => 'ScanController',
             'stockDataMatrixs' => $stockDataMatrixs,
@@ -129,12 +152,12 @@ class ScanController extends AbstractController
 
         $stockDataMatrixs = $stockDataMatrixRepository->findAll();
 
-        foreach ( $stockDataMatrixs as $dataMatrix ) {
+        foreach ($stockDataMatrixs as $dataMatrix) {
             $entityManager->remove($dataMatrix);
         }
 
         $entityManager->flush();
-                
+
         return $this->redirectToRoute('app_scan_checkout');
     }
 
@@ -142,10 +165,10 @@ class ScanController extends AbstractController
     public function delete($id, StockDataMatrixRepository $stockDataMatrixRepository, EntityManagerInterface $entityManager): Response
     {
         $stockDataMatrix = $stockDataMatrixRepository->find($id);
-    
+
         $entityManager->remove($stockDataMatrix);
         $entityManager->flush();
-    
+
         return $this->redirectToRoute('app_scan_checkout');
     }
 }

@@ -15,12 +15,26 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ConsommationEmptyController extends AbstractController
 {
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+
     #[Route('/consommation/empty', name: 'app_consommation_empty')]
     public function index(Request $request, TrackingRepository $trackingRepository, EntityManagerInterface $entityManager): Response
     {
         //on récupère le SKU a partir de la variable de notre requête POST
         $SKU = $request->request->get('SKU');
-        
+
+        $produitDejaConsume = $this->checkIfProductAlreadyConsumed($SKU);
+
+        if ($produitDejaConsume) {
+            $this->addFlash('error', 'Le produit a déjà été consommé.');
+        }
+
+
         // on recupère le tracking dans la BDD à partir du SKU
 
         $trackings = $trackingRepository->findBy([
@@ -34,14 +48,24 @@ class ConsommationEmptyController extends AbstractController
 
         $stock = Stock::getStockFromTracking($lastTracking);
 
-        
+
 
         return $this->render('consommation_empty/index.html.twig', [
             'stock' => $stock,
+            'produitDejaConsume' => $produitDejaConsume,
+
         ]);
     }
 
-    #[Route('/empty/template', name: 'app_template_empty', methods:["POST"])]
+    private function checkIfProductAlreadyConsumed($SKU)
+    {
+        $productRepository = $this->entityManager->getRepository(Stock::class);
+        $product = $productRepository->findOneBy(['SKU' => $SKU]);
+
+        return $product && $product->isConsumed();
+    }
+
+    #[Route('/empty/template', name: 'app_template_empty', methods: ["POST"])]
     public function empty(Request $request, TrackingRepository $trackingRepository, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
     {
         //on récupère le SKU a partir de la variable de notre requête POST
@@ -53,7 +77,7 @@ class ConsommationEmptyController extends AbstractController
         ], [
             "timestamp" => "ASC"
         ]);
-        
+
 
         $lastTracking = end($trackings);
         // on récupère le stock dans la bdd

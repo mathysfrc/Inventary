@@ -104,6 +104,6 @@ Encore
     //.autoProvidejQuery()
 
     .enableSassLoader()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();
