@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,7 +24,7 @@
 	</head>
 	<body>
 
-    		{% block flash %}
+		{% block flash %}
 			{% for category, messages in app.flashes %}
 				{% for message in messages %}
 					<div class="flash container justify-content-end text-center w-75 my-2">
@@ -36,6 +36,6 @@
 			{% endfor %}
 		{% endblock %}
 		{% block body %}{% endblock %}
-        
+
 	</body>
 </html>
