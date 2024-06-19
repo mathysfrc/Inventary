@@ -23,6 +23,9 @@ class CheckoutController extends AbstractController
     {
         $jsonData = null;
 
+        $SKU = $request->request->get('SKU');
+
+
         try {
             $jsonData = json_decode($request->getContent(), true );
             var_dump($request->getContent());exit();

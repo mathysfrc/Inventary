@@ -28,9 +28,9 @@
 			{% for category, messages in app.flashes %}
 				{% for message in messages %}
 					<div class="flash container justify-content-end text-center w-75 my-2">
-						<div class="alert alert-{{ category }}">
-							{{ message }}
-						</div>
+			        <div class="flash-message flash-{{ label }}">
+           				 {{ message }}
+       				 </div>
 					</div>
 				{% endfor %}
 			{% endfor %}

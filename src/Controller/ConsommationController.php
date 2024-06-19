@@ -18,10 +18,23 @@ class ConsommationController extends AbstractController
 {
 
     #[Route('/consommation', name: 'app_consommation')]
-    public function index(Request $request, TrackingRepository $trackingRepository, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, TrackingRepository $trackingRepository, StockRepository $stockRepository ,EntityManagerInterface $entityManager): Response
     {
+
+        try {
+          
         // On récupère le SKU à partir de la variable de notre requête POST
         $SKU = $request->request->get('SKU');
+
+        // Vérifie si le produit a déjà été consommé
+        $produitDejaConsume = $stockRepository->findBy([
+         "SKU" => $SKU
+        ]);
+        if (empty($produitDejaConsume)) {
+             throw new \Exception('Le SKU : ' . $SKU . ' a déjà été déclaré vide. Jeter son étiquette :)');
+        }
+
+
         
         // On récupère le tracking dans la BDD à partir du SKU
         $trackings = $trackingRepository->findBy([
@@ -38,5 +51,13 @@ class ConsommationController extends AbstractController
         return $this->render('consommation/index.html.twig', [
             'stock' => $stock,
         ]);
+
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+            // musique 
+
+            
+            return $this->redirectToRoute('app_scan_entry');
+        }
     }
 }

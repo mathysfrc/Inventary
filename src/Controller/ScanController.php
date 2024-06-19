@@ -90,6 +90,7 @@ class ScanController extends AbstractController
         $resultSet = $conn->executeQuery($sql, ['ref' => $ref]);
         $reference_checkouts = $resultSet->fetchFirstColumn();
 
+
         // Formulaire quand une entité est scannée et que l'on veut la rajouter dans la table avec sa réf.
         if ($form->isSubmitted() && $form->isValid()) {
             $stockDataMatrix = $form->getData();
@@ -105,6 +106,12 @@ class ScanController extends AbstractController
 
             // Vérifier si le SKU a déjà été scanné
             $newSKU = $stockDataMatrix->getSKU();
+
+            if (strlen($newSKU) !== 23) {
+                $this->addFlash('error', 'Le SKU s\'est mal scanné, veuillez le re-scanner :)');
+                return $this->redirectToRoute('app_scan_checkout');
+            }
+
             foreach ($stockDataMatrixs as $existingDataMatrix) {
                 if ($existingDataMatrix->getSKU() === $newSKU) {
                     $error = 'Ce SKU a déjà été scanné';

@@ -14,7 +14,16 @@
 		<div class="container">
 			<div class="return-element">
 				<a href="/gestion" class="return text-primary">
-					<RetourConsommationInutilisable</span à la gestion du stock </a> <h1 class=" fw-bold text-primary"> partielle</h1> </div> <div class="card-element"> <div class="card-body"> <div class="mb-4"> {% if stock.status == "Inutilisable" %} <span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">>
+				 Retour à la gestion du stock 
+					</a> 
+					<h1 class=" fw-bold text-primary">Consommation partielle</h1>
+					
+		 </div> 
+		 <div class="card-element">
+		  <div class="card-body">
+		   <div class="mb-4">
+		    {% if stock.status == "Inutilisable" %} 
+			<span class="inutilisable badge custom-w p-2 px-3 text-bg-danger text-white">>
 					{% else %}
 						<span class="utilisable badge custom-w p-2 px-3 text-bg-success text-secondary">Utilisable</span>
 					{% endif %}

@@ -23,47 +23,48 @@ class ConsommationEmptyController extends AbstractController
 
 
     #[Route('/consommation/empty', name: 'app_consommation_empty')]
-    public function index(Request $request, TrackingRepository $trackingRepository, EntityManagerInterface $entityManager): Response
+    public function index(Request $request, TrackingRepository $trackingRepository, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
     {
-        //on récupère le SKU a partir de la variable de notre requête POST
-        $SKU = $request->request->get('SKU');
+        try {
+            // On récupère le SKU à partir de la variable de notre requête POST
+            $SKU = $request->request->get('SKU');
+    
+            // Vérifie si le produit a déjà été consommé
+            $produitDejaConsume = $stockRepository->findBy([
+                "SKU" => $SKU
+            ]);
+            if (empty($produitDejaConsume)) {
+                throw new \Exception('Le SKU : ' . $SKU . ' a déjà été déclaré vide. Jeter son étiquette :)');
+            }
+        
+            // On récupère le tracking dans la BDD à partir du SKU
+            $trackings = $trackingRepository->findBy([
+                "SKU" => $SKU
+            ], [
+                "timestamp" => "ASC"
+            ]);
+    
+            if (empty($trackings)) {
+                throw new \Exception('Le SKU : ' . $SKU . ' a déjà été déclaré vide. Jeter son étiquette :)');
+            }
+    
+            $lastTracking = end($trackings);
+    
+            // On convertit le tracking en un objet de classe Stock
+            $stock = Stock::getStockFromTracking($lastTracking);
+    
+            return $this->render('consommation_empty/index.html.twig', [
+                'stock' => $stock,
+            ]);
+        } catch (\Exception $e) {
+            $this->addFlash('error', $e->getMessage());
+            // musique 
 
-        $produitDejaConsume = $this->checkIfProductAlreadyConsumed($SKU);
-
-        if ($produitDejaConsume) {
-            $this->addFlash('error', 'Le produit a déjà été consommé.');
+            
+            return $this->redirectToRoute('app_scan_empty');
         }
-
-
-        // on recupère le tracking dans la BDD à partir du SKU
-
-        $trackings = $trackingRepository->findBy([
-            "SKU" => $SKU
-        ], [
-            "timestamp" => "ASC"
-        ]);
-
-        $lastTracking = end($trackings);
-        // on convertit le tracking en un obj de class Stock
-
-        $stock = Stock::getStockFromTracking($lastTracking);
-
-
-
-        return $this->render('consommation_empty/index.html.twig', [
-            'stock' => $stock,
-            'produitDejaConsume' => $produitDejaConsume,
-
-        ]);
     }
-
-    private function checkIfProductAlreadyConsumed($SKU)
-    {
-        $productRepository = $this->entityManager->getRepository(Stock::class);
-        $product = $productRepository->findOneBy(['SKU' => $SKU]);
-
-        return $product && $product->isConsumed();
-    }
+    
 
     #[Route('/empty/template', name: 'app_template_empty', methods: ["POST"])]
     public function empty(Request $request, TrackingRepository $trackingRepository, StockRepository $stockRepository, EntityManagerInterface $entityManager): Response
