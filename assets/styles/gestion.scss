@@ -41,22 +41,7 @@ div.col-12 {
 
 
 input#quantity {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--bs-body-color);
-    appearance: none;
-    background-color: var(--bs-body-bg);
-    background-image: var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 16px 12px;
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+margin-top: 0.45rem !important;
 }
 
 #text {
@@ -405,4 +390,12 @@ img.datamatrix {
     .print {
         display: none !important
     }
+}
+
+.input-marge {
+    height: 78px !important;
+}
+
+.form-control, #stock_productFamily, #stock_status, #stock_size1, #stock_size2, #size1ManualValue, #size2ManualValue, #stock_size1Unit, #stock_size2Unit {
+    height: 3rem !important
 }

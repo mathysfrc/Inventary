@@ -35,6 +35,7 @@ class ConsommationEmptyController extends AbstractController
             ]);
             if (empty($produitDejaConsume)) {
                 throw new \Exception('Le SKU : ' . $SKU . ' a déjà été déclaré vide. Jeter son étiquette :)');
+            
             }
         
             // On récupère le tracking dans la BDD à partir du SKU
